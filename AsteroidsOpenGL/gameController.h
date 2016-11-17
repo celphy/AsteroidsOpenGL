@@ -1,6 +1,7 @@
 #pragma once
 #include "main.h"
 #include "physicsHandler.h"
+#include "playerShip.h"
 
 //QueryPerformanceCounter
 
@@ -12,6 +13,7 @@ class gameController
 {
 private:
 	//Register player ship object
+	playerShip *player;
 	gameState state;
 	int tickRatePS;
 	int maxShots;
@@ -26,20 +28,18 @@ public:
 	//User input
 	void run();
 	void setPhysicsHandler(physicsHandler* ptr);
+	void setPlayerShip(playerShip *ptr);
 	gameController();
 	~gameController();
 };
 
 
 //TODO
-//Create class for player ship
-//Register player ship with gameController
 //User input
 //Render player ship
 //Use gameBoard
 //Move the player ship
-//Create class for asteroids
-//Create projectile with lifetime
 //Collision
 //Asteroids destroying
 //Text, lifes, points, highscore
+//Cleanup, DEFINES!

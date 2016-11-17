@@ -30,6 +30,15 @@
     <ClCompile Include="gameController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="playerShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asteroidClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="projectileClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -48,6 +57,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="playerShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asteroidClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="projectileClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

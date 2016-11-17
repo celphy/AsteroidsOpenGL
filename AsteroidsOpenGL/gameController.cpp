@@ -1,6 +1,10 @@
 #include "gameController.h"
 
 
+void gameController::setPlayerShip(playerShip *ptr) {
+	player = ptr;
+}
+
 void gameController::run() {
 	bool last;
 	last = this->GetPerformanceCounter();

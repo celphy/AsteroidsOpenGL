@@ -143,19 +143,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asteroidClass.cpp" />
     <ClCompile Include="gameBoard.cpp" />
     <ClCompile Include="gameController.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="physicsHandler.cpp" />
+    <ClCompile Include="playerShip.cpp" />
+    <ClCompile Include="projectileClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="asteroidClass.h" />
     <ClInclude Include="gameBoard.h" />
     <ClInclude Include="gameController.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="physicsHandler.h" />
+    <ClInclude Include="playerShip.h" />
     <ClInclude Include="point.h" />
+    <ClInclude Include="projectileClass.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glew32.lib" />
