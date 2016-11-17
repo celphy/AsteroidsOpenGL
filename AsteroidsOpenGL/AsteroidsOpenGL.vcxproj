@@ -151,6 +151,7 @@
     <ClCompile Include="physicsHandler.cpp" />
     <ClCompile Include="playerShip.cpp" />
     <ClCompile Include="projectileClass.cpp" />
+    <ClCompile Include="VectorClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="asteroidClass.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="playerShip.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="projectileClass.h" />
+    <ClInclude Include="VectorClass.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glew32.lib" />
