@@ -150,6 +150,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="physicsHandler.cpp" />
     <ClCompile Include="playerShip.cpp" />
+    <ClCompile Include="polygonClass.cpp" />
     <ClCompile Include="projectileClass.cpp" />
     <ClCompile Include="VectorClass.cpp" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="physicsHandler.h" />
     <ClInclude Include="playerShip.h" />
     <ClInclude Include="point.h" />
+    <ClInclude Include="polygonClass.h" />
     <ClInclude Include="projectileClass.h" />
     <ClInclude Include="VectorClass.h" />
   </ItemGroup>

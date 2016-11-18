@@ -1,6 +1,12 @@
 #include "gameObject.h"
 #include "point.h"
 
+bool gameObject::setOutline(int num, GLfloat points[]) {
+	for (int i = 0; i < num; i++) {
+		this->outline.setPolygonPoint(i/2, points[i], points[i + 1]);
+	} //Might work after all by setting i/2 as number
+}
+
 Point gameObject::getPosition() {
 	return this->position;
 }

@@ -5,8 +5,7 @@ class asteroidClass :
 	public gameObject
 {
 private:
-	GLfloat outline[10];
-	float size;
+	float size; //Scale of our asteroid
 public:
 	asteroidClass();
 	asteroidClass(float s);

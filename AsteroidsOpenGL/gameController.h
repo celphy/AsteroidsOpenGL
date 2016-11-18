@@ -35,6 +35,7 @@ public:
 
 
 //TODO
+//Change project to use a polygonClass that handles racasting collision themselves
 //User input
 //Render player ship
 //Use gameBoard

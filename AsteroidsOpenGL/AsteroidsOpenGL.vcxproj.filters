@@ -42,6 +42,9 @@
     <ClCompile Include="VectorClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="polygonClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VectorClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="polygonClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
