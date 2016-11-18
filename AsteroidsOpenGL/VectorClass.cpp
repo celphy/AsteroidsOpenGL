@@ -1,37 +1,39 @@
 #include "VectorClass.h"
 
-VectorClass VectorClass::getIntersection(VectorClass v){
-	Point startl1, endl1; //Line 1
-	Point startl2, endl2; //Line 2
+Point* VectorClass::getIntersection(VectorClass v){
+	float x1 = this->getOrigin().x, x2 = this->getDirection().x, x3 = v.getOrigin().x, x4 = v.getDirection().x;
+	float y1 = this->getOrigin().y, y2 = this->getDirection().y, y3 = v.getOrigin().y, y4 = v.getDirection().y;
 
-	startl1.x = this->origin.x;
-	startl1.y = this->origin.y;
-	endl1.x = this->origin.x + this->direction.x;
-	endl2.y = this->origin.y + this->direction.y;
+	float d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+	// Parallel?
+	if (d == 0) return nullptr;
+	// Deckungsgleich?
+	if (d == 1) return nullptr;
 
-	startl2.x = v.getOrigin().x;
-	startl2.y = v.getOrigin().y;
-	endl2.x = v.getOrigin().x + v.getDirection().x;
-	endl2.y = v.getOrigin().y + v.getDirection().y;
+	// X und Y des Schnittpunkts - danke Wikipedia
+	float pre = (x1*y2 - y1*x2), post = (x3*y4 - y3*x4);
+	float x = (pre * (x3 - x4) - (x1 - x2) * post) / d;
+	float y = (pre * (y3 - y4) - (y1 - y2) * post) / d;
 
-	//Check for zero
-	float resultCheck = ((startl1.x - endl1.x)*(startl2.y - endl2.y) - (startl1.y - endl1.y)(startl2.x - endl2.x));
-	if(resultCheck == 0.0){
-		vector empty;
-		empty.x = 0.0f;
-		empty.y = 0.0f;
-		VectorClass r = VectorClass(empty, empty);
-		return r;
-	}
-	//TODO: Not-zero logic
-	return *this;
+	// Ist der Schnittpunkt innerhalb der Linien?
+	if (x < min(x1, x2) || x > max(x1, x2) ||
+		x < min(x3, x4) || x > max(x3, x4)) return nullptr;
+	if (y < min(y1, y2) || y > max(y1, y2) ||
+		y < min(y3, y4) || y > max(y3, y4)) return nullptr;
+
+	// Schnittpunkt
+	Point* r = new Point();
+	r->x = x;
+	r->y = y;
+	return r;
+}
 
 }
 
 void VectorClass::multVector(float factor){
 	this->direction.x *= factor;
 	this->direction.y *= factor;
-}
+} 
 
 
 void VectorClass::addVector(vector v){

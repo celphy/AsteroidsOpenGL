@@ -1,4 +1,5 @@
 #pragma once
+#include "main.h"
 
 
 //Vector == Point but improves readability
@@ -19,7 +20,7 @@ private:
 	vector direction;
 	
 public:
-	VectorClass getIntersection(VectorClass vector); //Result can be 0, Point or Vector
+	Point* getIntersection(VectorClass vector); //Result can be 0, Point or Vector
 	void addVector(vector v); 
 	void subVector(vector v);
 	void multVector(float factor);
