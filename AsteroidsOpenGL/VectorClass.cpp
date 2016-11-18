@@ -28,7 +28,7 @@ Point* VectorClass::getIntersection(VectorClass v){
 	return r;
 }
 
-}
+
 
 void VectorClass::multVector(float factor){
 	this->direction.x *= factor;
