@@ -10,6 +10,7 @@ class polygonClass
 	GLfloat *outline;
 public:
 	bool setPolygonPoint(int n, GLfloat x, GLfloat y);
+	bool containsPoint(Point p);
 	polygonClass();
 	polygonClass(int num);
 	~polygonClass();
