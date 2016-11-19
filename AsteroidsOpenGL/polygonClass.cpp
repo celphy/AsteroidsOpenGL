@@ -1,6 +1,11 @@
 #include "polygonClass.h"
 
 bool polygonClass::containsPoint(Point p) {
+ // Check line from out of bounds (gameBoard) to Point p
+ // for collision with every side of polygon.
+ // If number of collisions is odd it is inside.
+ // VectorClass side[x].getIntersection( Line toP );
+
 	return false;
 }
 
