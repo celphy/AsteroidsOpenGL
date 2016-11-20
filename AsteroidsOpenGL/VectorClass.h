@@ -1,5 +1,6 @@
 #pragma once
 #include "main.h"
+#include "point.h"
 
 
 //Vector == Point but improves readability
@@ -8,10 +9,6 @@ typedef struct vector {
 	float y;
 };
 
-typedef struct Point {
-	float x;
-	float y;
-};
 
 class VectorClass
 {
@@ -30,6 +27,7 @@ public:
 	void setDirection(vector dArg);
 	VectorClass(void);
 	VectorClass(vector oArg, vector dArg);
+	VectorClass(Point one, Point two);
 	~VectorClass(void);
 };
 

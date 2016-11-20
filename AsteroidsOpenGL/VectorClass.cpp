@@ -67,6 +67,13 @@ VectorClass::VectorClass(vector oArg, vector dArg){
 	this->direction = dArg;
 }
 
+VectorClass::VectorClass(Point one, Point two) {
+	this->origin.x = one.x;
+	this->origin.y = one.y;
+	this->direction.x = two.x;
+	this->direction.y = two.y;
+}
+
 VectorClass::VectorClass(void)
 {
 }

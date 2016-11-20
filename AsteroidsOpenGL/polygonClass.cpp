@@ -1,7 +1,34 @@
 #include "polygonClass.h"
 
 bool polygonClass::containsPoint(Point p) {
+	//TODO use point that refers to actual gameBoard cutoff
+	Point outside;
+	outside.x = -2.0;
+	outside.y = -2.0;
+	VectorClass *testVector = new VectorClass(outside, p);
+	int numberOfCollisions = 0;
+	for (int i = 0; i < this->n; i++) {
+		Point sideOne, sideTwo;
+		if (i == 0) {
+			sideOne = this->getPolygonPoint(n - 1);
+		}
+		else {
+			sideOne = this->getPolygonPoint(i - 1);
+		}
+		sideTwo = this->getPolygonPoint(i);
+		VectorClass *sideVector = new VectorClass(sideOne, sideTwo);
+		if (sideVector->getIntersection(*testVector) != nullptr)
+			numberOfCollisions++;
+	}
+	if (numberOfCollisions % 2)
+		return true;
 	return false;
+}
+
+Point polygonClass::getPolygonPoint(int n) {
+	Point r;
+	r.x = this->outline[2 * n];
+	r.y = this->outline[(2 * n) + 1];
 }
 
 bool polygonClass::setPolygonPoint(int pos, GLfloat x, GLfloat y) {

@@ -1,6 +1,8 @@
 #pragma once
 #include <stdlib.h>
 #include "main.h"
+#include "point.h"
+#include "vectorClass.h"
 
 
 class polygonClass
@@ -10,6 +12,7 @@ class polygonClass
 	GLfloat *outline;
 public:
 	bool setPolygonPoint(int n, GLfloat x, GLfloat y);
+	Point getPolygonPoint(int n);
 	bool containsPoint(Point p);
 	polygonClass();
 	polygonClass(int num);
