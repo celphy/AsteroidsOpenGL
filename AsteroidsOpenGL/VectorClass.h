@@ -1,7 +1,7 @@
 #pragma once
+#include <cmath>
 #include "main.h"
 #include "point.h"
-
 
 //Vector == Point but improves readability
 typedef struct vectorStruct {
@@ -21,8 +21,10 @@ public:
 	void addVector(vectorStruct v);
 	void subVector(vectorStruct v);
 	void multVector(float factor);
-	vectorStruct getOrigin();
-	vectorStruct getDirection();
+	void normVector(void);
+	double sizeOf(void);
+	vectorStruct getOrigin(void);
+	vectorStruct getDirection(void);
 	void setOrigin(vectorStruct oArg);
 	void setDirection(vectorStruct dArg);
 	VectorClass(void);

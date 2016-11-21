@@ -28,7 +28,17 @@ Point* VectorClass::getIntersection(VectorClass v){
 	return r;
 }
 
+double VectorClass::sizeOf(void) {
+	return sqrt(pow(this->getOrigin().x + this->getDirection().x,2) + pow(this->getOrigin().y + this->getDirection().y,2));
+}
 
+void VectorClass::normVector(void) {
+	double invNorm = 1 / this->sizeOf();
+	this->direction.x *= invNorm;
+	this->direction.y *= invNorm;
+	this->origin.x *= invNorm;
+	this->origin.y *= invNorm;
+}
 
 void VectorClass::multVector(float factor){
 	this->direction.x *= factor;
