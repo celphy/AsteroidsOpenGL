@@ -1,5 +1,4 @@
 #pragma once
-#include <stdlib.h>
 #include "main.h"
 #include "point.h"
 #include "vectorClass.h"
