@@ -36,33 +36,33 @@ void VectorClass::multVector(float factor){
 } 
 
 
-void VectorClass::addVector(vector v){
+void VectorClass::addVector(vectorStruct v){
 	this->direction.x += v.x;
 	this->direction.y += v.y;
 }
 
-void VectorClass::subVector(vector v){
+void VectorClass::subVector(vectorStruct v){
 	this->direction.x -= v.x;
 	this->direction.y -= v.y;
 }
 
-vector VectorClass::getOrigin(){
+vectorStruct VectorClass::getOrigin(){
 	return this->origin;
 }
 
-vector VectorClass::getDirection(){
+vectorStruct VectorClass::getDirection(){
 	return this->direction;
 }
 
-void VectorClass::setOrigin(vector oArg){
+void VectorClass::setOrigin(vectorStruct oArg){
 	this->origin = oArg;
 }
 
-void VectorClass::setDirection(vector dArg){
+void VectorClass::setDirection(vectorStruct dArg){
 	this->direction = dArg;
 }
 
-VectorClass::VectorClass(vector oArg, vector dArg){
+VectorClass::VectorClass(vectorStruct oArg, vectorStruct dArg){
 	this->origin = oArg;
 	this->direction = dArg;
 }

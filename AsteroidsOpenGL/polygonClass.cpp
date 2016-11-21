@@ -29,6 +29,7 @@ Point polygonClass::getPolygonPoint(int n) {
 	Point r;
 	r.x = this->outline[2 * n];
 	r.y = this->outline[(2 * n) + 1];
+	return r;
 }
 
 bool polygonClass::setPolygonPoint(int pos, GLfloat x, GLfloat y) {

@@ -1,6 +1,7 @@
 #pragma once
 #include "gameObject.h"
 #include "main.h"
+
 class projectileClass :
 	public gameObject
 {

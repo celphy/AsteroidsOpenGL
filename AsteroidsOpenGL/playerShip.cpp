@@ -1,11 +1,11 @@
 #include "playerShip.h"
 
 void playerShip::turnRight() {
-	angle += 0.1;
+	angle += 0.1f;
 }
 
 void playerShip::turnLeft() {
-	angle -= 0.1;
+	angle -= 0.1f;
 }
 
 playerShip::playerShip()

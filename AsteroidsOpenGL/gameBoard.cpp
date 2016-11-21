@@ -14,6 +14,7 @@ Point gameBoard::translate(Point position) {
 	while (temp.y < ((-1)*cutOff.y)) {
 		temp.y += cutOff.y;
 	}
+	return temp;
 }
 
 Point gameBoard::getCutOff() {

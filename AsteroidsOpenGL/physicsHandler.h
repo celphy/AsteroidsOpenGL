@@ -9,7 +9,7 @@ typedef struct physicsObject {
 	Point impulse;
 	float friction;
 	physicsObject *next;
-};
+}physicsObject;
 
 class physicsHandler
 {
