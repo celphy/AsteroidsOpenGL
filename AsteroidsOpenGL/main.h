@@ -1,5 +1,4 @@
 #pragma once
-
 #define GLEW_STATIC
 #define projectileLifetime 80
 
@@ -27,6 +26,9 @@ using namespace std;
 const GLuint WIDTH = 800, HEIGHT = 600;
 
 // Shaders
+extern const GLchar* vertexShaderSource;
+extern const GLchar* fragmentShaderSource;
+/*
 const GLchar* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 position;\n"
 "void main()\n"
@@ -39,5 +41,6 @@ const GLchar* fragmentShaderSource = "#version 330 core\n"
 "{\n"
 "color = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
 "}\n\0";
+*/
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
