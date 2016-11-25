@@ -152,6 +152,7 @@
     <ClCompile Include="playerShip.cpp" />
     <ClCompile Include="polygonClass.cpp" />
     <ClCompile Include="projectileClass.cpp" />
+    <ClCompile Include="renderer.cpp" />
     <ClCompile Include="VectorClass.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="point.h" />
     <ClInclude Include="polygonClass.h" />
     <ClInclude Include="projectileClass.h" />
+    <ClInclude Include="renderer.h" />
     <ClInclude Include="VectorClass.h" />
   </ItemGroup>
   <ItemGroup>
