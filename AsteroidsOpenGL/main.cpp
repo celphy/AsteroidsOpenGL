@@ -97,6 +97,7 @@ int main()
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 	// Laut Original wichtig: Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
+	/*
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -111,11 +112,30 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, 0); //Auf 0 setzen, da bereits gebunden
 
 	glBindVertexArray(0);
+	*/
 
 	while (!glfwWindowShouldClose(window))
 	{
 		//Events und Locations 
 		glfwPollEvents();
+		//Experimental movement stuff
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+		glEnableVertexAttribArray(0);
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0); //Auf 0 setzen, da bereits gebunden
+
+		glBindVertexArray(0);
+
+		vertices[3] += 0.0001f;
+
 
 		// Render
 		// Clear
