@@ -35,12 +35,14 @@ public:
 
 
 //TODO
-//Change project to use a polygonClass that handles racasting collision themselves
+//Change project to use a polygonClass that handles raycasting collision themselves
+//Make renderer and move stuff out of main.cpp
 //User input
 //Render player ship
 //Use gameBoard
 //Move the player ship
 //Collision
 //Asteroids destroying
+//Make font class that creates scalable objects from string + position
 //Text, lifes, points, highscore
 //Cleanup, DEFINES!
