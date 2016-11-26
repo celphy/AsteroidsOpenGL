@@ -10,6 +10,7 @@ protected:
 public:
 	void setOutline(int num, GLfloat points[]);
 	Point getPosition();
+	polygonClass getOutline();
 	void setPosition(Point p);
 	gameObject();
 	gameObject(Point p);

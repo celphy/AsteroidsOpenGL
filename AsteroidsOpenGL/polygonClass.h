@@ -13,6 +13,7 @@ public:
 	bool setPolygonPoint(int n, GLfloat x, GLfloat y);
 	Point getPolygonPoint(int n);
 	bool containsPoint(Point p);
+	int getNumber();
 	polygonClass();
 	polygonClass(int num);
 	~polygonClass();

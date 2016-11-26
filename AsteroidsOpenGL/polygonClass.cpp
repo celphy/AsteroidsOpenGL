@@ -1,5 +1,9 @@
 #include "polygonClass.h"
 
+int polygonClass::getNumber() {
+	return n;
+}
+
 bool polygonClass::containsPoint(Point p) {
 	//TODO use point that refers to actual gameBoard cutoff
 	Point outside;

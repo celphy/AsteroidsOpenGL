@@ -11,6 +11,10 @@ Point gameObject::getPosition() {
 	return this->position;
 }
 
+polygonClass gameObject::getOutline() {
+	return this->outline;
+}
+
 void gameObject::setPosition(Point p) {
 	this->position.x = p.x;
 	this->position.y = p.y;
