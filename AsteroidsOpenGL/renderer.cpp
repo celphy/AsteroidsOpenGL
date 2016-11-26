@@ -30,6 +30,8 @@ void renderer::add(renderObject * ptr, gameObject *obj)
 
 void renderer::createRenderData()
 {
+	//For every point we need 3 floats in vertices
+	//For every line we need 2 ints in indices
 	this->numberOfElements = 0;
 	this->numberOfPoints = 0;
 	//Get vertices
@@ -46,8 +48,21 @@ void renderer::render()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices)*this->numberOfPoints*3, vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices)*this->numberOfPoints*2, indices, GL_STATIC_DRAW);
-	this->vertices[2];
-	this->vertices[3];
+
+	GLfloat testVertices[] = {
+		0.0f,  0.2f, 0.0f,  // Top Right Player
+		0.1f, -0.1f, 0.0f,  // Bottom Right Player
+		-0.1f, -0.1f, 0.0f,  // Bottom Left Player
+	};
+	GLuint testIndices[] = {
+		//0, 1, 2,  //Dreieck
+		0, 1,
+		1, 2,
+		2, 0
+	};
+	unsigned int test1 = sizeof(testVertices); // == sizeof(this->vertices)*this->numberOfPoints*3
+	unsigned int testt = sizeof(testIndices); // == sizeof(this->indices)*this->numberOfPoints*2 
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 
@@ -168,8 +183,6 @@ void renderer::initialize(string windowTitle, int width, int height)
 
 	this->numberOfElements = 1;
 	this->numberOfPoints = 3;
-
-	GLuint VBO, VAO, EBO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
