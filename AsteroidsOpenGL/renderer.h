@@ -15,6 +15,7 @@ typedef struct renderObject {
 class renderer
 {
 private:
+	GLFWwindow* window;
 	GLfloat* vertices;
 	GLuint* indices;
 	renderObject *uiStart;

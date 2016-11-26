@@ -1,7 +1,5 @@
 #include "renderer.h"
 
-
-
 void renderer::registerObject(bool isInGame, gameObject *obj)
 {
 	if (isInGame)
@@ -30,6 +28,12 @@ void renderer::add(renderObject * ptr, gameObject *obj)
 void renderer::createRenderData()
 {
 	//Get vertices
+}
+
+void renderer::createWindow(string title, int width, int height)
+{
+	this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+	glfwMakeContextCurrent(window);
 }
 
 renderer::renderer()
