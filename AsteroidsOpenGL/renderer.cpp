@@ -159,11 +159,12 @@ void renderer::initialize(string windowTitle, int width, int height)
 	
 
 	this->indices = new GLuint[6];
-	GLuint indices[] = {
-		0, 1,
-		1, 2,
-		2, 0
-	};
+	this->indices[0] = 0;
+	this->indices[1] = 1;
+	this->indices[2] = 1;
+	this->indices[3] = 2;
+	this->indices[4] = 2;
+	this->indices[5] = 0;
 
 	this->numberOfElements = 1;
 	this->numberOfPoints = 3;
