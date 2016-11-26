@@ -1,5 +1,8 @@
 #include "renderer.h"
 
+
+
+
 void renderer::registerObject(bool isInGame, gameObject *obj)
 {
 	if (isInGame)
@@ -105,7 +108,7 @@ void renderer::initialize(string windowTitle, int width, int height)
 	////////////
 	// Vertex shader
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	glShaderSource(vertexShader, 1, &this->vertexShaderSource, NULL);
 	glCompileShader(vertexShader);
 	//Erfolg? 
 	GLint success;
@@ -118,7 +121,7 @@ void renderer::initialize(string windowTitle, int width, int height)
 	}
 	// Fragment shader
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	glShaderSource(fragmentShader, 1, &this->fragmentShaderSource, NULL);
 	glCompileShader(fragmentShader);
 	// Erfolg?
 	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);

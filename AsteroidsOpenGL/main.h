@@ -25,9 +25,7 @@ using namespace std;
 
 const GLuint WIDTH = 800, HEIGHT = 600;
 
-// Shaders
-extern const GLchar* vertexShaderSource;
-extern const GLchar* fragmentShaderSource;
+
 /*
 const GLchar* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 position;\n"
