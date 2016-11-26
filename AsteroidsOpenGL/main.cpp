@@ -1,4 +1,5 @@
 #include "main.h"
+#include "gameController.h"
 
 const GLchar* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 position;\n"
@@ -29,7 +30,7 @@ int main()
 	glfwMakeContextCurrent(window);
 
 	// Tasten -> key_callback
-	glfwSetKeyCallback(window, key_callback);
+	glfwSetKeyCallback(window, gameController::key_callback);
 
 	//Laut tutorial true für wasauchimmer
 	glewExperimental = GL_TRUE;
@@ -160,10 +161,10 @@ int main()
 	glfwTerminate();
 	return 0;
 }
-
+/*
 // Eingabe
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
-}
+}*/

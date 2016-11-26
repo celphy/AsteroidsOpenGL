@@ -26,6 +26,7 @@ private:
 public:
 	//Score keeping
 	//User input
+	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 	void run();
 	void setPhysicsHandler(physicsHandler* ptr);
 	void setPlayerShip(playerShip *ptr);
