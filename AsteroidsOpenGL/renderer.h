@@ -2,6 +2,7 @@
 #include <string>
 #include "main.h"
 #include "gameObject.h"
+#include "gameController.h"
 
 
 //We will make a list with all objects, not just physicsObjects because we need to render text as well
@@ -16,6 +17,7 @@ class renderer
 {
 private:
 	GLFWwindow* window;
+	GLuint VBO, VAO, EBO, shaderProgram;
 	GLfloat* vertices;
 	GLuint* indices;
 	renderObject *uiStart;
@@ -28,7 +30,7 @@ public:
 	void createRenderData(); //Vertices and Indices
 	void render();
 	void createWindow(string title, int width, int height);
-	void initialize();
+	void initialize(string windowTitle, int width, int height);
 	renderer();
 	~renderer();
 };
