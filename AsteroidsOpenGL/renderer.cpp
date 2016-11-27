@@ -3,29 +3,23 @@
 
 
 
-void renderer::registerObject(bool isInGame, gameObject *obj)
+void renderer::registerObject(bool isInGame, gameObject* obj)
 {
 	if (isInGame)
-		this->add(uiStart, obj);
+		this->addGame(obj);
 	else
-		this->add(objStart, obj);
+		this->addUI(obj);
 }
 
-void renderer::add(renderObject * ptr, gameObject *obj)
+void renderer::addGame(gameObject* obj)
 {
-	renderObject* input = new renderObject();
-	input->object = obj;
-	input->next = nullptr;
+	gameObjects.push_back(obj);
+	this->numberOfElements++;
+	this->numberOfPoints += obj->getOutline().getNumber();
+}
 
-	renderObject *test = this->objStart;
-	renderObject *last;
-	while (test != nullptr) {
-		last = test;
-		test = test->next;
-	}
-	last->next = input;
-	numberOfElements++;
-	numberOfPoints += obj->getOutline().getNumber();
+void renderer::addUI(gameObject* obj) {
+
 }
 
 void renderer::createRenderData()
@@ -34,37 +28,35 @@ void renderer::createRenderData()
 	//For every line we need 2 ints in indices
 	this->vertices = new GLfloat[this->numberOfPoints * 3];
 	this->vertices = new GLfloat[this->numberOfPoints * 2];
-	renderObject *test = this->objStart;
 	int counterVertices = 0;
 	int counterIndices = 0;
 	int beginningOfPolygon = 0;
-	while (test != nullptr) { //Iterate over gameObjects
-		//Add vertices + indices
+
+	for (auto& it : this->gameObjects) { //Iterate over all gameObjects
 		beginningOfPolygon = counterIndices;
-		for (int i = 0; i < test->object->getOutline().getNumber(); i++) { //Iterate over points of gameObjects
-			this->vertices[counterVertices] = test->object->getOutline().getPolygonPoint(i).x;
-			++counterVertices;
-			this->vertices[counterVertices] = test->object->getOutline().getPolygonPoint(i).y;
-			++counterVertices;
+		for (int i = 0; i < it->getOutline().getNumber(); i++) { //Iterate over all points of the gameObject
+			//Add Point
+			this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).x;
+			counterVertices++;
+			this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).y;
+			counterVertices++;
 			this->vertices[counterVertices] = 0.0f;
-			++counterVertices;
-			//Results in counterVertices+3 and X, Y, Z inside this->vertices
+			counterVertices++;
+			//Add Line to draw
 			this->indices[counterIndices*2] = counterIndices;
 			this->indices[(counterIndices * 2) + 1] = counterIndices + 1;
-			++counterIndices;
+			counterIndices++;
 		}
-		--counterIndices;
-		this->indices[counterIndices * 2] = counterIndices;
 		this->indices[(counterIndices * 2) + 1] = beginningOfPolygon;
-		++counterIndices;
-		test = test->next;
 	}
+
 }
 
 void renderer::render()
 {
 	//Events und Locations 
 	glfwPollEvents();
+	this->createRenderData();
 	//Experimental movement stuff
 	glBindVertexArray(VAO);
 
@@ -72,20 +64,6 @@ void renderer::render()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices)*this->numberOfPoints * 3, vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices)*this->numberOfPoints * 2, indices, GL_STATIC_DRAW);
-
-	GLfloat testVertices[] = {
-		0.0f,  0.2f, 0.0f,  // Top Right Player
-		0.1f, -0.1f, 0.0f,  // Bottom Right Player
-		-0.1f, -0.1f, 0.0f,  // Bottom Left Player
-	};
-	GLuint testIndices[] = {
-		//0, 1, 2,  //Dreieck
-		0, 1,
-		1, 2,
-		2, 0
-	};
-	unsigned int test1 = sizeof(testVertices); // == sizeof(this->vertices)*this->numberOfPoints*3
-	unsigned int testt = sizeof(testIndices); // == sizeof(this->indices)*this->numberOfPoints*2 
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);

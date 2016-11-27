@@ -5,8 +5,8 @@
 class gameObject
 {
 protected:
-	Point position;
-	polygonClass outline;
+	Point* position;
+	polygonClass* outline;
 public:
 	void setOutline(int num, GLfloat points[]);
 	Point getPosition();

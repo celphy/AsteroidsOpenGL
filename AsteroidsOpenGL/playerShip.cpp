@@ -10,6 +10,10 @@ void playerShip::turnLeft() {
 
 playerShip::playerShip()
 {
+	Point p;
+	p.x = 1.0f;
+	p.y = 1.0f;
+
 	GLfloat outline[] = {
 		0.0f,  0.2f,
 		0.1f, -0.1f,

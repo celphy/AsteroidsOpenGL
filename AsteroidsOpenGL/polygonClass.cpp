@@ -48,7 +48,8 @@ bool polygonClass::setPolygonPoint(int pos, GLfloat x, GLfloat y) {
 
 polygonClass::polygonClass(int num) { //Should we set GLfloat attribute for constructor?
 	//outline = (GLfloat*)malloc(sizeof(GLfloat)*num*2); //Need double the size because 2 coords required
-	outline = new GLfloat[num * 2];
+	this->n = num;
+	this->outline = new GLfloat[num * 2];
 }
 
 polygonClass::polygonClass()
@@ -58,6 +59,6 @@ polygonClass::polygonClass()
 
 polygonClass::~polygonClass()
 {
-	delete this->outline;
-	this->outline = nullptr;
+	//delete this->outline;
+	//this->outline = nullptr;
 }
