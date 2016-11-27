@@ -1,5 +1,9 @@
 #include "gameController.h"
 
+enum gameState gameController::getGameState(void) {
+	return this->state;
+}
+
 void gameController::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode) {
 	if (action == GLFW_PRESS) {
 		switch (key) {
