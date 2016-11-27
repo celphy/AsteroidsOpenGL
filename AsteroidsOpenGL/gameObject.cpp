@@ -24,10 +24,11 @@ void gameObject::setPosition(Point p) {
 
 gameObject::gameObject()
 {
-
+	this->position = new Point;
 }
 
 gameObject::gameObject(Point p) {
+	this->position = new Point;
 	this->setPosition(p);
 }
 
