@@ -18,7 +18,7 @@ void renderer::add(renderObject * ptr, gameObject *obj)
 	input->next = nullptr;
 
 	renderObject *test = ptr;
-	renderObject *last;
+	renderObject *last = test;
 	while (test != nullptr) {
 		last = test;
 		test = test->next;
