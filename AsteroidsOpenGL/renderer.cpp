@@ -17,7 +17,7 @@ void renderer::add(renderObject * ptr, gameObject *obj)
 	input->object = obj;
 	input->next = nullptr;
 
-	renderObject *test = ptr;
+	renderObject *test = this->objStart;
 	renderObject *last;
 	while (test != nullptr) {
 		last = test;
@@ -32,9 +32,33 @@ void renderer::createRenderData()
 {
 	//For every point we need 3 floats in vertices
 	//For every line we need 2 ints in indices
-	this->numberOfElements = 0;
-	this->numberOfPoints = 0;
-	//Get vertices
+	this->vertices = new GLfloat[this->numberOfPoints * 3];
+	this->vertices = new GLfloat[this->numberOfPoints * 2];
+	renderObject *test = this->objStart;
+	int counterVertices = 0;
+	int counterIndices = 0;
+	int beginningOfPolygon = 0;
+	while (test != nullptr) { //Iterate over gameObjects
+		//Add vertices + indices
+		beginningOfPolygon = counterIndices;
+		for (int i = 0; i < test->object->getOutline().getNumber(); i++) { //Iterate over points of gameObjects
+			this->vertices[counterVertices] = test->object->getOutline().getPolygonPoint(i).x;
+			++counterVertices;
+			this->vertices[counterVertices] = test->object->getOutline().getPolygonPoint(i).y;
+			++counterVertices;
+			this->vertices[counterVertices] = 0.0f;
+			++counterVertices;
+			//Results in counterVertices+3 and X, Y, Z inside this->vertices
+			this->indices[counterIndices*2] = counterIndices;
+			this->indices[(counterIndices * 2) + 1] = counterIndices + 1;
+			++counterIndices;
+		}
+		--counterIndices;
+		this->indices[counterIndices * 2] = counterIndices;
+		this->indices[(counterIndices * 2) + 1] = beginningOfPolygon;
+		++counterIndices;
+		test = test->next;
+	}
 }
 
 void renderer::render()
@@ -45,9 +69,9 @@ void renderer::render()
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices)*this->numberOfPoints*3, vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices)*this->numberOfPoints * 3, vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices)*this->numberOfPoints*2, indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices)*this->numberOfPoints * 2, indices, GL_STATIC_DRAW);
 
 	GLfloat testVertices[] = {
 		0.0f,  0.2f, 0.0f,  // Top Right Player
@@ -171,7 +195,7 @@ void renderer::initialize(string windowTitle, int width, int height)
 	this->vertices[7] = -0.1f;
 	this->vertices[8] = 0.0f;
 
-	
+
 
 	this->indices = new GLuint[6];
 	this->indices[0] = 0;
