@@ -10,6 +10,8 @@ void playerShip::turnLeft() {
 
 playerShip::playerShip()
 {
+	this->angle = 0.0;
+
 	Point p;
 	p.x = 1.0f;
 	p.y = 1.0f;
