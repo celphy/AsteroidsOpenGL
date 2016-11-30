@@ -13,8 +13,8 @@ playerShip::playerShip()
 	this->angle = 0.0;
 
 	Point p;
-	p.x = 1.0f;
-	p.y = 1.0f;
+	p.x = 0.5f;
+	p.y = 0.5f;
 
 	GLfloat outline[] = {
 		0.0f,  0.2f,

@@ -37,10 +37,12 @@ void renderer::createRenderData()
 		beginningOfPolygon = counterIndices;
 		for (int i = 0; i < it->getOutline().getNumber(); i++) { //Iterate over all points of the gameObject
 			//Add Point
-			this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).x;
+			//this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).x;
+			this->vertices[counterVertices] = it->getRenderPoint(i).x;
 			cout << "Point " << i << " X: " << this->vertices[counterVertices];
 			counterVertices++;
-			this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).y;
+			//this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).y;
+			this->vertices[counterVertices] = it->getRenderPoint(i).y;
 			cout << " Y: " << this->vertices[counterVertices] << endl;
 			counterVertices++;
 			this->vertices[counterVertices] = 0.0f;
@@ -54,8 +56,11 @@ void renderer::createRenderData()
 		this->indices[(counterIndices * 2)-1] = beginningOfPolygon; //Major possibility for wrong offsets when we're adding more stuff
 		cout << "Changed indices[" << counterIndices * 2 - 1 << "] to Point " << beginningOfPolygon << endl;
 		cout << "-------------EndOfCreateRenderData--------------" << endl;
+		Point newP;
+		newP.x = this->gameObjects[0]->getPosition().x - 0.0001;
+		newP.y = this->gameObjects[0]->getPosition().y - 0.0001;
+		this->gameObjects[0]->setPosition(newP);
 	}
-
 }
 
 void renderer::render()
