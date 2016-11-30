@@ -4,7 +4,7 @@
 void gameObject::setOutline(int num, GLfloat points[]) {
 	this->outline = new polygonClass(num);
 	for (int i = 0; i < num; i++) {
-		if(!this->outline->setPolygonPoint(i/2, points[i], points[i + 1]))
+		if(!this->outline->setPolygonPoint(i, points[2*i], points[(2*i) + 1]))
  			cout << "Major issue setting polygonPoints" << endl;
 	} //Might work after all by setting i/2 as number
 }
