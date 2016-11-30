@@ -41,8 +41,8 @@ bool polygonClass::setPolygonPoint(int pos, GLfloat x, GLfloat y) {
 	if (pos < 0 || pos >= this->n)
 		return false;
 	//Pos 0 -> 0, 1 || Pos 1 -> 2, 3 || Pos 2 -> 4, 5 || Pos n -> 2n, 2n+1
-	this->outline[2 * n] = x;
-	this->outline[(2 * n) + 1] = y; //#works?
+	this->outline[2 * pos] = x;
+	this->outline[(2 * pos) + 1] = y; //#works?
 	return true;
 }
 
