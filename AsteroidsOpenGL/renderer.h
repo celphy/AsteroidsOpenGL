@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "main.h"
 #include "gameObject.h"
 #include "gameController.h"
@@ -26,6 +27,7 @@ private:
 	GLuint* indices;
 	renderObject *uiStart;
 	renderObject *objStart;
+	vector<gameObject*> gameObjects;
 	int numberOfElements;
 	int numberOfPoints;
 
@@ -43,8 +45,9 @@ private:
 		"}\n\0";
 
 public:
-	void registerObject(bool isInGame, gameObject *obj);
-	void add(renderObject *ptr, gameObject *obj);
+	void registerObject(bool isInGame, gameObject* obj);
+	void addGame(gameObject* obj);
+	void addUI(gameObject* obj);
 	void createRenderData(); //Vertices and Indices
 	void render();
 	void createWindow(string title, int width, int height);
