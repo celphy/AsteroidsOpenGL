@@ -1,6 +1,13 @@
 #include "gameObject.h"
 #include "point.h"
 
+Point gameObject::getRenderPoint(int num) {
+	Point p;
+	p.x = this->outline->getPolygonPoint(num).x + this->position->x;
+	p.y = this->outline->getPolygonPoint(num).y + this->position->y;
+	return p;
+}
+
 void gameObject::setOutline(int num, GLfloat points[]) {
 	this->outline = new polygonClass(num);
 	for (int i = 0; i < num; i++) {
