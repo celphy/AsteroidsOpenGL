@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "main.h"
 
 
 
@@ -37,17 +38,22 @@ void renderer::createRenderData()
 		for (int i = 0; i < it->getOutline().getNumber(); i++) { //Iterate over all points of the gameObject
 			//Add Point
 			this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).x;
+			cout << "Point " << i << " X: " << this->vertices[counterVertices];
 			counterVertices++;
 			this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).y;
+			cout << " Y: " << this->vertices[counterVertices] << endl;
 			counterVertices++;
 			this->vertices[counterVertices] = 0.0f;
 			counterVertices++;
 			//Add Line to draw
 			this->indices[counterIndices*2] = counterIndices;
 			this->indices[(counterIndices * 2) + 1] = counterIndices + 1;
+			cout << "Added line at " << counterIndices * 2 << " and " << counterIndices * 2 + 1 << " to (Point " << counterIndices << " <-> Point " << counterIndices + 1 << ")" << endl;
 			counterIndices++;
 		}
-		this->indices[(counterIndices * 2) + 1] = beginningOfPolygon;
+		this->indices[(counterIndices * 2)-1] = beginningOfPolygon; //Major possibility for wrong offsets when we're adding more stuff
+		cout << "Changed indices[" << counterIndices * 2 - 1 << "] to Point " << beginningOfPolygon << endl;
+		cout << "-------------EndOfCreateRenderData--------------" << endl;
 	}
 
 }
