@@ -8,14 +8,13 @@ typedef struct physicsObject {
 	gameObject *object;//reference to gameObject
 	Point impulse;
 	float friction;
-	physicsObject *next;
 }physicsObject;
 
 class physicsHandler
 {
 private:
-	physicsObject *first;
-	//List of all existing gameObjects
+	//List of all existing gameObjects with additional stuff
+	vector<physicsObject*> physicsObjects;
 public:
 	//Register gameObject with physicsHandler
 	void registerObject ( gameObject* gO, Point i, float f);

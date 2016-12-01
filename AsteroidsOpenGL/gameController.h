@@ -17,6 +17,7 @@ private:
 	gameState state;
 	int tickRatePS;
 	int maxShots;
+	double lastTick;
 	physicsHandler *pH;
 	double PCFreq = 0.0;
 	__int64 CounterStart;
@@ -37,10 +38,7 @@ public:
 
 
 //TODO
-//Change project to use a polygonClass that handles raycasting collision themselves
-//Make renderer and move stuff out of main.cpp
 //User input
-//Render player ship
 //Use gameBoard
 //Move the player ship
 //Collision

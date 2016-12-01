@@ -1,42 +1,32 @@
 #include "physicsHandler.h"
 
 void physicsHandler::tick() {
-	return;
+	for (auto& it : this->physicsObjects) {
+		//Get current position
+		Point newP;
+		newP = it->object->getPosition();
+		//Calculate new position
+		newP.x += it->impulse.x;
+		newP.y += it->impulse.y;
+		//Teleport to new Point TODO: Check for collisions along the way
+		it->object->setPosition(newP);
+		//Friction applies?
+		it->impulse.x *= it->friction;
+		it->impulse.y *= it->friction;
+	}
 }
 
 void physicsHandler::registerObject(gameObject* gO, Point i, float f ) {
-	
-	physicsObject temp;
-	temp.friction = f;
-	temp.impulse = i;
-	temp.object = gO;
-	temp.next = NULL;
-	/*
-	if (this->first == NULL)
-		first = &temp;
-	else {
-		physicsObject *ptr;
-		ptr = this->first;
-		while (true) {
-			if (ptr->next == NULL)
-				break;
-			ptr = ptr->next;
-		}
-		ptr->next = &temp;
-	}
-	*/
-	physicsObject *ptr;
-	physicsObject *last;
-	ptr = this->first;
-	while (ptr != NULL) {
-		last = ptr;
-		ptr = ptr->next;
-	}
+	physicsObject* temp = new physicsObject;
+	temp->impulse = i;
+	temp->friction = f;
+	temp->object = gO;
+	this->physicsObjects.push_back(temp);
 }
 
 physicsHandler::physicsHandler()
 {
-	this->first = NULL;
+	
 }
 
 

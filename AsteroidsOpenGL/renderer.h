@@ -10,12 +10,6 @@
 //extern const GLchar* vertexShaderSource;
 //extern const GLchar* fragmentShaderSource;
 
-//We will make a list with all objects, not just physicsObjects because we need to render text as well
-typedef struct renderObject {
-	gameObject *object;//reference to gameObject
-	renderObject *next;
-}renderObject;
-
 //Should we make seperate lists for UI, gameObjects
 
 class renderer
@@ -25,8 +19,6 @@ private:
 	GLuint VBO, VAO, EBO, shaderProgram;
 	GLfloat* vertices;
 	GLuint* indices;
-	renderObject *uiStart;
-	renderObject *objStart;
 	vector<gameObject*> gameObjects;
 	int numberOfElements;
 	int numberOfPoints;

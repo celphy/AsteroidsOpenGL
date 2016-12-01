@@ -19,16 +19,13 @@ void gameController::setPlayerShip(playerShip *ptr) {
 	player = ptr;
 }
 
-void gameController::run() {
-	bool last;
-	last = this->GetPerformanceCounter();
-	while (this->state == gameRunning) {
-		double delta = this->GetPerformanceCounter() - last;
-		if (delta > (this->tickRatePS / 1000)) {
-			last = this->GetPerformanceCounter();
-			this->pH->tick();
-		}
-			
+void gameController::run() { //We could make this the primary gameloop but we dont want to restructure
+	this->lastTick = this->GetPerformanceCounter();
+
+	double delta = this->GetPerformanceCounter() - this->lastTick; //If we need to calculate another frame to meet our ticksPS requirement
+	if (delta > (this->tickRatePS / 1000)) {
+		this->lastTick = this->GetPerformanceCounter();
+		this->pH->tick();
 	}
 }
 
