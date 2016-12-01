@@ -36,6 +36,10 @@ Point polygonClass::getPolygonPoint(int n) {
 	return r;
 }
 
+bool polygonClass::setPolygonPoint(int pos, Point pNew) {
+	return this->setPolygonPoint(pos, pNew.x, pNew.y);
+}
+
 bool polygonClass::setPolygonPoint(int pos, GLfloat x, GLfloat y) {
 	//Error handling
 	if (pos < 0 || pos >= this->n)

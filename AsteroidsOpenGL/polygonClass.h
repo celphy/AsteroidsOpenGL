@@ -10,7 +10,8 @@ class polygonClass
 	//GLfloat outline[n]; //Here we need malloc from sdtlib but I'm not sure we are allowed to use it
 	GLfloat *outline;
 public:
-	bool setPolygonPoint(int n, GLfloat x, GLfloat y);
+	bool setPolygonPoint(int pos, GLfloat x, GLfloat y);
+	bool setPolygonPoint(int pos, Point pNew);
 	Point getPolygonPoint(int n);
 	bool containsPoint(Point p);
 	int getNumber();

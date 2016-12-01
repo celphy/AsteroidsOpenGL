@@ -19,6 +19,11 @@ int main()
 	while (controller.getGameState() != gameEnd)
 	{
 		r.render();
+		ship->turnLeft();
+		Point newP;
+		newP.x = ship->getPosition().x - 0.001;
+		newP.y = ship->getPosition().y - 0.001;
+		ship->setPosition(newP);
 	}
 	delete ship;
 	return 0;
