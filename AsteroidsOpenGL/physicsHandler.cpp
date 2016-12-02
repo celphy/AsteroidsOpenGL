@@ -1,6 +1,28 @@
 #include "physicsHandler.h"
 
 void physicsHandler::tick() {
+	this->move();
+	this->collisionDetection();
+}
+
+void physicsHandler::collisionDetection() {
+	for (auto& it : this->physicsObjects) {
+		switch (it->object->getType()) {
+		case asteroid:
+			break;
+		case player:
+			break;
+		case projectile:
+			break;
+		case saucer:
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void physicsHandler::move() {
 	for (auto& it : this->physicsObjects) {
 		//Get current position
 		Point newP;

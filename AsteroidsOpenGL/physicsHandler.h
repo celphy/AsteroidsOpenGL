@@ -19,6 +19,8 @@ public:
 	//Register gameObject with physicsHandler
 	void registerObject ( gameObject* gO, Point i, float f);
 	void tick();
+	void move();
+	void collisionDetection();
 	physicsHandler();
 	~physicsHandler();
 };
