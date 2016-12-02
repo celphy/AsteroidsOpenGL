@@ -1,6 +1,7 @@
 #include "asteroidClass.h"
 
 asteroidClass::asteroidClass(float s) {
+	this->type = asteroid;
 	this->size = s;
 	GLfloat outline[] = {
 		-1.0f*size, 1.0f*size,
@@ -14,6 +15,7 @@ asteroidClass::asteroidClass(float s) {
 
 asteroidClass::asteroidClass()
 {
+	this->type = asteroid;
 	size = 1.0;
 	GLfloat outline[] = {
 		-1.0f, 1.0f,

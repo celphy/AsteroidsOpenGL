@@ -1,6 +1,10 @@
 #include "gameObject.h"
 #include "point.h"
 
+objectType gameObject::getType() {
+	return this->type;
+}
+
 Point gameObject::getRenderPoint(int num) {
 	Point p;
 	p.x = this->outline->getPolygonPoint(num).x + this->position->x;

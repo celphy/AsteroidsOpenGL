@@ -43,6 +43,7 @@ public:
 //Move the player ship
 //Collision
 //Asteroids destroying
+//Add saucer
 //Make font class that creates scalable objects from string + position
 //Text, lifes, points, highscore
 //Cleanup, DEFINES!
