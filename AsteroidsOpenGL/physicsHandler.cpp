@@ -29,10 +29,7 @@ void physicsHandler::collisionDetection() {
 			auto target = begin(physicsObjects);
 			while (target != end(physicsObjects)) {
 				if ((*target)->object->getOutline().containsPoint(it->object->getPosition())) { //Does target contain projectile position?
-					(*target)->object->deleteOutline(); //Try and free all unneeded memory
-					delete (*target)->object;
-					delete (*target);
-					target = physicsObjects.erase(target);
+					(*target)->object->markToDestroy();
 				}
 				++target;
 			}
