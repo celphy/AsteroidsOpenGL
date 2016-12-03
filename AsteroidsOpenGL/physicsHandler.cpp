@@ -26,12 +26,9 @@ void physicsHandler::collisionDetection() {
 
 		}
 		else if (it->object->getType() == projectile) {
-			auto target = begin(physicsObjects);
-			while (target != end(physicsObjects)) {
-				if ((*target)->object->getOutline().containsPoint(it->object->getPosition())) { //Does target contain projectile position?
-					(*target)->object->markToDestroy();
-				}
-				++target;
+			for (auto& target : this->physicsObjects) {
+				if (target->object->getOutline().containsPoint(it->object->getPosition()))
+					target->object->markToDestroy();
 			}
 		}
 	}
