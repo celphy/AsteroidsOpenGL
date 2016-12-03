@@ -1,23 +1,41 @@
 #include "physicsHandler.h"
 
 void physicsHandler::tick() {
+	this->deleteObjects();
 	this->move();
 	this->collisionDetection();
 }
 
+void physicsHandler::deleteObjects() {
+	for (auto it = physicsObjects.end() - 1; it != physicsObjects.begin(); /* We start at the end to have as little overhead as possible */)
+	{
+		if ((*it)->object->getDestroyed()) {
+			(*it)->object->deleteOutline(); //Try and free all unneeded memory
+			delete (*it)->object;
+			delete (*it);
+			it = physicsObjects.erase(it);
+		}
+		else
+			--it;
+	}
+}
+
 void physicsHandler::collisionDetection() {
 	for (auto& it : this->physicsObjects) {
-		switch (it->object->getType()) {
-		case asteroid:
-			break;
-		case player:
-			break;
-		case projectile:
-			break;
-		case saucer:
-			break;
-		default:
-			break;
+		if (it->object->getType() == player) {
+
+		}
+		else if (it->object->getType() == projectile) {
+			auto target = begin(physicsObjects);
+			while (target != end(physicsObjects)) {
+				if ((*target)->object->getOutline().containsPoint(it->object->getPosition())) { //Does target contain projectile position?
+					(*target)->object->deleteOutline(); //Try and free all unneeded memory
+					delete (*target)->object;
+					delete (*target);
+					target = physicsObjects.erase(target);
+				}
+				++target;
+			}
 		}
 	}
 }

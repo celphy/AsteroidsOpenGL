@@ -20,6 +20,7 @@ public:
 	void registerObject ( gameObject* gO, Point i, float f);
 	void tick();
 	void move();
+	void deleteObjects();
 	void collisionDetection();
 	physicsHandler();
 	~physicsHandler();

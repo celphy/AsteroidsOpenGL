@@ -1,6 +1,17 @@
 #include "gameObject.h"
 #include "point.h"
 
+void gameObject::markToDestroy() {
+	this->toBeDestroyed = true;
+}
+
+bool gameObject::getDestroyed() {
+	return this->toBeDestroyed;
+}
+
+void gameObject::deleteOutline() {
+	delete this->outline;
+}
 objectType gameObject::getType() {
 	return this->type;
 }
@@ -39,6 +50,7 @@ gameObject::gameObject()
 }
 
 gameObject::gameObject(Point p) {
+	this->toBeDestroyed = false;
 	this->position = new Point;
 	this->setPosition(p);
 }

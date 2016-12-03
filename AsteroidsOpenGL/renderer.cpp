@@ -32,7 +32,15 @@ void renderer::createRenderData()
 	int counterVertices = 0;
 	int counterIndices = 0;
 	int beginningOfPolygon = 0;
-
+	//Every object that is marked toBeDestroyed needs to get thrown out of our vector
+	for (auto it = gameObjects.end()-1; it != gameObjects.begin(); /* We start at the end to have as little overhead as possible */)
+	{
+		if ((*it)->getDestroyed())
+			it = gameObjects.erase(it);
+		else
+			--it;
+	}
+	//GetData
 	for (auto& it : this->gameObjects) { //Iterate over all gameObjects
 		beginningOfPolygon = counterIndices;
 		for (int i = 0; i < it->getOutline().getNumber(); i++) { //Iterate over all points of the gameObject
