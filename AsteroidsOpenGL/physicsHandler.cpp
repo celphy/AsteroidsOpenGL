@@ -42,6 +42,8 @@ void physicsHandler::move() {
 		//Calculate new position
 		newP.x += it->impulse.x;
 		newP.y += it->impulse.y;
+		//Wrap around edges
+		newP = gameScreen->translate(newP);
 		//Teleport to new Point TODO: Check for collisions along the way
 		it->object->setPosition(newP);
 		//Friction applies?
@@ -60,10 +62,14 @@ void physicsHandler::registerObject(gameObject* gO, Point i, float f ) {
 
 physicsHandler::physicsHandler()
 {
-	
+	Point cutOff;
+	cutOff.x = 1.5;
+	cutOff.y = 1.5;
+	this->gameScreen = new gameBoard(cutOff);
 }
 
 
 physicsHandler::~physicsHandler()
 {
+	delete this->gameScreen;
 }

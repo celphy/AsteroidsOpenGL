@@ -1,6 +1,7 @@
 #pragma once
 #include "main.h"
 #include "gameObject.h"
+#include "gameBoard.h"
 
 
 //Remove on lifetime end
@@ -15,6 +16,8 @@ class physicsHandler
 private:
 	//List of all existing gameObjects with additional stuff
 	vector<physicsObject*> physicsObjects;
+	gameBoard* gameScreen;
+
 public:
 	//Register gameObject with physicsHandler
 	void registerObject ( gameObject* gO, Point i, float f);

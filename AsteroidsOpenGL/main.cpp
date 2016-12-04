@@ -3,6 +3,7 @@
 #include "renderer.h"
 #include "playerShip.h"
 #include "physicsHandler.h"
+#include "asteroidClass.h"
 
 
 int main()
@@ -23,6 +24,18 @@ int main()
 	controller.setPlayerShip(ship);
 	controller.setPhysicsHandler(physics);
 	r.registerObject(true, ship);
+
+	Point asteroidMovement;
+	asteroidMovement.x = -0.005;
+	asteroidMovement.y = +0.005;
+	asteroidClass* asteroid1 = new asteroidClass(0.1);
+	asteroidClass* asteroid2 = new asteroidClass(0.2);
+	asteroid1->setPosition(asteroidMovement);
+	asteroid2->setPosition(asteroidMovement);
+	r.registerObject(true, asteroid1);
+	r.registerObject(true, asteroid2);
+	physics->registerObject(asteroid1, asteroidMovement, 1);
+	physics->registerObject(asteroid2, asteroidMovement, 1);
 
 
 	//Gamelogic here propably

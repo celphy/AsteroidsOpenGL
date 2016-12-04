@@ -6,7 +6,8 @@ void gameObject::markToDestroy() {
 }
 
 bool gameObject::getDestroyed() {
-	return this->toBeDestroyed;
+	return false;
+	//return this->toBeDestroyed; WHY DOES THIS RETURN TRUE???
 }
 
 void gameObject::deleteOutline() {

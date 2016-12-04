@@ -41,4 +41,4 @@ const GLchar* fragmentShaderSource = "#version 330 core\n"
 "}\n\0";
 */
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+//void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);

@@ -24,6 +24,7 @@ asteroidClass::asteroidClass()
 		-1.0f, -1.0f,
 	};//Fuck, do we need to add Z-position in 2d? maybe we can use a filler later in draw code
 	this->setOutline(3, outline);
+	this->toBeDestroyed = false;
 }
 
 

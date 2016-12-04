@@ -28,7 +28,7 @@ void renderer::createRenderData()
 	//For every point we need 3 floats in vertices
 	//For every line we need 2 ints in indices
 	this->vertices = new GLfloat[this->numberOfPoints * 3];
-	this->vertices = new GLfloat[this->numberOfPoints * 2];
+	this->indices = new GLuint[this->numberOfPoints * 2];
 	int counterVertices = 0;
 	int counterIndices = 0;
 	int beginningOfPolygon = 0;
@@ -63,8 +63,10 @@ void renderer::createRenderData()
 		}
 		this->indices[(counterIndices * 2)-1] = beginningOfPolygon; //Major possibility for wrong offsets when we're adding more stuff
 		cout << "Changed indices[" << counterIndices * 2 - 1 << "] to Point " << beginningOfPolygon << endl;
-		cout << "-------------EndOfCreateRenderData--------------" << endl;
+		cout << "Changed line at " << counterIndices * 2 - 2 << " and " << counterIndices * 2 - 1 << " to (Point " << counterIndices - 1 << " <-> Point " << beginningOfPolygon << ")" << endl;
+		cout << "-------------EndOfEntity--------------" << endl;
 	}
+	cout << "###########EndOfCreateRenderData############" << endl;
 }
 
 void renderer::render()
@@ -87,7 +89,6 @@ void renderer::render()
 
 	glBindVertexArray(0);
 
-	this->vertices[3] += 0.0001f;
 
 
 	// Render
@@ -98,7 +99,7 @@ void renderer::render()
 	glUseProgram(this->shaderProgram);
 	glBindVertexArray(VAO);
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
-	glDrawElements(GL_LINES, 6, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_LINES, this->numberOfPoints*2, GL_UNSIGNED_INT, 0);
 	//glDrawElements(GL_POINTS, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 
@@ -176,7 +177,7 @@ void renderer::initialize(string windowTitle, int width, int height)
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-
+	/*
 	this->vertices = new GLfloat[9];
 	this->vertices[0] = 0.0f;
 	this->vertices[1] = 0.2f;
@@ -197,9 +198,11 @@ void renderer::initialize(string windowTitle, int width, int height)
 	this->indices[3] = 2;
 	this->indices[4] = 2;
 	this->indices[5] = 0;
+	
 
 	this->numberOfElements = 1;
 	this->numberOfPoints = 3;
+	*/
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
