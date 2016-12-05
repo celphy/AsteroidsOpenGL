@@ -3,6 +3,7 @@
 #include "gameObject.h"
 #include "gameBoard.h"
 
+#define screenCutOff 1.1
 
 //Remove on lifetime end
 typedef struct physicsObject {

@@ -63,8 +63,8 @@ void physicsHandler::registerObject(gameObject* gO, Point i, float f ) {
 physicsHandler::physicsHandler()
 {
 	Point cutOff;
-	cutOff.x = 1.1;
-	cutOff.y = 1.1;
+	cutOff.x = screenCutOff;
+	cutOff.y = screenCutOff;
 	this->gameScreen = new gameBoard(cutOff);
 }
 
