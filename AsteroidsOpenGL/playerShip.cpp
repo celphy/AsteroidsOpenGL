@@ -1,12 +1,12 @@
 #include "playerShip.h"
 
 void playerShip::turnRight() {
-	angle += 0.004f;
+	angle += turnSpeed;
 	this->rotate();
 }
 
 void playerShip::turnLeft() {
-	angle -= 0.004f;
+	angle -=turnSpeed;
 	this->rotate();
 }
 

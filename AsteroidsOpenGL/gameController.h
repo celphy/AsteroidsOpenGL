@@ -23,6 +23,7 @@ private:
 	__int64 CounterStart;
 	void StartPerformanceCounter();
 	double GetPerformanceCounter();
+	bool rotateLeft, rotateRight;
 
 public:
 	//Score keeping
@@ -38,7 +39,7 @@ public:
 
 
 //TODO
-//User input -> rebuild gameController into a singleton propably :/
+//User input
 //Use gameBoard
 //Move the player ship
 //Collision

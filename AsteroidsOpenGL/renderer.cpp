@@ -115,6 +115,7 @@ void renderer::createWindow(string title, int width, int height)
 
 void renderer::setKeyCallback(gameController* controller) {
 	// Tasten -> key_callback
+	glfwSetWindowUserPointer(this->window, (void*)controller);
 	glfwSetKeyCallback(this->window, gameController::key_callback);
 }
 

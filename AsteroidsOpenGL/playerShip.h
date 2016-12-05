@@ -2,6 +2,8 @@
 #include "main.h"
 #include "gameObject.h"
 
+#define turnSpeed 0.03f
+
 class playerShip : public gameObject
 {
 private:
