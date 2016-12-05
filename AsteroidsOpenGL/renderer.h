@@ -37,6 +37,7 @@ private:
 		"}\n\0";
 
 public:
+	void setKeyCallback(gameController* controller);
 	void registerObject(bool isInGame, gameObject* obj);
 	void addGame(gameObject* obj);
 	void addUI(gameObject* obj);

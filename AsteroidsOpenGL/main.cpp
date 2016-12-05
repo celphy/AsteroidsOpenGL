@@ -12,6 +12,7 @@ int main()
 	renderer r = renderer();
 
 	r.initialize("aSTEROIDs", WIDTH, HEIGHT);
+	r.setKeyCallback(&controller);
 
 	playerShip* ship = new playerShip();
 	physicsHandler* physics = new physicsHandler();

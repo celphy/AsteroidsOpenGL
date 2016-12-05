@@ -38,7 +38,7 @@ public:
 
 
 //TODO
-//User input
+//User input -> rebuild gameController into a singleton propably :/
 //Use gameBoard
 //Move the player ship
 //Collision

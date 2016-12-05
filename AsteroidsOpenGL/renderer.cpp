@@ -113,6 +113,11 @@ void renderer::createWindow(string title, int width, int height)
 	glfwMakeContextCurrent(this->window);
 }
 
+void renderer::setKeyCallback(gameController* controller) {
+	// Tasten -> key_callback
+	glfwSetKeyCallback(this->window, gameController::key_callback);
+}
+
 void renderer::initialize(string windowTitle, int width, int height)
 {
 	// GLFW
@@ -124,9 +129,7 @@ void renderer::initialize(string windowTitle, int width, int height)
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	this->createWindow(windowTitle, width, height);
-	// Tasten -> key_callback
-	glfwSetKeyCallback(this->window, gameController::key_callback);
-
+	
 	//Laut tutorial true für wasauchimmer
 	glewExperimental = GL_TRUE;
 	glewInit();
