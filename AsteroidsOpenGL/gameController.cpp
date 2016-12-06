@@ -1,5 +1,19 @@
 #include "gameController.h"
 
+void gameController::togglePause() {
+	if (this->state == gameRunning) {
+		this->state = gamePause;
+	}
+	else {
+		this->state = gameRunning;
+	}
+	
+}
+
+void gameController::end() {
+	this->state = gameEnd;
+}
+
 enum gameState gameController::getGameState(void) {
 	return this->state;
 }
@@ -9,6 +23,7 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 	if (action == GLFW_PRESS) {
 		switch (key) {
 		case GLFW_KEY_ESCAPE:
+			ptr->end();
 			glfwSetWindowShouldClose(window, GL_TRUE);
 			break;
 		case GLFW_KEY_A:
@@ -16,6 +31,9 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 			break;
 		case GLFW_KEY_D:
 			ptr->rotateRight = true;
+			break;
+		case GLFW_KEY_P:
+			ptr->togglePause();
 			break;
 		default:
 			break;

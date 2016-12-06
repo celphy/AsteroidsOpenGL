@@ -30,6 +30,8 @@ public:
 	//User input
 	enum gameState getGameState();
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+	void togglePause();
+	void end();
 	void run();
 	void setPhysicsHandler(physicsHandler* ptr);
 	void setPlayerShip(playerShip *ptr);
