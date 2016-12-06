@@ -4,7 +4,7 @@ void gameController::togglePause() {
 	if (this->state == gameRunning) {
 		this->state = gamePause;
 	}
-	else {
+	else if (this->state == gamePause) {
 		this->state = gameRunning;
 	}
 	
