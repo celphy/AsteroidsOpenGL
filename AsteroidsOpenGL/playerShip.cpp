@@ -1,5 +1,17 @@
 #include "playerShip.h"
 
+VectorClass playerShip::getProjectileVector() {
+	Point middle;
+	middle.x = this->outline->getPolygonPoint(1).x + this->outline->getPolygonPoint(2).x;
+	middle.y = this->outline->getPolygonPoint(1).y + this->outline->getPolygonPoint(2).y;
+	middle.x /= 2;
+	middle.y /= 2;
+	Point front = this->outline->getPolygonPoint(0);
+
+	VectorClass r = VectorClass(middle, front);
+	return r;
+}
+
 void playerShip::turnRight() {
 	angle += turnSpeed;
 	this->rotate();
