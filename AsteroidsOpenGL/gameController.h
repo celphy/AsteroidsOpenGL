@@ -23,7 +23,7 @@ private:
 	__int64 CounterStart;
 	void StartPerformanceCounter();
 	double GetPerformanceCounter();
-	bool rotateLeft, rotateRight;
+	bool rotateLeft, rotateRight, boost;
 
 public:
 	//Score keeping

@@ -27,7 +27,7 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 			glfwSetWindowShouldClose(window, GL_TRUE);
 			break;
 		case GLFW_KEY_W:
-			ptr->player->playerBoost();
+			ptr->boost = true;
 			break;
 		case GLFW_KEY_A:
 			ptr->rotateLeft = true;
@@ -44,6 +44,9 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 	}
 	else if (action == GLFW_RELEASE) {
 		switch (key) {
+		case GLFW_KEY_W:
+			ptr->boost = false;
+			break;
 		case GLFW_KEY_A:
 			ptr->rotateLeft = false;
 			break;
@@ -72,6 +75,9 @@ void gameController::run() { //We could make this the primary gameloop but we do
 		}
 		else if (this->rotateRight) {
 			this->player->turnRight();
+		}
+		if (this->boost) {
+			this->player->playerBoost();
 		}
 		this->pH->tick();
 	}
@@ -103,6 +109,7 @@ gameController::gameController()
 	this->tickRatePS = 40;
 	rotateRight = false;
 	rotateLeft = false;
+	boost = false;
 }
 
 
