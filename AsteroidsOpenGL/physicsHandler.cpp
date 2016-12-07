@@ -1,5 +1,12 @@
 #include "physicsHandler.h"
 
+void physicsHandler::boostPlayer() {
+	//Get projectile Vector
+	//Add projectile Vector to player movement (multiplied)?
+	//Find player in physics list?? Not sure if necessary
+	//DO NOT OVERWRITE FRICTION!
+}
+
 void physicsHandler::tick() {
 	this->deleteObjects();
 	this->move();
