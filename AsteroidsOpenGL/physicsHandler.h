@@ -18,7 +18,7 @@ private:
 	//List of all existing gameObjects with additional stuff
 	vector<physicsObject*> physicsObjects;
 	gameBoard* gameScreen;
-
+	
 public:
 	//Register gameObject with physicsHandler
 	void registerObject ( gameObject* gO, Point i, float f);
@@ -26,6 +26,7 @@ public:
 	void move();
 	void deleteObjects();
 	void collisionDetection();
+	void playerBoost();
 	physicsHandler();
 	~physicsHandler();
 };
