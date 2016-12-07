@@ -1,5 +1,17 @@
 #include "playerShip.h"
 
+void playerShip::playerBoost() {
+	VectorClass vector;
+	vector = this->getProjectileVector();
+	vectorStruct additionalImpulse;
+	additionalImpulse.x = vector.getDirection().x - vector.getOrigin().x;
+	additionalImpulse.y = vector.getDirection().y - vector.getOrigin().y;
+	additionalImpulse.x *= 0.01;
+	additionalImpulse.y *= 0.01;
+	this->self->impulse.x += additionalImpulse.x;
+	this->self->impulse.y += additionalImpulse.y;
+}
+
 VectorClass playerShip::getProjectileVector() {
 	Point middle;
 	middle.x = this->outline->getPolygonPoint(1).x + this->outline->getPolygonPoint(2).x;
@@ -12,9 +24,15 @@ VectorClass playerShip::getProjectileVector() {
 	return r;
 }
 
+
 void playerShip::turnRight() {
 	angle += turnSpeed;
 	this->rotate();
+}
+
+void playerShip::setSelf(physicsObject * ptr)
+{
+	this->self = ptr;
 }
 
 void playerShip::turnLeft() {
@@ -72,8 +90,8 @@ playerShip::playerShip()
 	this->type = player;
 
 	Point p;
-	p.x = 0.5f;
-	p.y = 0.5f;
+	p.x = 0.0f;
+	p.y = 0.0f;
 
 	GLfloat outline[] = {
 		0.0f,  0.2f,

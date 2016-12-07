@@ -21,12 +21,11 @@ private:
 	
 public:
 	//Register gameObject with physicsHandler
-	void registerObject ( gameObject* gO, Point i, float f);
+	physicsObject* registerObject ( gameObject* gO, Point i, float f);
 	void tick();
 	void move();
 	void deleteObjects();
 	void collisionDetection();
-	void playerBoost();
 	physicsHandler();
 	~physicsHandler();
 };

@@ -17,10 +17,10 @@ int main()
 	playerShip* ship = new playerShip();
 	physicsHandler* physics = new physicsHandler();
 	Point shipMovement;
-	shipMovement.x = -0.001;
-	shipMovement.y = -0.001;
+	shipMovement.x = -0.000;
+	shipMovement.y = -0.000;
 
-	physics->registerObject(ship, shipMovement, 0.999);
+	ship->setSelf(physics->registerObject(ship, shipMovement, 0.999));
 
 	controller.setPlayerShip(ship);
 	controller.setPhysicsHandler(physics);

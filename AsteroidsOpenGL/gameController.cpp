@@ -26,6 +26,9 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 			ptr->end();
 			glfwSetWindowShouldClose(window, GL_TRUE);
 			break;
+		case GLFW_KEY_W:
+			ptr->player->playerBoost();
+			break;
 		case GLFW_KEY_A:
 			ptr->rotateLeft = true;
 			break;

@@ -1,12 +1,5 @@
 #include "physicsHandler.h"
 
-void physicsHandler::boostPlayer() {
-	//Get projectile Vector
-	//Add projectile Vector to player movement (multiplied)?
-	//Find player in physics list?? Not sure if necessary
-	//DO NOT OVERWRITE FRICTION!
-}
-
 void physicsHandler::tick() {
 	this->deleteObjects();
 	this->move();
@@ -59,12 +52,13 @@ void physicsHandler::move() {
 	}
 }
 
-void physicsHandler::registerObject(gameObject* gO, Point i, float f ) {
+physicsObject* physicsHandler::registerObject(gameObject* gO, Point i, float f ) {
 	physicsObject* temp = new physicsObject;
 	temp->impulse = i;
 	temp->friction = f;
 	temp->object = gO;
 	this->physicsObjects.push_back(temp);
+	return temp;
 }
 
 physicsHandler::physicsHandler()
