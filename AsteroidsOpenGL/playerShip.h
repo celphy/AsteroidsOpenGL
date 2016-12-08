@@ -5,6 +5,7 @@
 #include "physicsHandler.h"
 
 #define turnSpeed 0.04f
+#define playerSize 0.09f
 
 class playerShip : public gameObject
 {
