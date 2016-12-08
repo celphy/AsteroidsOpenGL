@@ -4,7 +4,7 @@
 #include "vectorClass.h"
 #include "physicsHandler.h"
 
-#define turnSpeed 0.03f
+#define turnSpeed 0.04f
 
 class playerShip : public gameObject
 {

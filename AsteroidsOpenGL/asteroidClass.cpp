@@ -17,6 +17,11 @@ asteroidClass::asteroidClass(float s) {
 	
 }
 
+float asteroidClass::getSize()
+{
+	return this->size;
+}
+
 asteroidClass::asteroidClass()
 {
 	this->type = asteroid;

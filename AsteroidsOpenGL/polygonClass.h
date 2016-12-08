@@ -12,6 +12,7 @@ class polygonClass
 public:
 	bool setPolygonPoint(int pos, GLfloat x, GLfloat y);
 	bool setPolygonPoint(int pos, Point pNew);
+	bool collidesWith(polygonClass other);
 	Point getPolygonPoint(int n);
 	bool containsPoint(Point p);
 	int getNumber();

@@ -1,5 +1,9 @@
 #include "polygonClass.h"
 
+bool polygonClass::collidesWith(polygonClass other) { //TODO
+	return false;
+}
+
 int polygonClass::getNumber() {
 	return n;
 }

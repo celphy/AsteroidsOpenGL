@@ -24,12 +24,15 @@ private:
 	void StartPerformanceCounter();
 	double GetPerformanceCounter();
 	bool rotateLeft, rotateRight, boost;
+	int playerScore;
 
 public:
 	//Score keeping
 	//User input
 	enum gameState getGameState();
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+	void raiseScore(int amount);
+	void playerCollision();
 	void togglePause();
 	void end();
 	void run();

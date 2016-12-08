@@ -1,5 +1,12 @@
 #include "gameController.h"
 
+void gameController::playerCollision() {
+	Point middle;
+	middle.x = 0.0;
+	middle.y = 0.0;
+	this->player->setPosition(middle);
+}
+
 void gameController::togglePause() {
 	if (this->state == gameRunning) {
 		this->state = gamePause;
@@ -59,16 +66,20 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 	}
 }
 
+void gameController::raiseScore(int amount)
+{
+	this->playerScore += amount;
+}
+
 void gameController::setPlayerShip(playerShip *ptr) {
 	this->player = ptr;
 	player->rotate();
 }
 
 void gameController::run() { //We could make this the primary gameloop but we dont want to restructure
-	this->lastTick = this->GetPerformanceCounter();
-
+	//CODE DOES NOT WORK AS INTENDED BUT WORKS FOR NOW I GUESS
 	double delta = this->GetPerformanceCounter() - this->lastTick; //If we need to calculate another frame to meet our ticksPS requirement
-	if (delta > (this->tickRatePS / 1000)) {
+	if (delta > (this->tickRatePS / 1000.0)) {
 		this->lastTick = this->GetPerformanceCounter();
 		if (this->rotateLeft) {
 			this->player->turnLeft();
@@ -96,6 +107,7 @@ void gameController::StartPerformanceCounter() {
 	PCFreq = double(li.QuadPart) / 1000.0;
 	QueryPerformanceCounter(&li);
 	CounterStart = li.QuadPart;
+	this->lastTick = this->GetPerformanceCounter();
 }
 
 void gameController::setPhysicsHandler(physicsHandler* ptr) {
@@ -110,6 +122,7 @@ gameController::gameController()
 	rotateRight = false;
 	rotateLeft = false;
 	boost = false;
+	this->playerScore = 0;
 }
 
 

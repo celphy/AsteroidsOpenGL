@@ -22,13 +22,27 @@ void physicsHandler::deleteObjects() {
 
 void physicsHandler::collisionDetection() {
 	for (auto& it : this->physicsObjects) {
-		if (it->object->getType() == player) {
-
+		if (it->object->getType() == asteroid) {
+			for (auto& target : this->physicsObjects) {
+				if (target->object->getType() == player) {
+					//We need polygonClass to check for intersections first
+				}
+			}
 		}
 		else if (it->object->getType() == projectile) {
 			for (auto& target : this->physicsObjects) {
 				if (target->object->getOutline().containsPoint(it->object->getPosition()))
-					target->object->markToDestroy();
+					switch (target->object->getType()) {
+					case player:
+						break;
+					case asteroid:
+						target->object->markToDestroy();
+						break;
+					case projectile:
+						break;
+					}
+					
+
 			}
 		}
 	}
