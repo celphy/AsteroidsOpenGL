@@ -88,7 +88,7 @@ void playerShip::rotate() {
 playerShip::playerShip()
 {
 	this->angle = 0.0;
-	this->type = player;
+	this->type = playerType;
 
 	Point p;
 	p.x = 0.0f;

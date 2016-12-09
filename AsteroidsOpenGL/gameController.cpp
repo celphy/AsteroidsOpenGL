@@ -1,5 +1,16 @@
 #include "gameController.h"
 
+void gameController::isDestroyed(gameObject* obj) {
+	switch (obj->getType()) {
+	case asteroidType:
+		break;
+	case playerType:
+		break;
+	default:
+		break;
+	}
+}
+
 void gameController::playerCollision() {
 	Point middle;
 	middle.x = 0.0;

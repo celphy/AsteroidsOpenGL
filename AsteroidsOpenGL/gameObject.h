@@ -2,7 +2,7 @@
 #include "main.h"
 #include "polygonClass.h"
 
-enum objectType { asteroid, player, saucer, projectile }; //We need this to differentiate between objects for collision handling
+enum objectType { asteroidType, playerType, saucerType, projectileType }; //We need this to differentiate between objects for collision handling
 
 class gameObject
 {

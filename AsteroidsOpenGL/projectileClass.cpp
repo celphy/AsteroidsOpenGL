@@ -6,7 +6,7 @@ size_t projectileClass::getLifetime() {
 
 projectileClass::projectileClass()
 {
-	this->type = projectile;
+	this->type = projectileType;
 	lifetime = projectileLifetime;
 }
 

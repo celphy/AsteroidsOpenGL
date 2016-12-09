@@ -30,6 +30,7 @@ private:
 public:
 	enum gameState getGameState();
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+	void isDestroyed(gameObject* obj);
 	void raiseScore(int amount);
 	void playerCollision();
 	void togglePause();
