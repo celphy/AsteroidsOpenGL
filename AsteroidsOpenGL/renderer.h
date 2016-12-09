@@ -3,7 +3,7 @@
 #include <vector>
 #include "main.h"
 #include "gameObject.h"
-#include "gameController.h"
+//#include "gameController.h"
 #include "polygonClass.h"
 
 // Shaders
@@ -37,13 +37,14 @@ private:
 		"}\n\0";
 
 public:
-	void setKeyCallback(gameController* controller);
+	//void setKeyCallback(gameController* controller);
 	void registerObject(bool isInGame, gameObject* obj);
 	void addGame(gameObject* obj);
 	void addUI(gameObject* obj);
 	void createRenderData(); //Vertices and Indices
 	void render();
 	void createWindow(string title, int width, int height);
+	GLFWwindow* getWindow();
 	void initialize(string windowTitle, int width, int height);
 	renderer();
 	~renderer();

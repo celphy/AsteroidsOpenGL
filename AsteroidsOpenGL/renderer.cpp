@@ -113,11 +113,15 @@ void renderer::createWindow(string title, int width, int height)
 	glfwMakeContextCurrent(this->window);
 }
 
+GLFWwindow* renderer::getWindow() {
+	return this->window;
+}
+/* Excluded to prevent cyclic dependencies
 void renderer::setKeyCallback(gameController* controller) {
 	// Tasten -> key_callback
 	glfwSetWindowUserPointer(this->window, (void*)controller);
 	glfwSetKeyCallback(this->window, gameController::key_callback);
-}
+}*/
 
 void renderer::initialize(string windowTitle, int width, int height)
 {

@@ -114,6 +114,11 @@ void gameController::setPhysicsHandler(physicsHandler* ptr) {
 	this->pH = ptr;
 }
 
+void gameController::setRenderer(renderer * ptr)
+{
+	this->r = ptr;
+}
+
 gameController::gameController()
 {
 	this->state = gameRunning;

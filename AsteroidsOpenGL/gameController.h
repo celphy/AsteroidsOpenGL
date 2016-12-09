@@ -2,6 +2,7 @@
 #include "main.h"
 #include "physicsHandler.h"
 #include "playerShip.h"
+#include "renderer.h"
 
 //QueryPerformanceCounter
 
@@ -13,11 +14,12 @@ class gameController
 {
 private:
 	playerShip *player;
+	physicsHandler *pH;
+	renderer* r;
 	gameState state;
 	int tickRatePS;
 	int maxShots;
 	double lastTick;
-	physicsHandler *pH;
 	double PCFreq = 0.0;
 	__int64 CounterStart;
 	void StartPerformanceCounter();
@@ -34,6 +36,7 @@ public:
 	void end();
 	void run();
 	void setPhysicsHandler(physicsHandler* ptr);
+	void setRenderer(renderer* ptr);
 	void setPlayerShip(playerShip *ptr);
 	gameController();
 	~gameController();

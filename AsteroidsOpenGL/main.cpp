@@ -12,7 +12,11 @@ int main()
 	renderer r = renderer();
 
 	r.initialize("aSTEROIDs", WIDTH, HEIGHT);
-	r.setKeyCallback(&controller);
+	//r.setKeyCallback(&controller);
+	
+	//Removed from renderer itself to avoid cyclic dependencies
+	glfwSetWindowUserPointer(r.getWindow(), &controller);
+	glfwSetKeyCallback(r.getWindow(), gameController::key_callback);
 
 	playerShip* ship = new playerShip();
 	physicsHandler* physics = new physicsHandler();
@@ -24,6 +28,7 @@ int main()
 
 	controller.setPlayerShip(ship);
 	controller.setPhysicsHandler(physics);
+	controller.setRenderer(&r);
 	r.registerObject(true, ship);
 
 	Point asteroidMovement;
