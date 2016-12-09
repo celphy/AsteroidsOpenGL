@@ -12,7 +12,6 @@ enum gameState {
 class gameController
 {
 private:
-	//Register player ship object
 	playerShip *player;
 	gameState state;
 	int tickRatePS;
@@ -27,8 +26,6 @@ private:
 	int playerScore;
 
 public:
-	//Score keeping
-	//User input
 	enum gameState getGameState();
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
 	void raiseScore(int amount);
@@ -44,9 +41,6 @@ public:
 
 
 //TODO
-//User input
-//Use gameBoard
-//Move the player ship
 //Collision
 //Asteroids destroying
 //Add saucer

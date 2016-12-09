@@ -49,10 +49,11 @@ void playerShip::rotate() {
 	Y = R * sin(Innenwinkel)
 	*/
 	//Following bit is useless but informative
+	/*
 	p0 = this->getOutline().getPolygonPoint(0);
 	p1 = this->getOutline().getPolygonPoint(1);
 	p2 = this->getOutline().getPolygonPoint(2);
-	//Until here
+	*/
 
 	float angle1, angle2, angle3;
 	angle1 = (this->angle + this->pointAngles[0]);
