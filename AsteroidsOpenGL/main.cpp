@@ -20,7 +20,7 @@ int main()
 	shipMovement.x = -0.000;
 	shipMovement.y = -0.000;
 
-	ship->setSelf(physics->registerObject(ship, shipMovement, 0.94));
+	ship->setSelf(physics->registerObject(ship, shipMovement, 0.97));
 
 	controller.setPlayerShip(ship);
 	controller.setPhysicsHandler(physics);

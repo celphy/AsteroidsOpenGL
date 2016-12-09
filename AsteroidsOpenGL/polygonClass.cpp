@@ -1,6 +1,27 @@
 #include "polygonClass.h"
 
 bool polygonClass::collidesWith(polygonClass other) { //TODO
+	vector<VectorClass> ours, theirs;
+	//Generate all vectors that represent us
+	for (int i = 0; i < (this->n)-2; i++) {
+		ours.push_back(VectorClass(this->getPolygonPoint(i), this->getPolygonPoint(i+1)));
+	}
+	ours.push_back(VectorClass(this->getPolygonPoint(n-1), this->getPolygonPoint(0)));
+
+	//Generate all vectors that represent them
+	for (int i = 0; i < (other.getNumber()-2); i++) {
+		theirs.push_back(VectorClass(other.getPolygonPoint(i), other.getPolygonPoint(i + 1)));
+	}
+	theirs.push_back(VectorClass(other.getPolygonPoint(other.getNumber() - 1), other.getPolygonPoint(0)));
+
+	//Now check all of ours vs all of theirs
+
+	for (auto& us : ours) {
+		for (auto& them : theirs) {
+			if (us.getIntersection(them) != nullptr) //If we have one collision, thats enough!
+				return true;
+		}
+	}
 	return false;
 }
 
