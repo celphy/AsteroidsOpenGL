@@ -2,7 +2,8 @@
 #include "main.h"
 #include "physicsHandler.h"
 #include "playerShip.h"
-#include "renderer.h"
+//#include "renderer.h"
+#include "gameLogic.h"
 
 //QueryPerformanceCounter
 
@@ -15,7 +16,8 @@ class gameController
 private:
 	playerShip *player;
 	physicsHandler *pH;
-	renderer* r;
+	//renderer* r;
+	gameLogic* logic;
 	gameState state;
 	int tickRatePS;
 	int maxShots;
@@ -36,8 +38,9 @@ public:
 	void togglePause();
 	void end();
 	void run();
-	void setPhysicsHandler(physicsHandler* ptr);
-	void setRenderer(renderer* ptr);
+	//void setPhysicsHandler(physicsHandler* ptr);
+	//void setRenderer(renderer* ptr);
+	void setHandlers(void* renderer, physicsHandler* ptr);
 	void setPlayerShip(playerShip *ptr);
 	gameController();
 	~gameController();

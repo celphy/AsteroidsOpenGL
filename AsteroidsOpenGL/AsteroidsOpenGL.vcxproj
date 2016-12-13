@@ -146,6 +146,7 @@
     <ClCompile Include="asteroidClass.cpp" />
     <ClCompile Include="gameBoard.cpp" />
     <ClCompile Include="gameController.cpp" />
+    <ClCompile Include="gameLogic.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="physicsHandler.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="asteroidClass.h" />
     <ClInclude Include="gameBoard.h" />
     <ClInclude Include="gameController.h" />
+    <ClInclude Include="gameLogic.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="physicsHandler.h" />

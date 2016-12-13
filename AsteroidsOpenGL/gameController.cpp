@@ -121,14 +121,20 @@ void gameController::StartPerformanceCounter() {
 	this->lastTick = this->GetPerformanceCounter();
 }
 
+void gameController::setHandlers(void* renderer, physicsHandler* ptr) {
+	this->pH = ptr;
+	this->logic->reg(renderer, ptr);
+}
+
+/*
 void gameController::setPhysicsHandler(physicsHandler* ptr) {
 	this->pH = ptr;
 }
-
 void gameController::setRenderer(renderer * ptr)
 {
 	this->r = ptr;
 }
+*/
 
 gameController::gameController()
 {
@@ -139,9 +145,11 @@ gameController::gameController()
 	rotateLeft = false;
 	boost = false;
 	this->playerScore = 0;
+	this->logic = new gameLogic();
 }
 
 
 gameController::~gameController()
 {
+	delete this->logic;
 }

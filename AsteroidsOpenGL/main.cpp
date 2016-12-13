@@ -27,8 +27,9 @@ int main()
 	ship->setSelf(physics->registerObject(ship, shipMovement, 0.97));
 
 	controller.setPlayerShip(ship);
-	controller.setPhysicsHandler(physics);
-	controller.setRenderer(&r);
+	//controller.setPhysicsHandler(physics);
+	controller.setHandlers(static_cast<void*>(&r), physics);
+	//controller.setRenderer(&r);
 	r.registerObject(true, ship);
 
 	Point asteroidMovement;
