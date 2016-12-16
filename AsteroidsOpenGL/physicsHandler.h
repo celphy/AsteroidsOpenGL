@@ -4,7 +4,7 @@
 #include "gameBoard.h"
 #include "asteroidClass.h"
 
-#define screenCutOff 1.1
+#define screenCutOff 1.05
 
 //Remove on lifetime end
 typedef struct physicsObject {

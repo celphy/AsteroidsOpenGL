@@ -1,8 +1,21 @@
 #include "renderer.h"
 #include "main.h"
 
+int renderer::getNumberOfPoints() {
+	return this->numberOfPoints;
+}
 
+int renderer::getNumberOfLives() {
+	return this->numberOfLivesLeft;
+}
 
+void renderer::setNumberOfPoints(int newPoints) {
+	this->numberOfPoints = newPoints;
+}
+
+void renderer::setNumberOfLives(int newLives) {
+	this->numberOfLivesLeft = newLives;
+}
 
 void renderer::registerObject(bool isInGame, gameObject* obj)
 {

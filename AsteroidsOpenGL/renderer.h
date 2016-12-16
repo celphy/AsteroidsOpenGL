@@ -22,6 +22,7 @@ private:
 	vector<gameObject*> gameObjects;
 	int numberOfElements;
 	int numberOfPoints;
+	int numberOfLivesLeft;
 
 	const GLchar* vertexShaderSource = "#version 330 core\n"
 		"layout (location = 0) in vec3 position;\n"
@@ -46,6 +47,10 @@ public:
 	void createWindow(string title, int width, int height);
 	GLFWwindow* getWindow();
 	void initialize(string windowTitle, int width, int height);
+	int getNumberOfLives();
+	int getNumberOfPoints();
+	void setNumberOfLives(int newLives);
+	void setNumberOfPoints(int newPoints);
 	renderer();
 	~renderer();
 };
