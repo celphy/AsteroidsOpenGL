@@ -1,22 +1,43 @@
 #include "renderer.h"
 #include "main.h"
 
+/// <summary>
+/// Returns the number of outline points.
+/// </summary>
+/// <returns>Number of outline points</returns>
 int renderer::getNumberOfPoints() {
 	return this->numberOfPoints;
 }
 
+/// <summary>
+/// Returns the number of lives being displayed.
+/// </summary>
+/// <returns>Number of lives displayed</returns>
 int renderer::getNumberOfLives() {
 	return this->numberOfLivesLeft;
 }
 
+/// <summary>
+/// Sets the current highscore of the player.
+/// </summary>
+/// <param name="newPoints">Changed highscore</param>
 void renderer::setNumberOfPoints(int newPoints) {
 	this->numberOfPoints = newPoints;
 }
 
+/// <summary>
+/// Sets the number of lives being displayed.
+/// </summary>
+/// <param name="newLives">New number of remaining lives</param>
 void renderer::setNumberOfLives(int newLives) {
 	this->numberOfLivesLeft = newLives;
 }
 
+/// <summary>
+/// Registers a gameObject either as ingame or UI.
+/// </summary>
+/// <param name="isInGame">ingame gameObject?</param>
+/// <param name="obj">gameObject</param>
 void renderer::registerObject(bool isInGame, gameObject* obj)
 {
 	if (isInGame)
@@ -25,6 +46,11 @@ void renderer::registerObject(bool isInGame, gameObject* obj)
 		this->addUI(obj);
 }
 
+/// <summary>
+/// Registers a gameObject that will be in game.
+/// TODO: Find out if split is necessary. Doesn't one suffice?
+/// </summary>
+/// <param name="obj"></param>
 void renderer::addGame(gameObject* obj)
 {
 	gameObjects.push_back(obj);
@@ -32,10 +58,17 @@ void renderer::addGame(gameObject* obj)
 	this->numberOfPoints += obj->getOutline().getNumber();
 }
 
+/// <summary>
+/// Registers a UI gameObject with the renderer.
+/// </summary>
+/// <param name="obj"></param>
 void renderer::addUI(gameObject* obj) {
 
 }
 
+/// <summary>
+/// Creates the data that will be rendered from the registered gameObjects.
+/// </summary>
 void renderer::createRenderData()
 {
 	//For every point we need 3 floats in vertices
@@ -82,6 +115,9 @@ void renderer::createRenderData()
 	cout << "###########EndOfCreateRenderData############" << endl;
 }
 
+/// <summary>
+/// Render function. Draws all the gameObjects.
+/// </summary>
 void renderer::render()
 {
 	//Events und Locations 
@@ -120,15 +156,26 @@ void renderer::render()
 	glfwSwapBuffers(this->window);
 }
 
+/// <summary>
+/// Creates the window the game will run in.
+/// </summary>
+/// <param name="title">Window title</param>
+/// <param name="width">Window width</param>
+/// <param name="height">Window height</param>
 void renderer::createWindow(string title, int width, int height)
 {
 	this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 	glfwMakeContextCurrent(this->window);
 }
 
+/// <summary>
+/// Returns the current window.
+/// </summary>
+/// <returns>Game window</returns>
 GLFWwindow* renderer::getWindow() {
 	return this->window;
 }
+//TODO: Find out if save to include back after gameLogic inclusion.
 /* Excluded to prevent cyclic dependencies
 void renderer::setKeyCallback(gameController* controller) {
 	// Tasten -> key_callback
@@ -136,6 +183,12 @@ void renderer::setKeyCallback(gameController* controller) {
 	glfwSetKeyCallback(this->window, gameController::key_callback);
 }*/
 
+/// <summary>
+/// Initializes renderer. Sets up GLFW and OpenGL.
+/// </summary>
+/// <param name="windowTitle">Window title</param>
+/// <param name="width">Window width</param>
+/// <param name="height">Window height</param>
 void renderer::initialize(string windowTitle, int width, int height)
 {
 	// GLFW
@@ -198,44 +251,23 @@ void renderer::initialize(string windowTitle, int width, int height)
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	/*
-	this->vertices = new GLfloat[9];
-	this->vertices[0] = 0.0f;
-	this->vertices[1] = 0.2f;
-	this->vertices[2] = 0.0f;
-	this->vertices[3] = 0.1f;
-	this->vertices[4] = -0.1f;
-	this->vertices[5] = 0.0f;
-	this->vertices[6] = -0.1f;
-	this->vertices[7] = -0.1f;
-	this->vertices[8] = 0.0f;
-
-
-
-	this->indices = new GLuint[6];
-	this->indices[0] = 0;
-	this->indices[1] = 1;
-	this->indices[2] = 1;
-	this->indices[3] = 2;
-	this->indices[4] = 2;
-	this->indices[5] = 0;
-	
-
-	this->numberOfElements = 1;
-	this->numberOfPoints = 3;
-	*/
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 }
 
+/// <summary>
+/// Constructor that zeroes the number of elements and points being displayed.
+/// </summary>
 renderer::renderer()
 {
 	this->numberOfElements = 0;
 	this->numberOfPoints = 0;
 }
 
-
+/// <summary>
+/// Destructor that clears some OpenGL buffers, terminates GLFW and deletes memory handles.
+/// </summary>
 renderer::~renderer()
 {
 	glDeleteVertexArrays(1, &VAO);

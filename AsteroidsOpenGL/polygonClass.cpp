@@ -1,5 +1,10 @@
 #include "polygonClass.h"
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="other"></param>
+/// <returns></returns>
 bool polygonClass::collidesWith(polygonClass other) { //TODO
 	vector<VectorClass> ours, theirs;
 	//Generate all vectors that represent us

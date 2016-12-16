@@ -1,5 +1,10 @@
 #include "VectorClass.h"
 
+/// <summary>
+/// Returns the intersection of two vectors
+/// </summary>
+/// <param name="v">Vector that is checked against</param>
+/// <returns>Returns nullptr or point of intersection</returns>
 Point* VectorClass::getIntersection(VectorClass v){
 	float x1 = this->getOrigin().x, x2 = this->getDirection().x, x3 = v.getOrigin().x, x4 = v.getDirection().x;
 	float y1 = this->getOrigin().y, y2 = this->getDirection().y, y3 = v.getOrigin().y, y4 = v.getDirection().y;
@@ -28,10 +33,17 @@ Point* VectorClass::getIntersection(VectorClass v){
 	return r;
 }
 
+/// <summary>
+/// Returns size of vector
+/// </summary>
+/// <returns>Size</returns>
 double VectorClass::sizeOf(void) {
 	return sqrt(pow(this->getOrigin().x + this->getDirection().x,2) + pow(this->getOrigin().y + this->getDirection().y,2));
 }
 
+/// <summary>
+/// Normalizes the vector.
+/// </summary>
 void VectorClass::normVector(void) {
 	double invNorm = 1 / this->sizeOf();
 	this->direction.x *= invNorm;
@@ -40,43 +52,80 @@ void VectorClass::normVector(void) {
 	this->origin.y *= invNorm;
 }
 
+/// <summary>
+/// Multiplies the vector by a factor.
+/// </summary>
+/// <param name="factor">Multiplication factor</param>
 void VectorClass::multVector(float factor){
 	this->direction.x *= factor;
 	this->direction.y *= factor;
 } 
 
-
+/// <summary>
+/// Adds a vector.
+/// </summary>
+/// <param name="v">Vector to add</param>
 void VectorClass::addVector(vectorStruct v){
 	this->direction.x += v.x;
 	this->direction.y += v.y;
 }
 
+/// <summary>
+/// Substracts a vector.
+/// </summary>
+/// <param name="v">Vector to substract</param>
 void VectorClass::subVector(vectorStruct v){
 	this->direction.x -= v.x;
 	this->direction.y -= v.y;
 }
 
+/// <summary>
+/// Returns the origin of the vector.
+/// </summary>
+/// <returns>Origin</returns>
 vectorStruct VectorClass::getOrigin(){
 	return this->origin;
 }
 
+/// <summary>
+/// Returns the direction fo the vector.
+/// </summary>
+/// <returns></returns>
 vectorStruct VectorClass::getDirection(){
 	return this->direction;
 }
 
+/// <summary>
+/// Sets the origin of the vector.
+/// </summary>
+/// <param name="oArg">Origin</param>
 void VectorClass::setOrigin(vectorStruct oArg){
 	this->origin = oArg;
 }
 
+/// <summary>
+/// Sets the direction of the vector.
+/// </summary>
+/// <param name="dArg">Direction</param>
 void VectorClass::setDirection(vectorStruct dArg){
 	this->direction = dArg;
 }
 
+/// <summary>
+/// Constructor that sets both origin and direction.
+/// </summary>
+/// <param name="oArg">Origin</param>
+/// <param name="dArg">Direction</param>
 VectorClass::VectorClass(vectorStruct oArg, vectorStruct dArg){
 	this->origin = oArg;
 	this->direction = dArg;
 }
 
+/// <summary>
+/// Constructor that sets both origin and direction from points.
+/// </summary>
+/// <param name="one">Origin point</param>
+/// <param name="two">Direction point</param>
 VectorClass::VectorClass(Point one, Point two) {
 	this->origin.x = one.x;
 	this->origin.y = one.y;
@@ -84,11 +133,16 @@ VectorClass::VectorClass(Point one, Point two) {
 	this->direction.y = two.y;
 }
 
+/// <summary>
+/// Standard constructor
+/// </summary>
 VectorClass::VectorClass(void)
 {
 }
 
-
+/// <summary>
+/// Destructor
+/// </summary>
 VectorClass::~VectorClass(void)
 {
 }

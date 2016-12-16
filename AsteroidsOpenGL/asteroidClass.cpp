@@ -1,5 +1,10 @@
 #include "asteroidClass.h"
 
+/// <summary>
+/// Constructor that creates an asteroid according to the provided size.
+/// Defines objectType and outline as well. Sets not to be destroyed.
+/// </summary>
+/// <param name="s">Size factor</param>
 asteroidClass::asteroidClass(float s) {
 	this->type = asteroidType;
 	this->size = s;
@@ -14,14 +19,24 @@ asteroidClass::asteroidClass(float s) {
 		-0.7f*size, -0.6f*size,
 	};
 	this->setOutline(8, outline);
+	this->toBeDestroyed = false;
 	
 }
 
+/// <summary>
+/// Returns size factor
+/// </summary>
+/// <returns>size factor</returns>
 float asteroidClass::getSize()
 {
 	return this->size;
 }
 
+
+/// <summary>
+/// Standard Constructor, initializes objectType and sets up outline.
+/// Sets not to be destroyed.
+/// </summary>
 asteroidClass::asteroidClass()
 {
 	this->type = asteroidType;
@@ -31,12 +46,14 @@ asteroidClass::asteroidClass()
 		1.0f, 1.0f,
 		1.0f, -1.0f,
 		-1.0f, -1.0f,
-	};//Fuck, do we need to add Z-position in 2d? maybe we can use a filler later in draw code
+	};
 	this->setOutline(3, outline);
 	this->toBeDestroyed = false;
 }
 
-
+/// <summary>
+/// Destructor
+/// </summary>
 asteroidClass::~asteroidClass()
 {
 }

@@ -1,11 +1,17 @@
 #include "physicsHandler.h"
 
+/// <summary>
+/// gameTick that moves the gameObjects and checks for collisions
+/// </summary>
 void physicsHandler::tick() {
 	this->deleteObjects();
 	this->move();
 	this->collisionDetection();
 }
 
+/// <summary>
+/// Deletes all flagged objects from the list of existing physicsObjects.
+/// </summary>
 void physicsHandler::deleteObjects() {
 	for (auto it = physicsObjects.end() - 1; it != physicsObjects.begin(); /* We start at the end to have as little overhead as possible */)
 	{
@@ -20,12 +26,15 @@ void physicsHandler::deleteObjects() {
 	}
 }
 
+/// <summary>
+/// Checks for collisions between all existing physicsObjects.
+/// </summary>
 void physicsHandler::collisionDetection() {
 	for (auto& it : this->physicsObjects) {
 		if (it->object->getType() == asteroidType) {
 			for (auto& target : this->physicsObjects) {
 				if (target->object->getType() == playerType) {
-					//We need polygonClass to check for intersections first
+					//it->object->getOutline().collidesWith(target->object->getOutline());
 				}
 			}
 		}
@@ -48,6 +57,9 @@ void physicsHandler::collisionDetection() {
 	}
 }
 
+/// <summary>
+/// Moves a physicsObject by impulse and takes friction into account.
+/// </summary>
 void physicsHandler::move() {
 	for (auto& it : this->physicsObjects) {
 		//Get current position
@@ -66,6 +78,13 @@ void physicsHandler::move() {
 	}
 }
 
+/// <summary>
+/// Register a new gameObject as an existing physicsObject.
+/// </summary>
+/// <param name="gO">gameObject</param>
+/// <param name="i">Impulse</param>
+/// <param name="f">Friction</param>
+/// <returns></returns>
 physicsObject* physicsHandler::registerObject(gameObject* gO, Point i, float f ) {
 	physicsObject* temp = new physicsObject;
 	temp->impulse = i;
@@ -75,6 +94,9 @@ physicsObject* physicsHandler::registerObject(gameObject* gO, Point i, float f )
 	return temp;
 }
 
+/// <summary>
+/// Constructor that sets up gameBoard with screenCutOff
+/// </summary>
 physicsHandler::physicsHandler()
 {
 	Point cutOff;
@@ -83,7 +105,9 @@ physicsHandler::physicsHandler()
 	this->gameScreen = new gameBoard(cutOff);
 }
 
-
+/// <summary>
+/// Destructor
+/// </summary>
 physicsHandler::~physicsHandler()
 {
 	delete this->gameScreen;

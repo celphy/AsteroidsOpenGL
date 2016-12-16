@@ -5,7 +5,10 @@
 #include "physicsHandler.h"
 #include "asteroidClass.h"
 
-
+/// <summary>
+/// Main method that sets up some stuff and runs the core loop
+/// </summary>
+/// <returns>Exit code</returns>
 int main()
 {
 	gameController controller = gameController();

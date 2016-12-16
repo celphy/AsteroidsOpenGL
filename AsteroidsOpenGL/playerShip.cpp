@@ -1,5 +1,8 @@
 #include "playerShip.h"
 
+/// <summary>
+/// Increases impulse of player in the direction the ship is facing.
+/// </summary>
 void playerShip::playerBoost() {
 	VectorClass vector;
 	vector = this->getProjectileVector();
@@ -12,6 +15,10 @@ void playerShip::playerBoost() {
 	this->self->impulse.y += additionalImpulse.y;
 }
 
+/// <summary>
+/// Returns a vector into the direction the ship is facing.
+/// </summary>
+/// <returns>Vector the ship is facing</returns>
 VectorClass playerShip::getProjectileVector() {
 	Point middle;
 	middle.x = this->outline->getPolygonPoint(1).x + this->outline->getPolygonPoint(2).x;
@@ -24,22 +31,35 @@ VectorClass playerShip::getProjectileVector() {
 	return r;
 }
 
-
+/// <summary>
+/// Turns the players ship to the right
+/// </summary>
 void playerShip::turnRight() {
 	angle += turnSpeed;
 	this->rotate();
 }
 
+/// <summary>
+/// Sets the pointer inside to itself.
+/// TODO: Find out if needed? What the fuck was I thinking here...?
+/// </summary>
+/// <param name="ptr"></param>
 void playerShip::setSelf(physicsObject * ptr)
 {
 	this->self = ptr;
 }
 
+/// <summary>
+/// Turn the players ship to the left.
+/// </summary>
 void playerShip::turnLeft() {
 	angle -=turnSpeed;
 	this->rotate();
 }
 
+/// <summary>
+/// Rotate the player ships outline to match the direction it should be facing.
+/// </summary>
 void playerShip::rotate() {
 
 	Point p0, p1, p2;
@@ -85,6 +105,9 @@ void playerShip::rotate() {
 	this->getOutline().setPolygonPoint(2, p2);
 }
 
+/// <summary>
+/// Constructor that sets direction, objectType, position, outline and size of the ship.
+/// </summary>
 playerShip::playerShip()
 {
 	this->angle = 0.0;
@@ -109,7 +132,9 @@ playerShip::playerShip()
 
 }
 
-
+/// <summary>
+/// Destructor
+/// </summary>
 playerShip::~playerShip()
 {
 }
