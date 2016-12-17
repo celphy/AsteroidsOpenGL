@@ -93,25 +93,31 @@ void renderer::createRenderData()
 			//Add Point
 			//this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).x;
 			this->vertices[counterVertices] = it->getRenderPoint(i).x;
-			cout << "Point " << i << " X: " << this->vertices[counterVertices];
+			if (DEBUG_OUTPUT)
+				cout << "Point " << i << " X: " << this->vertices[counterVertices];
 			counterVertices++;
 			//this->vertices[counterVertices] = it->getOutline().getPolygonPoint(i).y;
 			this->vertices[counterVertices] = it->getRenderPoint(i).y;
-			cout << " Y: " << this->vertices[counterVertices] << endl;
+			if (DEBUG_OUTPUT)
+				cout << " Y: " << this->vertices[counterVertices] << endl;
 			counterVertices++;
 			this->vertices[counterVertices] = 0.0f;
 			counterVertices++;
 			//Add Line to draw
-			this->indices[counterIndices*2] = counterIndices;
+			this->indices[counterIndices * 2] = counterIndices;
 			this->indices[(counterIndices * 2) + 1] = counterIndices + 1;
-			cout << "Added line at " << counterIndices * 2 << " and " << counterIndices * 2 + 1 << " to (Point " << counterIndices << " <-> Point " << counterIndices + 1 << ")" << endl;
+			if (DEBUG_OUTPUT)
+				cout << "Added line at " << counterIndices * 2 << " and " << counterIndices * 2 + 1 << " to (Point " << counterIndices << " <-> Point " << counterIndices + 1 << ")" << endl;
 			counterIndices++;
 		}
-		this->indices[(counterIndices * 2)-1] = beginningOfPolygon; //Major possibility for wrong offsets when we're adding more stuff
+		this->indices[(counterIndices * 2) - 1] = beginningOfPolygon; //Major possibility for wrong offsets when we're adding more stuff
+		if (DEBUG_OUTPUT) {
 		cout << "Changed indices[" << counterIndices * 2 - 1 << "] to Point " << beginningOfPolygon << endl;
 		cout << "Changed line at " << counterIndices * 2 - 2 << " and " << counterIndices * 2 - 1 << " to (Point " << counterIndices - 1 << " <-> Point " << beginningOfPolygon << ")" << endl;
 		cout << "-------------EndOfEntity--------------" << endl;
 	}
+	}
+	if(DEBUG_OUTPUT)
 	cout << "###########EndOfCreateRenderData############" << endl;
 }
 

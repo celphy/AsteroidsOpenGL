@@ -95,20 +95,23 @@ void gameController::run() { //We could make this the primary gameloop but we do
 		this->logic->setupLevel();
 		firstStart = false;
 	}
-	double delta = this->GetPerformanceCounter() - this->lastTick; //If we need to calculate another frame to meet our ticksPS requirement
-	if (delta > (this->tickRatePS / 1000.0)) {
-		this->lastTick = this->GetPerformanceCounter();
-		if (this->rotateLeft) {
-			this->player->turnLeft();
+	if (this->getGameState() == gameRunning) {
+		double delta = this->GetPerformanceCounter() - this->lastTick; //If we need to calculate another frame to meet our ticksPS requirement
+		//double delta = this->lastTick - this->GetPerformanceCounter();
+		if (delta > (this->tickRatePS / 1000.0)) {
+			this->lastTick = this->GetPerformanceCounter();
+			if (this->rotateLeft) {
+				this->player->turnLeft();
+			}
+			else if (this->rotateRight) {
+				this->player->turnRight();
+			}
+			if (this->boost) {
+				this->player->playerBoost();
+			}
+			this->pH->tick();
+			this->logic->tick();
 		}
-		else if (this->rotateRight) {
-			this->player->turnRight();
-		}
-		if (this->boost) {
-			this->player->playerBoost();
-		}
-		this->pH->tick();
-		this->logic->tick();
 	}
 }
 

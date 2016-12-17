@@ -31,7 +31,12 @@ void gameLogic::tick()
 	vector<collisionStruct> lastCollisions = this->pH->getLastCollisions();
 	for (auto& it : lastCollisions) {
 		if (it.passive->object->getType() == playerType && it.active->object->getType() != playerType) { //Player got hit
+			if (DEBUG_OUTPUT)
 			cout << "Player got hit" << endl;
+		}
+		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
+			if (DEBUG_OUTPUT) 
+			cout << "Asteroid got hit by projectile!" << endl;
 		}
 	}
 }
@@ -46,7 +51,9 @@ gameLogic::gameLogic()
 	this->playerScore = 0;
 }
 
-
+/// <summary>
+/// Sets up the start of a level. Happens at game start and after all asteroids have been destroyed.
+/// </summary>
 void gameLogic::setupLevel() {
 	//Initializing the level
 	Point asteroidVar1, asteroidVar2, asteroidVar3, asteroidVar4, asteroidVar5;

@@ -1,6 +1,8 @@
 #pragma once
 #define GLEW_STATIC
 #define projectileLifetime 80
+#define DEBUG_OUTPUT 0
+
 
 #include <Windows.h>
 #include "include/GL/glew.h"
