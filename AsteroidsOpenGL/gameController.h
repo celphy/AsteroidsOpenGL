@@ -26,7 +26,7 @@ private:
 	__int64 CounterStart;
 	void StartPerformanceCounter();
 	double GetPerformanceCounter();
-	bool rotateLeft, rotateRight, boost;
+	bool rotateLeft, rotateRight, boost, firstStart;
 
 public:
 	enum gameState getGameState();

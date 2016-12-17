@@ -91,6 +91,10 @@ void gameController::setPlayerShip(playerShip *ptr) {
 /// </summary>
 void gameController::run() { //We could make this the primary gameloop but we dont want to restructure
 	//CODE DOES NOT WORK AS INTENDED BUT WORKS FOR NOW I GUESS
+	if (firstStart) {
+		this->logic->setupLevel();
+		firstStart = false;
+	}
 	double delta = this->GetPerformanceCounter() - this->lastTick; //If we need to calculate another frame to meet our ticksPS requirement
 	if (delta > (this->tickRatePS / 1000.0)) {
 		this->lastTick = this->GetPerformanceCounter();
@@ -154,6 +158,7 @@ gameController::gameController()
 	rotateRight = false;
 	rotateLeft = false;
 	boost = false;
+	firstStart = true;
 	this->logic = new gameLogic();
 }
 

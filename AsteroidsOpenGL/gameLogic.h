@@ -2,7 +2,8 @@
 #include "main.h"
 #include "renderer.h"
 #include "physicsHandler.h"
-#include <tuple>
+#include "playerShip.h"
+#include "asteroidClass.h"
 
 
 
@@ -14,6 +15,7 @@ private:
 	int playerScore;
 	int playerLives;
 public:
+	void setupLevel();
 	void reg(void* renderptr, physicsHandler* pHptr);
 	void registerGameObject(gameObject * obj, Point origin, float friction);
 	void tick();

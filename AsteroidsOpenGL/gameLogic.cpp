@@ -41,6 +41,49 @@ void gameLogic::tick()
 /// </summary>
 gameLogic::gameLogic()
 {
+	//Initialize variables
+	this->playerLives = 3;
+	this->playerScore = 0;
+}
+
+
+void gameLogic::setupLevel() {
+	//Initializing the level
+	Point asteroidVar1, asteroidVar2, asteroidVar3, asteroidVar4, asteroidVar5;
+	asteroidVar1.x = -0.8;
+	asteroidVar1.y = -0.8;
+	asteroidVar2.x = 0.8;
+	asteroidVar2.y = 0.8;
+	asteroidVar3.x = -0.8;
+	asteroidVar3.y = 0.8;
+	asteroidVar4.x = 0.006;
+	asteroidVar4.y = 0.006;
+	asteroidVar5.x = -0.006;
+	asteroidVar5.y = 0.006;
+
+
+	asteroidClass* asteroid1 = new asteroidClass(0.1);
+	asteroidClass* asteroid2 = new asteroidClass(0.09);
+	asteroidClass* asteroid3 = new asteroidClass(0.098);
+	asteroidClass* asteroid4 = new asteroidClass(0.092);
+	asteroidClass* asteroid5 = new asteroidClass(0.11);
+	asteroid1->setPosition(asteroidVar1);
+	asteroid2->setPosition(asteroidVar2);
+	asteroid3->setPosition(asteroidVar3);
+	asteroid4->setPosition(asteroidVar1-asteroidVar3);
+	asteroid5->setPosition(asteroidVar2);
+
+
+	this->pH->registerObject(asteroid1, asteroidVar4, 1.0);
+	this->pH->registerObject(asteroid2, asteroidVar4, 1.0);
+	this->pH->registerObject(asteroid3, asteroidVar5, 1.0);
+	this->pH->registerObject(asteroid4, asteroidVar4, 1.0);
+	this->pH->registerObject(asteroid5, asteroidVar5-asteroidVar4, 1.0);
+	this->r->registerObject(true, asteroid1);
+	this->r->registerObject(true, asteroid2);
+	this->r->registerObject(true, asteroid3);
+	this->r->registerObject(true, asteroid4);
+	this->r->registerObject(true, asteroid5);
 }
 
 /// <summary>
