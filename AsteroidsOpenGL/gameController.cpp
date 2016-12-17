@@ -1,24 +1,5 @@
 #include "gameController.h"
 
-//TODO: move to gameLogic
-void gameController::isDestroyed(gameObject* obj) {
-	switch (obj->getType()) {
-	case asteroidType:
-		break;
-	case playerType:
-		break;
-	default:
-		break;
-	}
-}
-
-//TODO: remove!
-void gameController::playerCollision() {
-	Point middle;
-	middle.x = 0.0;
-	middle.y = 0.0;
-	this->player->setPosition(middle);
-}
 
 /// <summary>
 /// Toggles pause-mode.
@@ -94,12 +75,6 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 			break;
 		}
 	}
-}
-
-//TODO: move to gameLogic
-void gameController::raiseScore(int amount)
-{
-	this->playerScore += amount;
 }
 
 /// <summary>
@@ -178,7 +153,6 @@ gameController::gameController()
 	rotateRight = false;
 	rotateLeft = false;
 	boost = false;
-	this->playerScore = 0;
 	this->logic = new gameLogic();
 }
 

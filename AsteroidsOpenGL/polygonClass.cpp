@@ -1,10 +1,10 @@
 #include "polygonClass.h"
 
 /// <summary>
-/// 
+/// Checks if this polygon colides with another one.
 /// </summary>
-/// <param name="other"></param>
-/// <returns></returns>
+/// <param name="other">Target polygon</param>
+/// <returns>Collisions occured?</returns>
 bool polygonClass::collidesWith(polygonClass other) { //TODO
 	vector<VectorClass> ours, theirs;
 	//Generate all vectors that represent us
@@ -30,10 +30,19 @@ bool polygonClass::collidesWith(polygonClass other) { //TODO
 	return false;
 }
 
+/// <summary>
+/// Returns numberOfPoints polygon is made up of.
+/// </summary>
+/// <returns>Number of sides.</returns>
 int polygonClass::getNumber() {
 	return n;
 }
 
+/// <summary>
+/// Finds out if a point is inside the polygon or not.
+/// </summary>
+/// <param name="p">Point</param>
+/// <returns>Point inside?</returns>
 bool polygonClass::containsPoint(Point p) {
 	//TODO use point that refers to actual gameBoard cutoff
 	Point outside;
@@ -59,6 +68,11 @@ bool polygonClass::containsPoint(Point p) {
 	return false;
 }
 
+/// <summary>
+/// Returns polygonPoint number n.
+/// </summary>
+/// <param name="n">Number of point</param>
+/// <returns>Point</returns>
 Point polygonClass::getPolygonPoint(int n) {
 	Point r;
 	r.x = this->outline[2 * n];
@@ -66,10 +80,23 @@ Point polygonClass::getPolygonPoint(int n) {
 	return r;
 }
 
+/// <summary>
+/// Sets polygonPoint number n from point.
+/// </summary>
+/// <param name="pos">Point number</param>
+/// <param name="pNew">New Point coordinates</param>
+/// <returns>Returns success</returns>
 bool polygonClass::setPolygonPoint(int pos, Point pNew) {
 	return this->setPolygonPoint(pos, pNew.x, pNew.y);
 }
 
+/// <summary>
+/// Sets polygonPoint number n from two floats.
+/// </summary>
+/// <param name="pos">Point number</param>
+/// <param name="x">X-Coord</param>
+/// <param name="y">Y-Coord</param>
+/// <returns>Returns success</returns>
 bool polygonClass::setPolygonPoint(int pos, GLfloat x, GLfloat y) {
 	//Error handling
 	if (pos < 0 || pos >= this->n)
@@ -80,17 +107,25 @@ bool polygonClass::setPolygonPoint(int pos, GLfloat x, GLfloat y) {
 	return true;
 }
 
+/// <summary>
+/// constructor that sets number of points from arguments.
+/// </summary>
+/// <param name="num">Number of points the polygon should have</param>
 polygonClass::polygonClass(int num) { //Should we set GLfloat attribute for constructor?
-	//outline = (GLfloat*)malloc(sizeof(GLfloat)*num*2); //Need double the size because 2 coords required
 	this->n = num;
 	this->outline = new GLfloat[num * 2];
 }
 
+/// <summary>
+/// Default constructor.
+/// </summary>
 polygonClass::polygonClass()
 {
 }
 
-
+/// <summary>
+/// Default destructor.
+/// </summary>
 polygonClass::~polygonClass()
 {
 	//delete this->outline;

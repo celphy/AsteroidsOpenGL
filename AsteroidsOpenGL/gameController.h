@@ -27,19 +27,13 @@ private:
 	void StartPerformanceCounter();
 	double GetPerformanceCounter();
 	bool rotateLeft, rotateRight, boost;
-	int playerScore;
 
 public:
 	enum gameState getGameState();
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
-	void isDestroyed(gameObject* obj);
-	void raiseScore(int amount);
-	void playerCollision();
 	void togglePause();
 	void end();
 	void run();
-	//void setPhysicsHandler(physicsHandler* ptr);
-	//void setRenderer(renderer* ptr);
 	void setHandlers(void* renderer, physicsHandler* ptr);
 	void setPlayerShip(playerShip *ptr);
 	gameController();
@@ -48,7 +42,7 @@ public:
 
 
 //TODO
-//Collision
+//Collision & gameLogic
 //Asteroids destroying
 //Add saucer
 //Make font class that creates scalable objects from string + position

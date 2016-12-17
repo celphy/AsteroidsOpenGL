@@ -39,15 +39,17 @@ void playerShip::turnRight() {
 	this->rotate();
 }
 
+
 /// <summary>
-/// Sets the pointer inside to itself.
-/// TODO: Find out if needed? What the fuck was I thinking here...?
+/// Sets the pointer inside to the physicsObject for the player.
+/// Used for acceleration.
 /// </summary>
 /// <param name="ptr"></param>
 void playerShip::setSelf(physicsObject * ptr)
 {
 	this->self = ptr;
 }
+
 
 /// <summary>
 /// Turn the players ship to the left.
