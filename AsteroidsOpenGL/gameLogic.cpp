@@ -37,16 +37,6 @@ void gameLogic::tick()
 }
 
 /// <summary>
-/// Reports a collisions between two gameObjects to the gameLogic ?Collisions might be reported twice?
-/// </summary>
-/// <param name="first">Active Object</param>
-/// <param name="second">Passive Object</param>
-void gameLogic::reportCollision(physicsObject * first, physicsObject * second)
-{
-	//currentCollisions.push_back(make_tuple(first, second));
-}
-
-/// <summary>
 /// Constructor
 /// </summary>
 gameLogic::gameLogic()
