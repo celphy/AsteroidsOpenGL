@@ -42,7 +42,7 @@ public:
 
 
 //TODO
-//Collision & gameLogic
+//Collision & gameLogic YOU CANT COLLIDE WITH THE SAME ASTEROID MULTIPLE FRAMES IN A ROW!!!
 //Asteroids destroying
 //Add saucer
 //Make font class that creates scalable objects from string + position
