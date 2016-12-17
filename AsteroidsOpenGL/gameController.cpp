@@ -104,6 +104,7 @@ void gameController::run() { //We could make this the primary gameloop but we do
 			this->player->playerBoost();
 		}
 		this->pH->tick();
+		this->logic->tick();
 	}
 }
 

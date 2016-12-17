@@ -30,6 +30,22 @@ void physicsHandler::deleteObjects() {
 /// Checks for collisions between all existing physicsObjects.
 /// </summary>
 void physicsHandler::collisionDetection() {
+	//Empty out the list of collisions
+	lastCollisions.clear();
+	for (auto& it : this->physicsObjects) {
+		for (auto& target : this->physicsObjects) {
+			if (it->object->getOutline().collidesWith(target->object->getOutline())) {
+				if (it->object == target->object) {
+					continue;
+				}
+				collisionStruct collisions;
+				collisions.active = it;
+				collisions.passive = target;
+				lastCollisions.push_back(collisions);
+			}
+		}
+	}
+	/*
 	for (auto& it : this->physicsObjects) {
 		if (it->object->getType() == asteroidType) {
 			for (auto& target : this->physicsObjects) {
@@ -55,6 +71,7 @@ void physicsHandler::collisionDetection() {
 			}
 		}
 	}
+	*/
 }
 
 /// <summary>
@@ -92,6 +109,15 @@ physicsObject* physicsHandler::registerObject(gameObject* gO, Point i, float f )
 	temp->object = gO;
 	this->physicsObjects.push_back(temp);
 	return temp;
+}
+
+/// <summary>
+/// Returns the last Collisions as a vector of structs.
+/// </summary>
+/// <returns>Vector of last collisions</returns>
+vector<collisionStruct> physicsHandler::getLastCollisions()
+{
+	return lastCollisions;
 }
 
 /// <summary>

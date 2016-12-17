@@ -13,16 +13,23 @@ typedef struct physicsObject {
 	float friction;
 }physicsObject;
 
+typedef struct collisionStruct {
+	physicsObject* active;
+	physicsObject* passive;
+};
+
 class physicsHandler
 {
 private:
 	//List of all existing gameObjects with additional stuff
 	vector<physicsObject*> physicsObjects;
 	gameBoard* gameScreen;
+	vector<collisionStruct> lastCollisions;
 	
 public:
 	//Register gameObject with physicsHandler
 	physicsObject* registerObject ( gameObject* gO, Point i, float f);
+	vector<collisionStruct> getLastCollisions();
 	void tick();
 	void move();
 	void deleteObjects();

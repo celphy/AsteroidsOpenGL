@@ -28,6 +28,12 @@ void gameLogic::registerGameObject(gameObject * obj, Point origin, float frictio
 void gameLogic::tick()
 {
 	//resolve collisions, update gamestate
+	vector<collisionStruct> lastCollisions = this->pH->getLastCollisions();
+	for (auto& it : lastCollisions) {
+		if (it.passive->object->getType() == playerType && it.active->object->getType() != playerType) { //Player got hit
+			cout << "Player got hit" << endl;
+		}
+	}
 }
 
 /// <summary>
