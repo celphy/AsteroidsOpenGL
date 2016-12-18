@@ -84,9 +84,11 @@ void playerShip::rotate() {
 
 
 	//this->pointAngles[1] += 0.01;
-	cout << "Angle 0 is at " << this->pointAngles[0] << endl;
-	cout << "Angle 1 is at " << this->pointAngles[1] << endl;
-	cout << "Angle 2 is at " << this->pointAngles[2] << endl;
+	if (DEBUG_OUTPUT) {
+		cout << "Angle 0 is at " << this->pointAngles[0] << endl;
+		cout << "Angle 1 is at " << this->pointAngles[1] << endl;
+		cout << "Angle 2 is at " << this->pointAngles[2] << endl;
+	}
 	p0.x = this->radius * sin(angle1);
 	p0.y = this->radius * cos(angle1);
 	p1.x = this->radius * sin(angle2);
