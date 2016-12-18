@@ -131,7 +131,7 @@ void gameController::StartPerformanceCounter() {
 	QueryPerformanceFrequency(&this->Frequency);
 	QueryPerformanceCounter(&this->lastTick);
 	this->tickThreshold.QuadPart = 1;
-	this->tickThreshold.QuadPart = 1000000 / 60; //TODO: 1000000 / tickRatePS does bullshit -> WHY? 
+	this->tickThreshold.QuadPart = 1000000 / TickRatePS;
 }
 
 /// <summary>
@@ -153,7 +153,6 @@ gameController::gameController()
 {
 	this->state = gameRunning;
 	this->StartPerformanceCounter();
-	this->tickRatePS = 40;
 	rotateRight = false;
 	rotateLeft = false;
 	boost = false;

@@ -5,7 +5,7 @@
 //#include "renderer.h"
 #include "gameLogic.h"
 
-//QueryPerformanceCounter
+#define TickRatePS 60
 
 enum gameState {
 	gameRunning, gamePause, gameEnd
@@ -19,7 +19,6 @@ private:
 	//renderer* r;
 	gameLogic* logic;
 	gameState state;
-	int tickRatePS;
 	int maxShots;
 	LARGE_INTEGER lastTick, Frequency, tickThreshold;
 	void StartPerformanceCounter();
