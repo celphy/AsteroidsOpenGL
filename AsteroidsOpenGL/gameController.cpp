@@ -95,11 +95,19 @@ void gameController::run() { //We could make this the primary gameloop but we do
 		this->logic->setupLevel();
 		firstStart = false;
 	}
+
+
 	if (this->getGameState() == gameRunning) {
-		double delta = this->GetPerformanceCounter() - this->lastTick; //If we need to calculate another frame to meet our ticksPS requirement
-		//double delta = this->lastTick - this->GetPerformanceCounter();
-		if (delta > (this->tickRatePS / 1000.0)) {
-			this->lastTick = this->GetPerformanceCounter();
+			
+		LARGE_INTEGER ElapsedMicroseconds, current;
+		QueryPerformanceCounter(&current);
+		ElapsedMicroseconds.QuadPart = current.QuadPart - this->lastTick.QuadPart;
+		ElapsedMicroseconds.QuadPart *= 1000000;
+		ElapsedMicroseconds.QuadPart /= Frequency.QuadPart;
+		//Now we have microseconds between lastTick and current
+		//1 000 000
+		if (ElapsedMicroseconds.QuadPart > tickThreshold.QuadPart) {
+			QueryPerformanceCounter(&this->lastTick);
 			if (this->rotateLeft) {
 				this->player->turnLeft();
 			}
@@ -115,27 +123,15 @@ void gameController::run() { //We could make this the primary gameloop but we do
 	}
 }
 
-/// <summary>
-/// Returns performance counter.
-/// </summary>
-/// <returns>Performance counter</returns>
-double gameController::GetPerformanceCounter() {
-	LARGE_INTEGER li;
-	QueryPerformanceCounter(&li);
-	return double(li.QuadPart - CounterStart) / PCFreq;
-}
 
 /// <summary>
 /// Starts performance counter.
 /// </summary>
 void gameController::StartPerformanceCounter() {
-	LARGE_INTEGER li;
-	if (!QueryPerformanceFrequency(&li))
-		cout << "QueryPerformanceFrequency failed!" << endl;
-	PCFreq = double(li.QuadPart) / 1000.0;
-	QueryPerformanceCounter(&li);
-	CounterStart = li.QuadPart;
-	this->lastTick = this->GetPerformanceCounter();
+	QueryPerformanceFrequency(&this->Frequency);
+	QueryPerformanceCounter(&this->lastTick);
+	this->tickThreshold.QuadPart = 1;
+	this->tickThreshold.QuadPart = 1000000 / 60; //TODO: 1000000 / tickRatePS does bullshit -> WHY? 
 }
 
 /// <summary>

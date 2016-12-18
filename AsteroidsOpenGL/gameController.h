@@ -21,12 +21,10 @@ private:
 	gameState state;
 	int tickRatePS;
 	int maxShots;
-	double lastTick;
-	double PCFreq = 0.0;
-	__int64 CounterStart;
+	LARGE_INTEGER lastTick, Frequency, tickThreshold;
 	void StartPerformanceCounter();
-	double GetPerformanceCounter();
 	bool rotateLeft, rotateRight, boost, firstStart;
+	
 
 public:
 	enum gameState getGameState();
