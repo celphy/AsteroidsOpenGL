@@ -1,7 +1,7 @@
 #include "gameLogic.h"
 
 /// <summary>
-/// The game logic determines what happens when the player tries to shoot.
+/// Gets called when the player tries to shoot.
 /// </summary>
 /// <param name="player">Pointer to player object</param>
 void gameLogic::playerShoot(playerShip* player) {
@@ -11,8 +11,8 @@ void gameLogic::playerShoot(playerShip* player) {
 	//Set up a projectile from the front facing in the same direction the playerShip is.	
 	projectileClass* projectile = new projectileClass();
 	Point projectilePosition;
-	projectilePosition.x = projectileVector.getDirection().x;
-	projectilePosition.y = projectileVector.getDirection().y;
+	projectilePosition.x = player->getOutline().getPolygonPoint(0).x + player->getPosition().x;
+	projectilePosition.y = player->getOutline().getPolygonPoint(0).y + player->getPosition().y;
 	projectile->setPosition(projectilePosition);
 	GLfloat* points = new GLfloat[4];
 	points[0] = projectileVector.getOrigin().x;
