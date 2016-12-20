@@ -10,14 +10,14 @@ typedef struct vectorStruct {
 }vectorStruct;
 
 
-class VectorClass
+class vectorClass
 {
 private:
 	vectorStruct origin;
 	vectorStruct direction;
 	
 public:
-	Point* getIntersection(VectorClass vector); //Result can be 0, Point or Vector
+	Point* getIntersection(vectorClass vector); //Result can be 0, Point or Vector
 	void addVector(vectorStruct v);
 	void subVector(vectorStruct v);
 	void multVector(float factor);
@@ -27,9 +27,9 @@ public:
 	vectorStruct getDirection(void);
 	void setOrigin(vectorStruct oArg);
 	void setDirection(vectorStruct dArg);
-	VectorClass(void);
-	VectorClass(vectorStruct oArg, vectorStruct dArg);
-	VectorClass(Point one, Point two);
-	~VectorClass(void);
+	vectorClass(void);
+	vectorClass(vectorStruct oArg, vectorStruct dArg);
+	vectorClass(Point one, Point two);
+	~vectorClass(void);
 };
 

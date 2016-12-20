@@ -4,7 +4,7 @@
 /// Increases impulse of player in the direction the ship is facing.
 /// </summary>
 void playerShip::playerBoost() {
-	VectorClass vector;
+	vectorClass vector;
 	vector = this->getProjectileVector();
 	vectorStruct additionalImpulse;
 	additionalImpulse.x = vector.getDirection().x - vector.getOrigin().x;
@@ -19,7 +19,8 @@ void playerShip::playerBoost() {
 /// Returns a vector into the direction the ship is facing.
 /// </summary>
 /// <returns>Vector the ship is facing</returns>
-VectorClass playerShip::getProjectileVector() {
+vectorClass playerShip::getProjectileVector() {
+	//This implementation is propably not as useful for projectiles
 	Point middle;
 	middle.x = this->outline->getPolygonPoint(1).x + this->outline->getPolygonPoint(2).x;
 	middle.y = this->outline->getPolygonPoint(1).y + this->outline->getPolygonPoint(2).y;
@@ -27,8 +28,20 @@ VectorClass playerShip::getProjectileVector() {
 	middle.y /= 2;
 	Point front = this->outline->getPolygonPoint(0);
 
-	VectorClass r = VectorClass(middle, front);
+	vectorClass r = vectorClass(middle, front);
 	return r;
+	
+	/*THIS IMPLEMENTATION WOULD BE BETTER FOR PROJECTILES BUT COMPLETELY ANNIHILATES OUR PLAYERMOVEMENT
+	vectorStruct origin, direction;
+	origin.x = this->getPosition().x;
+	origin.y = this->getPosition().y;
+	
+	direction.x = this->getRenderPoint(0).x - origin.x;
+	direction.y = this->getRenderPoint(0).y - origin.y;
+
+	vectorClass r = vectorClass(origin, direction);
+	return r;
+	*/
 }
 
 /// <summary>

@@ -2,6 +2,8 @@
 #include "gameObject.h"
 #include "main.h"
 
+#define PROJECTILESPEED 0.001
+
 class projectileClass :
 	public gameObject
 {

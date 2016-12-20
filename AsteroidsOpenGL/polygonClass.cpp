@@ -6,18 +6,18 @@
 /// <param name="other">Target polygon</param>
 /// <returns>Collisions occured?</returns>
 bool polygonClass::collidesWith(polygonClass other) { //TODO
-	vector<VectorClass> ours, theirs;
+	vector<vectorClass> ours, theirs;
 	//Generate all vectors that represent us
 	for (int i = 0; i < (this->n)-1; i++) {
-		ours.push_back(VectorClass(this->getPolygonPoint(i), this->getPolygonPoint(i+1)));
+		ours.push_back(vectorClass(this->getPolygonPoint(i), this->getPolygonPoint(i+1)));
 	}
-	ours.push_back(VectorClass(this->getPolygonPoint(n-1), this->getPolygonPoint(0)));
+	ours.push_back(vectorClass(this->getPolygonPoint(n-1), this->getPolygonPoint(0)));
 
 	//Generate all vectors that represent them
 	for (int i = 0; i < (other.getNumber()-1); i++) {
-		theirs.push_back(VectorClass(other.getPolygonPoint(i), other.getPolygonPoint(i + 1)));
+		theirs.push_back(vectorClass(other.getPolygonPoint(i), other.getPolygonPoint(i + 1)));
 	}
-	theirs.push_back(VectorClass(other.getPolygonPoint(other.getNumber() - 1), other.getPolygonPoint(0)));
+	theirs.push_back(vectorClass(other.getPolygonPoint(other.getNumber() - 1), other.getPolygonPoint(0)));
 
 	//Now check all of ours vs all of theirs
 
@@ -48,7 +48,7 @@ bool polygonClass::containsPoint(Point p) {
 	Point outside;
 	outside.x = -2.0;
 	outside.y = -2.0;
-	VectorClass *testVector = new VectorClass(outside, p);
+	vectorClass *testVector = new vectorClass(outside, p);
 	int numberOfCollisions = 0;
 	for (int i = 0; i < this->n; i++) {
 		Point sideOne, sideTwo;
@@ -59,7 +59,7 @@ bool polygonClass::containsPoint(Point p) {
 			sideOne = this->getPolygonPoint(i - 1);
 		}
 		sideTwo = this->getPolygonPoint(i);
-		VectorClass *sideVector = new VectorClass(sideOne, sideTwo);
+		vectorClass *sideVector = new vectorClass(sideOne, sideTwo);
 		if (sideVector->getIntersection(*testVector) != nullptr)
 			numberOfCollisions++;
 	}

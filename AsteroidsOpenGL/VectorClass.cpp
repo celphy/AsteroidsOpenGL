@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="v">Vector that is checked against</param>
 /// <returns>Returns nullptr or point of intersection</returns>
-Point* VectorClass::getIntersection(VectorClass v){
+Point* vectorClass::getIntersection(vectorClass v){
 	float x1 = this->getOrigin().x, x2 = this->getDirection().x, x3 = v.getOrigin().x, x4 = v.getDirection().x;
 	float y1 = this->getOrigin().y, y2 = this->getDirection().y, y3 = v.getOrigin().y, y4 = v.getDirection().y;
 
@@ -37,14 +37,14 @@ Point* VectorClass::getIntersection(VectorClass v){
 /// Returns size of vector
 /// </summary>
 /// <returns>Size</returns>
-double VectorClass::sizeOf(void) {
+double vectorClass::sizeOf(void) {
 	return sqrt(pow(this->getOrigin().x + this->getDirection().x,2) + pow(this->getOrigin().y + this->getDirection().y,2));
 }
 
 /// <summary>
-/// Normalizes the vector.
+/// BROKEN? Normalizes the vector. TODO: FIX
 /// </summary>
-void VectorClass::normVector(void) {
+void vectorClass::normVector(void) {
 	double invNorm = 1 / this->sizeOf();
 	this->direction.x *= invNorm;
 	this->direction.y *= invNorm;
@@ -56,7 +56,7 @@ void VectorClass::normVector(void) {
 /// Multiplies the vector by a factor.
 /// </summary>
 /// <param name="factor">Multiplication factor</param>
-void VectorClass::multVector(float factor){
+void vectorClass::multVector(float factor){
 	this->direction.x *= factor;
 	this->direction.y *= factor;
 } 
@@ -65,7 +65,7 @@ void VectorClass::multVector(float factor){
 /// Adds a vector.
 /// </summary>
 /// <param name="v">Vector to add</param>
-void VectorClass::addVector(vectorStruct v){
+void vectorClass::addVector(vectorStruct v){
 	this->direction.x += v.x;
 	this->direction.y += v.y;
 }
@@ -74,7 +74,7 @@ void VectorClass::addVector(vectorStruct v){
 /// Substracts a vector.
 /// </summary>
 /// <param name="v">Vector to substract</param>
-void VectorClass::subVector(vectorStruct v){
+void vectorClass::subVector(vectorStruct v){
 	this->direction.x -= v.x;
 	this->direction.y -= v.y;
 }
@@ -83,7 +83,7 @@ void VectorClass::subVector(vectorStruct v){
 /// Returns the origin of the vector.
 /// </summary>
 /// <returns>Origin</returns>
-vectorStruct VectorClass::getOrigin(){
+vectorStruct vectorClass::getOrigin(){
 	return this->origin;
 }
 
@@ -91,7 +91,7 @@ vectorStruct VectorClass::getOrigin(){
 /// Returns the direction fo the vector.
 /// </summary>
 /// <returns></returns>
-vectorStruct VectorClass::getDirection(){
+vectorStruct vectorClass::getDirection(){
 	return this->direction;
 }
 
@@ -99,7 +99,7 @@ vectorStruct VectorClass::getDirection(){
 /// Sets the origin of the vector.
 /// </summary>
 /// <param name="oArg">Origin</param>
-void VectorClass::setOrigin(vectorStruct oArg){
+void vectorClass::setOrigin(vectorStruct oArg){
 	this->origin = oArg;
 }
 
@@ -107,7 +107,7 @@ void VectorClass::setOrigin(vectorStruct oArg){
 /// Sets the direction of the vector.
 /// </summary>
 /// <param name="dArg">Direction</param>
-void VectorClass::setDirection(vectorStruct dArg){
+void vectorClass::setDirection(vectorStruct dArg){
 	this->direction = dArg;
 }
 
@@ -116,7 +116,7 @@ void VectorClass::setDirection(vectorStruct dArg){
 /// </summary>
 /// <param name="oArg">Origin</param>
 /// <param name="dArg">Direction</param>
-VectorClass::VectorClass(vectorStruct oArg, vectorStruct dArg){
+vectorClass::vectorClass(vectorStruct oArg, vectorStruct dArg){
 	this->origin = oArg;
 	this->direction = dArg;
 }
@@ -126,7 +126,7 @@ VectorClass::VectorClass(vectorStruct oArg, vectorStruct dArg){
 /// </summary>
 /// <param name="one">Origin point</param>
 /// <param name="two">Direction point</param>
-VectorClass::VectorClass(Point one, Point two) {
+vectorClass::vectorClass(Point one, Point two) {
 	this->origin.x = one.x;
 	this->origin.y = one.y;
 	this->direction.x = two.x;
@@ -136,13 +136,13 @@ VectorClass::VectorClass(Point one, Point two) {
 /// <summary>
 /// Standard constructor
 /// </summary>
-VectorClass::VectorClass(void)
+vectorClass::vectorClass(void)
 {
 }
 
 /// <summary>
 /// Destructor
 /// </summary>
-VectorClass::~VectorClass(void)
+vectorClass::~vectorClass(void)
 {
 }

@@ -15,6 +15,7 @@ projectileClass::projectileClass()
 {
 	this->type = projectileType;
 	lifetime = projectileLifetime;
+	this->outline = new polygonClass();
 }
 
 /// <summary>
@@ -22,4 +23,5 @@ projectileClass::projectileClass()
 /// </summary>
 projectileClass::~projectileClass()
 {
+	delete this->outline;
 }

@@ -17,7 +17,7 @@ private:
 	physicsObject* self;
 	
 public:
-	VectorClass getProjectileVector();
+	vectorClass getProjectileVector();
 	void playerBoost();
 	void rotate(); //Should be private
 	void turnLeft();

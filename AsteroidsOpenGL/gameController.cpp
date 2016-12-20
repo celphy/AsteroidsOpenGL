@@ -56,6 +56,9 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 		case GLFW_KEY_P:
 			ptr->togglePause();
 			break;
+		case GLFW_KEY_SPACE:
+			ptr->logic->playerShoot(ptr->player);
+			break;
 		default:
 			break;
 		}

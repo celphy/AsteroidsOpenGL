@@ -4,6 +4,8 @@
 #include "physicsHandler.h"
 #include "playerShip.h"
 #include "asteroidClass.h"
+#include "VectorClass.h"
+#include "projectileClass.h"
 
 
 
@@ -19,6 +21,7 @@ public:
 	void reg(void* renderptr, physicsHandler* pHptr);
 	void registerGameObject(gameObject * obj, Point origin, float friction);
 	void tick();
+	void playerShoot(playerShip* player);
 	gameLogic();
 	~gameLogic();
 };

@@ -1,6 +1,34 @@
 #include "gameLogic.h"
 
 /// <summary>
+/// The game logic determines what happens when the player tries to shoot.
+/// </summary>
+/// <param name="player">Pointer to player object</param>
+void gameLogic::playerShoot(playerShip* player) {
+	//Get the projectileVector that playerShip provides us with. Its a vector from playerShip->position to the front.
+	vectorClass projectileVector;
+	projectileVector = player->getProjectileVector();
+	//Set up a projectile from the front facing in the same direction the playerShip is.	
+	projectileClass* projectile = new projectileClass();
+	Point projectilePosition;
+	projectilePosition.x = projectileVector.getDirection().x;
+	projectilePosition.y = projectileVector.getDirection().y;
+	projectile->setPosition(projectilePosition);
+	GLfloat* points = new GLfloat[4];
+	points[0] = projectileVector.getOrigin().x;
+	points[1] = projectileVector.getOrigin().y;
+	points[2] = projectileVector.getDirection().x;
+	points[3] = projectileVector.getDirection().y;
+	projectile->setOutline(2, points);
+	projectileVector.multVector(PROJECTILESPEED);
+	Point impulse;
+	impulse.x = projectileVector.getDirection().x - projectileVector.getOrigin().x;
+	impulse.y = projectileVector.getDirection().y - projectileVector.getOrigin().y;
+	
+	this->registerGameObject(projectile, impulse, 1.0);
+}
+
+/// <summary>
 /// Register the renderer (drawing) and physicsHandler (movement) instances with the gameLogic
 /// </summary>
 /// <param name="renderptr">renderer instance</param>
@@ -14,7 +42,7 @@ void gameLogic::reg(void* renderptr, physicsHandler* pHptr) {
 /// Registers a gameObject with both the renderer (drawing) and the pyhsicsHandler (movement)
 /// </summary>
 /// <param name="obj">gameObject</param>
-/// <param name="origin">position</param>
+/// <param name="origin">initial impulse</param>
 /// <param name="friction">friction in physicsHandler</param>
 void gameLogic::registerGameObject(gameObject * obj, Point origin, float friction)
 {
