@@ -34,7 +34,7 @@ void physicsHandler::collisionDetection() {
 	lastCollisions.clear();
 	for (auto& it : this->physicsObjects) {
 		for (auto& target : this->physicsObjects) {
-			if (it->object->getOutline().collidesWith(target->object->getOutline())) {
+			if (it->object->getOutline().collidesWith(it->object->getPosition(), target->object->getOutline(), target->object->getPosition())) {
 				if (it->object == target->object) {
 					continue;
 				}

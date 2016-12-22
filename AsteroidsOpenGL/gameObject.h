@@ -21,6 +21,7 @@ public:
 	void deleteOutline();
 	Point getRenderPoint(int num);
 	void setPosition(Point p);
+	float getSize() { return 0.0; }; //FUCKING UGLY WORKAROUND FOR ASTEROID BIRTHING
 	gameObject();
 	gameObject(Point p);
 	~gameObject();

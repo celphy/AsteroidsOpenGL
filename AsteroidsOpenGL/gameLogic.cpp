@@ -65,6 +65,22 @@ void gameLogic::tick()
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) 
 			cout << "Asteroid got hit by projectile!" << endl;
+			it.passive->object->markToDestroy();
+			it.active->object->markToDestroy();
+			/*
+			asteroidClass* smallerOne, *smallerTwo;
+			smallerOne = new asteroidClass(it.passive->object->getSize() / 2);
+			smallerTwo = new asteroidClass(it.passive->object->getSize() / 3);
+			smallerOne->setPosition(it.passive->object->getPosition());
+			smallerTwo->setPosition(it.passive->object->getPosition());
+			Point impulse;
+			impulse = it.passive->impulse;
+			impulse.x /= 0.9;
+			this->registerGameObject(smallerOne, impulse, 1.0);
+			impulse.x *= 1.1;
+			impulse.y *= 1.1;
+			this->registerGameObject(smallerTwo, impulse, 1.0);
+			*/
 		}
 	}
 }

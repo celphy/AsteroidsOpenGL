@@ -5,19 +5,38 @@
 /// </summary>
 /// <param name="other">Target polygon</param>
 /// <returns>Collisions occured?</returns>
-bool polygonClass::collidesWith(polygonClass other) { //TODO
+bool polygonClass::collidesWith(Point positionUs, polygonClass other, Point positionTheirs) { //TODO WE NEED TO TAKE OBJECT POSITION INTO ACCOUNT AS WELL!!!
 	vector<vectorClass> ours, theirs;
 	//Generate all vectors that represent us
+	Point one, two;
 	for (int i = 0; i < (this->n)-1; i++) {
-		ours.push_back(vectorClass(this->getPolygonPoint(i), this->getPolygonPoint(i+1)));
+		one = this->getPolygonPoint(i);
+		one.x += positionUs.x;
+		one.y += positionUs.y;
+		two = this->getPolygonPoint(i + 1);
+		two.x += positionUs.x;
+		two.y += positionUs.y;
+		ours.push_back(vectorClass(one, two));
 	}
 	ours.push_back(vectorClass(this->getPolygonPoint(n-1), this->getPolygonPoint(0)));
 
 	//Generate all vectors that represent them
 	for (int i = 0; i < (other.getNumber()-1); i++) {
-		theirs.push_back(vectorClass(other.getPolygonPoint(i), other.getPolygonPoint(i + 1)));
+		one = other.getPolygonPoint(i);
+		one.x += positionTheirs.x;
+		one.y += positionTheirs.y;
+		two = other.getPolygonPoint(i + 1);
+		two.x += positionTheirs.x;
+		two.y += positionTheirs.y;
+		theirs.push_back(vectorClass(one, two));
 	}
-	theirs.push_back(vectorClass(other.getPolygonPoint(other.getNumber() - 1), other.getPolygonPoint(0)));
+	one = other.getPolygonPoint(other.getNumber() - 1);
+	one.x += positionTheirs.x;
+	one.y += positionTheirs.y;
+	two = other.getPolygonPoint(0);
+	two.x += positionTheirs.x;
+	two.y += positionTheirs.y;
+	theirs.push_back(vectorClass(one, two));
 
 	//Now check all of ours vs all of theirs
 
