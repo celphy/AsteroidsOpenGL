@@ -66,6 +66,22 @@ void renderer::addUI(gameObject* obj) {
 
 }
 
+
+void renderer::removeObsoleteObjects() {
+	//Every object that is marked toBeDestroyed needs to get thrown out of our vector
+	
+	for (auto it = gameObjects.end() - 1; it != gameObjects.begin(); )//We start at the end to have as little overhead as possible
+	{
+		if ((*it)->getDestroyed()) {
+			it = gameObjects.erase(it);
+		}
+			--it;
+		
+	}
+	
+	//gameObjects.resize(distance(begin(gameObjects), remove_if(begin(gameObjects), end(gameObjects), [](const auto& i) { return i->getDestroyed(); })));
+}
+
 /// <summary>
 /// Creates the data that will be rendered from the registered gameObjects.
 /// </summary>
@@ -78,14 +94,7 @@ void renderer::createRenderData()
 	int counterVertices = 0;
 	int counterIndices = 0;
 	int beginningOfPolygon = 0;
-	//Every object that is marked toBeDestroyed needs to get thrown out of our vector
-	for (auto it = gameObjects.end()-1; it != gameObjects.begin(); /* We start at the end to have as little overhead as possible */)
-	{
-		if ((*it)->getDestroyed())
-			it = gameObjects.erase(it);
-		else
-			--it;
-	}
+	
 	//GetData
 	for (auto& it : this->gameObjects) { //Iterate over all gameObjects
 		beginningOfPolygon = counterIndices;
@@ -128,6 +137,7 @@ void renderer::render()
 {
 	//Events und Locations 
 	glfwPollEvents();
+	this->removeObsoleteObjects();
 	this->createRenderData();
 	//Experimental movement stuff
 	glBindVertexArray(VAO);

@@ -21,7 +21,6 @@ void physicsHandler::deleteObjects() {
 			delete (*it);
 			it = physicsObjects.erase(it);
 		}
-		else
 			--it;
 	}
 }

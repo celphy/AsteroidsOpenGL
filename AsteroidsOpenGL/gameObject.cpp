@@ -13,7 +13,8 @@ void gameObject::markToDestroy() {
 /// </summary>
 /// <returns></returns>
 bool gameObject::getDestroyed() {
-	return false;
+	//return false;
+	return this->toBeDestroyed;
 	//return this->toBeDestroyed; WHY DOES THIS RETURN TRUE???
 }
 

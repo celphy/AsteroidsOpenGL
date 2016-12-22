@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "main.h"
 #include "gameObject.h"
 //#include "gameController.h"
@@ -40,6 +41,7 @@ private:
 
 public:
 	//void setKeyCallback(gameController* controller);
+	void removeObsoleteObjects();
 	void registerObject(bool isInGame, gameObject* obj);
 	void addGame(gameObject* obj);
 	void addUI(gameObject* obj);

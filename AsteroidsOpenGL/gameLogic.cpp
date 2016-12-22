@@ -42,12 +42,13 @@ void gameLogic::reg(void* renderptr, physicsHandler* pHptr) {
 /// Registers a gameObject with both the renderer (drawing) and the pyhsicsHandler (movement)
 /// </summary>
 /// <param name="obj">gameObject</param>
-/// <param name="origin">initial impulse</param>
+/// <param name="impulse">initial impulse</param>
 /// <param name="friction">friction in physicsHandler</param>
-void gameLogic::registerGameObject(gameObject * obj, Point origin, float friction)
+void gameLogic::registerGameObject(gameObject * obj, Point impulse, float friction)
 {
-	this->r->addGame(obj);
-	this->pH->registerObject(obj, origin, friction);
+	//this->r->addGame(obj);
+	this->r->registerObject(true, obj);
+	this->pH->registerObject(obj, impulse, friction);
 }
 
 /// <summary>
@@ -67,10 +68,12 @@ void gameLogic::tick()
 			cout << "Asteroid got hit by projectile!" << endl;
 			it.passive->object->markToDestroy();
 			it.active->object->markToDestroy();
-			/*
+			this->playerScore += 50;
+			system("cls");
+			cout << "Player score: " << this->playerScore << endl;
 			asteroidClass* smallerOne, *smallerTwo;
-			smallerOne = new asteroidClass(it.passive->object->getSize() / 2);
-			smallerTwo = new asteroidClass(it.passive->object->getSize() / 3);
+			smallerOne = new asteroidClass(0.05);
+			smallerTwo = new asteroidClass(0.05);
 			smallerOne->setPosition(it.passive->object->getPosition());
 			smallerTwo->setPosition(it.passive->object->getPosition());
 			Point impulse;
@@ -80,7 +83,7 @@ void gameLogic::tick()
 			impulse.x *= 1.1;
 			impulse.y *= 1.1;
 			this->registerGameObject(smallerTwo, impulse, 1.0);
-			*/
+			
 		}
 	}
 }
@@ -125,6 +128,12 @@ void gameLogic::setupLevel() {
 	asteroid5->setPosition(asteroidVar2);
 
 
+	this->registerGameObject(asteroid1, asteroidVar4, 1.0);
+	this->registerGameObject(asteroid2, asteroidVar4, 1.0);
+	this->registerGameObject(asteroid3, asteroidVar5, 1.0);
+	this->registerGameObject(asteroid4, asteroidVar4, 1.0);
+	this->registerGameObject(asteroid5, asteroidVar5 - asteroidVar4, 1.0);
+	/*
 	this->pH->registerObject(asteroid1, asteroidVar4, 1.0);
 	this->pH->registerObject(asteroid2, asteroidVar4, 1.0);
 	this->pH->registerObject(asteroid3, asteroidVar5, 1.0);
@@ -135,6 +144,7 @@ void gameLogic::setupLevel() {
 	this->r->registerObject(true, asteroid3);
 	this->r->registerObject(true, asteroid4);
 	this->r->registerObject(true, asteroid5);
+	*/
 }
 
 /// <summary>
