@@ -16,7 +16,7 @@ typedef struct physicsObject {
 typedef struct collisionStruct {
 	physicsObject* active;
 	physicsObject* passive;
-};
+}collisionStruct;
 
 class physicsHandler
 {

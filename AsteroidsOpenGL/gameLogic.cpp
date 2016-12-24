@@ -62,6 +62,10 @@ void gameLogic::tick()
 		if (it.passive->object->getType() == playerType && it.active->object->getType() != playerType) { //Player got hit
 			if (DEBUG_OUTPUT)
 			cout << "Player got hit" << endl;
+			Point origin;
+			origin.x = 0;
+			origin.y = 0;
+			it.passive->object->setPosition(origin);
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) 
@@ -72,17 +76,22 @@ void gameLogic::tick()
 			system("cls");
 			cout << "Player score: " << this->playerScore << endl;
 			asteroidClass* smallerOne, *smallerTwo;
-			smallerOne = new asteroidClass(0.05);
-			smallerTwo = new asteroidClass(0.05);
-			smallerOne->setPosition(it.passive->object->getPosition());
-			smallerTwo->setPosition(it.passive->object->getPosition());
-			Point impulse;
-			impulse = it.passive->impulse;
-			impulse.x /= 0.9;
-			this->registerGameObject(smallerOne, impulse, 1.0);
-			impulse.x *= 1.1;
-			impulse.y *= 1.1;
-			this->registerGameObject(smallerTwo, impulse, 1.0);
+			asteroidClass* old = static_cast<asteroidClass*>(it.passive->object);
+			float newSize = old->getSize() / 2;
+			if (newSize > 0.02) {
+				smallerOne = new asteroidClass(newSize);
+				smallerTwo = new asteroidClass(newSize);
+				smallerOne->setPosition(it.passive->object->getPosition());
+				smallerTwo->setPosition(it.passive->object->getPosition());
+				Point impulse;
+				impulse = it.passive->impulse;
+				impulse.x /= 0.9;
+				impulse.y /= 0.9;
+				this->registerGameObject(smallerOne, impulse, 1.0);
+				impulse.x *= 1.1;
+				impulse.y *= 1.1;
+				this->registerGameObject(smallerTwo, impulse, 1.0);
+			}
 			
 		}
 	}
