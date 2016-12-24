@@ -58,16 +58,22 @@ void gameLogic::tick()
 {
 	//resolve collisions, update gamestate
 	vector<collisionStruct> lastCollisions = this->pH->getLastCollisions();
+	bool playerHit = false;
 	for (auto& it : lastCollisions) {
-		if (it.passive->object->getType() == playerType && it.active->object->getType() != playerType) { //Player got hit
+		if (it.passive->object->getType() == playerType && it.active->object->getType() == projectileType) {
+			if (DEBUG_OUTPUT) {
+				cout << "Player got hit by projectile" << endl;
+			}
+		}
+		if (it.passive->object->getType() == playerType && it.active->object->getType() == asteroidType && !playerHit) { //Player got hit
 			if (DEBUG_OUTPUT) {
 				cout << "Player got hit" << endl;
 			}
+			playerHit = true;
+			this->playerLives--;
 			Point origin;
 			origin.x = 0;
 			origin.y = 0;
-			system("cls");
-			cout << it.active->object->toString() << endl;
 			it.passive->object->setPosition(origin);
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {

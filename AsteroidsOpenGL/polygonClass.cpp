@@ -18,7 +18,13 @@ bool polygonClass::collidesWith(Point positionUs, polygonClass other, Point posi
 		two.y += positionUs.y;
 		ours.push_back(vectorClass(one, two));
 	}
-	ours.push_back(vectorClass(this->getPolygonPoint(n-1), this->getPolygonPoint(0)));
+	one = this->getPolygonPoint(n - 1);
+	one.x += positionUs.x;
+	one.y += positionUs.y;
+	two = this->getPolygonPoint(0);
+	two.x += positionUs.x;
+	two.y += positionUs.y;
+	ours.push_back(vectorClass(one, two));
 
 	//Generate all vectors that represent them
 	for (int i = 0; i < (other.getNumber()-1); i++) {
