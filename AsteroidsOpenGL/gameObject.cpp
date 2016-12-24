@@ -1,6 +1,20 @@
 #include "gameObject.h"
 #include "point.h"
 
+string gameObject::toString() {
+	string output;
+	output = "Position: ";
+	output += to_string(this->getPosition().x);
+	output += "/";
+	output += to_string(this->getPosition().y);
+	output += " Destroy:";
+	if (this->getDestroyed())
+		output += " true";
+	else
+		output += " false";
+	return output;
+}
+
 /// <summary>
 /// Marks the object to be destroyed in the next gameTick.
 /// </summary>

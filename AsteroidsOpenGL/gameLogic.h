@@ -16,8 +16,10 @@ private:
 	physicsHandler* pH;
 	int playerScore;
 	int playerLives;
+	unsigned int asteroidCount;
 public:
 	void setupLevel();
+	void addAsteroid(float s, Point impulse, Point position);
 	void reg(void* renderptr, physicsHandler* pHptr);
 	void registerGameObject(gameObject * obj, Point origin, float friction);
 	void tick();

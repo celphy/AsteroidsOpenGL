@@ -60,17 +60,21 @@ void gameLogic::tick()
 	vector<collisionStruct> lastCollisions = this->pH->getLastCollisions();
 	for (auto& it : lastCollisions) {
 		if (it.passive->object->getType() == playerType && it.active->object->getType() != playerType) { //Player got hit
-			if (DEBUG_OUTPUT)
-			cout << "Player got hit" << endl;
+			if (DEBUG_OUTPUT) {
+				cout << "Player got hit" << endl;
+			}
 			Point origin;
 			origin.x = 0;
 			origin.y = 0;
+			system("cls");
+			cout << it.active->object->toString() << endl;
 			it.passive->object->setPosition(origin);
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) 
 			cout << "Asteroid got hit by projectile!" << endl;
 			it.passive->object->markToDestroy();
+			this->asteroidCount--;
 			it.active->object->markToDestroy();
 			this->playerScore += 50;
 			system("cls");
@@ -79,20 +83,21 @@ void gameLogic::tick()
 			asteroidClass* old = static_cast<asteroidClass*>(it.passive->object);
 			float newSize = old->getSize() / 2;
 			if (newSize > 0.02) {
-				smallerOne = new asteroidClass(newSize);
-				smallerTwo = new asteroidClass(newSize);
-				smallerOne->setPosition(it.passive->object->getPosition());
-				smallerTwo->setPosition(it.passive->object->getPosition());
 				Point impulse;
 				impulse = it.passive->impulse;
 				impulse.x /= 0.9;
 				impulse.y /= 0.9;
-				this->registerGameObject(smallerOne, impulse, 1.0);
+				//this->registerGameObject(smallerOne, impulse, 1.0);
+				this->addAsteroid(newSize, impulse, it.passive->object->getPosition());
 				impulse.x *= 1.1;
 				impulse.y *= 1.1;
-				this->registerGameObject(smallerTwo, impulse, 1.0);
+				//this->registerGameObject(smallerTwo, impulse, 1.0);
+				this->addAsteroid(newSize, impulse, it.passive->object->getPosition());
+
 			}
-			
+			if (asteroidCount == 0) {
+				this->setupLevel();
+			}
 		}
 	}
 }
@@ -105,6 +110,7 @@ gameLogic::gameLogic()
 	//Initialize variables
 	this->playerLives = 3;
 	this->playerScore = 0;
+	this->asteroidCount = 0;
 }
 
 /// <summary>
@@ -124,8 +130,14 @@ void gameLogic::setupLevel() {
 	asteroidVar5.x = -0.006;
 	asteroidVar5.y = 0.006;
 
+	this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
+	this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
+	this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
+	this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
+	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
 
-	asteroidClass* asteroid1 = new asteroidClass(0.1);
+	/*
+	asteroidClass* asteroid1 = new asteroidClass(0.11);
 	asteroidClass* asteroid2 = new asteroidClass(0.09);
 	asteroidClass* asteroid3 = new asteroidClass(0.098);
 	asteroidClass* asteroid4 = new asteroidClass(0.092);
@@ -142,18 +154,21 @@ void gameLogic::setupLevel() {
 	this->registerGameObject(asteroid3, asteroidVar5, 1.0);
 	this->registerGameObject(asteroid4, asteroidVar4, 1.0);
 	this->registerGameObject(asteroid5, asteroidVar5 - asteroidVar4, 1.0);
-	/*
-	this->pH->registerObject(asteroid1, asteroidVar4, 1.0);
-	this->pH->registerObject(asteroid2, asteroidVar4, 1.0);
-	this->pH->registerObject(asteroid3, asteroidVar5, 1.0);
-	this->pH->registerObject(asteroid4, asteroidVar4, 1.0);
-	this->pH->registerObject(asteroid5, asteroidVar5-asteroidVar4, 1.0);
-	this->r->registerObject(true, asteroid1);
-	this->r->registerObject(true, asteroid2);
-	this->r->registerObject(true, asteroid3);
-	this->r->registerObject(true, asteroid4);
-	this->r->registerObject(true, asteroid5);
 	*/
+}
+
+
+/// <summary>
+/// Adds an asteroid to the game.
+/// </summary>
+/// <param name="s">Relative size</param>
+/// <param name="impulse">Initial impulse</param>
+/// <param name="position">Starting point</param>
+void gameLogic::addAsteroid(float s, Point impulse, Point position) {
+	this->asteroidCount++;
+	asteroidClass* newAsteroid = new asteroidClass(s);
+	newAsteroid->setPosition(position);
+	this->registerGameObject(newAsteroid, impulse, 1.0);
 }
 
 /// <summary>
