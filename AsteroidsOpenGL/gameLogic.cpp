@@ -135,13 +135,13 @@ void gameLogic::setupLevel() {
 	asteroidVar4.y = 0.006;
 	asteroidVar5.x = -0.006;
 	asteroidVar5.y = 0.006;
-
+	
 	this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
 	this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
 	this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
 	this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
 	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
-
+	
 	/*
 	asteroidClass* asteroid1 = new asteroidClass(0.11);
 	asteroidClass* asteroid2 = new asteroidClass(0.09);

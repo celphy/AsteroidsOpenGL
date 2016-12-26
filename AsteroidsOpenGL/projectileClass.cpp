@@ -1,6 +1,16 @@
 #include "projectileClass.h"
 
 /// <summary>
+/// Reduces lifetime and potentially flags as to be destroyed.
+/// </summary>
+void projectileClass::reduceLifetime() {
+	this->lifetime--;
+	if (lifetime == 0) {
+		this->toBeDestroyed = true;
+	}
+}
+
+/// <summary>
 /// Returns remaining lifetime.
 /// </summary>
 /// <returns>Remaining lifetime</returns>

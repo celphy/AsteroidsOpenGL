@@ -21,6 +21,10 @@ void physicsHandler::deleteObjects() {
 			delete (*it);
 			it = physicsObjects.erase(it);
 		}
+
+		if ((*it)->object->getType() == projectileType) {
+			static_cast<projectileClass*>((*it)->object)->reduceLifetime();
+		}
 			--it;
 	}
 }

@@ -3,6 +3,7 @@
 #include "gameObject.h"
 #include "gameBoard.h"
 #include "asteroidClass.h"
+#include "projectileClass.h"
 
 #define screenCutOff 1.05
 
