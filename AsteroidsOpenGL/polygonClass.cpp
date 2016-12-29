@@ -94,6 +94,18 @@ bool polygonClass::containsPoint(Point p) {
 }
 
 /// <summary>
+/// Set number of outline points.
+/// </summary>
+/// <param name="newNumberOfOutlinePoints">New number of outline points</param>
+/// <returns>Old number of outline points</returns>
+int polygonClass::setNumber(int newNumberOfOutlinePoints)
+{
+	int r = this->n;
+	this->n = newNumberOfOutlinePoints;
+	return r;
+}
+
+/// <summary>
 /// Returns polygonPoint number n.
 /// </summary>
 /// <param name="n">Number of point</param>

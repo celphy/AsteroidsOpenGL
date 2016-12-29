@@ -170,6 +170,8 @@ void renderer::render()
 
 	// Buffer tauschen
 	glfwSwapBuffers(this->window);
+	delete this->vertices;
+	delete this->indices;
 }
 
 /// <summary>
@@ -291,6 +293,6 @@ renderer::~renderer()
 	glDeleteBuffers(1, &EBO);
 	// GLFW Over and Out
 	glfwTerminate();
-	delete this->vertices;
-	delete this->indices;
+	/*delete this->vertices;
+	delete this->indices;*/
 }

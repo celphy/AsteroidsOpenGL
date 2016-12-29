@@ -39,8 +39,7 @@ public:
 
 
 //TODO
-//Collision & gameLogic YOU CANT COLLIDE WITH THE SAME ASTEROID MULTIPLE FRAMES IN A ROW!!!
-//Asteroids destroying
+//Invincible period for player
 //Add saucer
 //Make font class that creates scalable objects from string + position
 //Text, lifes, points, highscore

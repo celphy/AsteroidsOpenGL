@@ -60,7 +60,7 @@ Point gameObject::getRenderPoint(int num) {
 }
 
 /// <summary>
-/// Sets the outline point number num to a point.
+/// Sets the outline to a number of points
 /// </summary>
 /// <param name="num">Number of point to change</param>
 /// <param name="points">Point it should be set to</param>
@@ -70,6 +70,7 @@ void gameObject::setOutline(int num, GLfloat points[]) {
 		if(!this->outline->setPolygonPoint(i, points[2*i], points[(2*i) + 1]))
  			cout << "Major issue setting polygonPoints" << endl;
 	} //Might work after all by setting i/2 as number
+	this->outline->setNumber(num);
 }
 
 /// <summary>

@@ -15,6 +15,7 @@ public:
 	bool collidesWith(Point positionUs, polygonClass other, Point positionTheirs);
 	Point getPolygonPoint(int n);
 	bool containsPoint(Point p);
+	int setNumber(int newNumberOfOutlinePoints);
 	int getNumber();
 	polygonClass();
 	polygonClass(int num);
