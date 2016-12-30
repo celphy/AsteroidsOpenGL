@@ -1,6 +1,10 @@
 #include "gameObject.h"
 #include "point.h"
 
+/// <summary>
+/// Object info as string.
+/// </summary>
+/// <returns>Returns object info</returns>
 string gameObject::toString() {
 	string output;
 	output = "Position: ";

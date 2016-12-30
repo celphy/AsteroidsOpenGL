@@ -66,7 +66,6 @@ void gameLogic::tick()
 	bool playerHit = false;
 	if (this->shotCooldown > 0) {
 		this->shotCooldown--;
-		cout << shotCooldown << endl;
 	}
 	for (auto& it : lastCollisions) {
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == projectileType) {
