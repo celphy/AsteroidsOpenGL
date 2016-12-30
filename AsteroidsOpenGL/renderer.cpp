@@ -69,16 +69,15 @@ void renderer::addUI(gameObject* obj) {
 
 void renderer::removeObsoleteObjects() {
 	//Every object that is marked toBeDestroyed needs to get thrown out of our vector
-	
 	for (auto it = gameObjects.end() - 1; it != gameObjects.begin(); )//We start at the end to have as little overhead as possible
 	{
 		if ((*it)->getDestroyed()) {
 			it = gameObjects.erase(it);
 		}
-			--it;
-		
+		--it;
+
 	}
-	
+
 	//gameObjects.resize(distance(begin(gameObjects), remove_if(begin(gameObjects), end(gameObjects), [](const auto& i) { return i->getDestroyed(); })));
 }
 
@@ -94,9 +93,9 @@ void renderer::createRenderData()
 	int counterVertices = 0;
 	int counterIndices = 0;
 	int beginningOfPolygon = 0;
-	
+
 	//GetData
-	for (auto& it : this->gameObjects) { //Iterate over all gameObjects
+  	for (auto& it : this->gameObjects) { //Iterate over all gameObjects
 		beginningOfPolygon = counterIndices;
 		for (int i = 0; i < it->getOutline().getNumber(); i++) { //Iterate over all points of the gameObject
 			//Add Point
@@ -121,13 +120,13 @@ void renderer::createRenderData()
 		}
 		this->indices[(counterIndices * 2) - 1] = beginningOfPolygon; //Major possibility for wrong offsets when we're adding more stuff
 		if (DEBUG_OUTPUT) {
-		cout << "Changed indices[" << counterIndices * 2 - 1 << "] to Point " << beginningOfPolygon << endl;
-		cout << "Changed line at " << counterIndices * 2 - 2 << " and " << counterIndices * 2 - 1 << " to (Point " << counterIndices - 1 << " <-> Point " << beginningOfPolygon << ")" << endl;
-		cout << "-------------EndOfEntity--------------" << endl;
+			cout << "Changed indices[" << counterIndices * 2 - 1 << "] to Point " << beginningOfPolygon << endl;
+			cout << "Changed line at " << counterIndices * 2 - 2 << " and " << counterIndices * 2 - 1 << " to (Point " << counterIndices - 1 << " <-> Point " << beginningOfPolygon << ")" << endl;
+			cout << "-------------EndOfEntity--------------" << endl;
+		}
 	}
-	}
-	if(DEBUG_OUTPUT)
-	cout << "###########EndOfCreateRenderData############" << endl;
+	if (DEBUG_OUTPUT)
+		cout << "###########EndOfCreateRenderData############" << endl;
 }
 
 /// <summary>
@@ -164,7 +163,7 @@ void renderer::render()
 	glUseProgram(this->shaderProgram);
 	glBindVertexArray(VAO);
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
-	glDrawElements(GL_LINES, this->numberOfPoints*2, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_LINES, this->numberOfPoints * 2, GL_UNSIGNED_INT, 0);
 	//glDrawElements(GL_POINTS, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 
@@ -218,7 +217,7 @@ void renderer::initialize(string windowTitle, int width, int height)
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	this->createWindow(windowTitle, width, height);
-	
+
 	//Laut tutorial true für wasauchimmer
 	glewExperimental = GL_TRUE;
 	glewInit();

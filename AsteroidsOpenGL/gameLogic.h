@@ -7,6 +7,7 @@
 #include "VectorClass.h"
 #include "projectileClass.h"
 
+#define playerShotCooldown 20
 
 
 class gameLogic
@@ -17,6 +18,7 @@ private:
 	int playerScore;
 	int playerLives;
 	unsigned int asteroidCount;
+	size_t shotCooldown;
 public:
 	void setupLevel();
 	void addAsteroid(float s, Point impulse, Point position);

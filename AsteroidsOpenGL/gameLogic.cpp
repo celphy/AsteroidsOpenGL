@@ -5,6 +5,9 @@
 /// </summary>
 /// <param name="player">Pointer to player object</param>
 void gameLogic::playerShoot(playerShip* player) {
+	if (this->shotCooldown != 0) {
+		return;
+	}
 	//Get the projectileVector that playerShip provides us with. Its a vector from playerShip->position to the front.
 	vectorClass projectileVector;
 	projectileVector = player->getProjectileVector();
@@ -24,8 +27,10 @@ void gameLogic::playerShoot(playerShip* player) {
 	Point impulse;
 	impulse.x = projectileVector.getDirection().x - projectileVector.getOrigin().x;
 	impulse.y = projectileVector.getDirection().y - projectileVector.getOrigin().y;
-	
+
 	this->registerGameObject(projectile, impulse, 1.0);
+
+	this->shotCooldown = playerShotCooldown;
 }
 
 /// <summary>
@@ -59,6 +64,10 @@ void gameLogic::tick()
 	//resolve collisions, update gamestate
 	vector<collisionStruct> lastCollisions = this->pH->getLastCollisions();
 	bool playerHit = false;
+	if (this->shotCooldown > 0) {
+		this->shotCooldown--;
+		cout << shotCooldown << endl;
+	}
 	for (auto& it : lastCollisions) {
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) {
