@@ -126,6 +126,7 @@ gameLogic::gameLogic()
 	this->playerLives = 3;
 	this->playerScore = 0;
 	this->asteroidCount = 0;
+	this->shotCooldown = 0;
 }
 
 /// <summary>

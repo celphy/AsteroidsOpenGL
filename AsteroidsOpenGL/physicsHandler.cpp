@@ -15,6 +15,10 @@ void physicsHandler::tick() {
 void physicsHandler::deleteObjects() {
 	for (auto it = physicsObjects.end() - 1; it != physicsObjects.begin(); /* We start at the end to have as little overhead as possible */)
 	{
+		if ((*it)->object->getType() == projectileType) {
+			static_cast<projectileClass*>((*it)->object)->reduceLifetime();
+		}
+
 		if ((*it)->object->getDestroyed()) {
 			(*it)->object->deleteOutline(); //Try and free all unneeded memory
 			delete (*it)->object;
@@ -22,9 +26,7 @@ void physicsHandler::deleteObjects() {
 			it = physicsObjects.erase(it);
 		}
 
-		if ((*it)->object->getType() == projectileType) {
-			static_cast<projectileClass*>((*it)->object)->reduceLifetime();
-		}
+		
 			--it;
 	}
 }

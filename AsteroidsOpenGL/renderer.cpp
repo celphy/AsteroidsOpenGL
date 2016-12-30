@@ -93,7 +93,6 @@ void renderer::createRenderData()
 	int counterVertices = 0;
 	int counterIndices = 0;
 	int beginningOfPolygon = 0;
-
 	//GetData
   	for (auto& it : this->gameObjects) { //Iterate over all gameObjects
 		beginningOfPolygon = counterIndices;

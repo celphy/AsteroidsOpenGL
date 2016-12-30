@@ -46,10 +46,10 @@ double vectorClass::sizeOf(void) {
 /// </summary>
 void vectorClass::normVector(void) {
 	double invNorm = 1 / this->sizeOf();
-	this->direction.x *= invNorm;
-	this->direction.y *= invNorm;
-	this->origin.x *= invNorm;
-	this->origin.y *= invNorm;
+	this->direction.x *= (float)invNorm;
+	this->direction.y *= (float)invNorm;
+	this->origin.x *= (float)invNorm;
+	this->origin.y *= (float)invNorm;
 }
 
 /// <summary>

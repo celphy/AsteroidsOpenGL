@@ -12,6 +12,21 @@ string gameObject::toString() {
 		output += " true";
 	else
 		output += " false";
+	output += " Type: ";
+	switch (this->type) {
+	case projectileType:
+		output += "projectileType";
+		break;
+	case playerType:
+		output += "playerType";
+		break;
+	case asteroidType:
+		output += "asteroidType";
+		break;
+	case saucerType:
+		output += "saucerType";
+		break;
+	}
 	return output;
 }
 

@@ -123,6 +123,9 @@ void gameController::run() { //We could make this the primary gameloop but we do
 			this->pH->tick();
 			this->logic->tick();
 		}
+		else {
+			Sleep(1);
+		}
 	}
 }
 
