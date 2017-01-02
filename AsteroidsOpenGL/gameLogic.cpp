@@ -49,11 +49,23 @@ void gameLogic::reg(void* renderptr, physicsHandler* pHptr) {
 /// <param name="obj">gameObject</param>
 /// <param name="impulse">initial impulse</param>
 /// <param name="friction">friction in physicsHandler</param>
-void gameLogic::registerGameObject(gameObject * obj, Point impulse, float friction)
+physicsObject* gameLogic::registerGameObject(gameObject * obj, Point impulse, float friction)
 {
 	//this->r->addGame(obj);
 	this->r->registerObject(true, obj);
-	this->pH->registerObject(obj, impulse, friction);
+	return this->pH->registerObject(obj, impulse, friction);
+}
+
+/// <summary>
+/// Changes the impulse of the saucer physicsObject causing it to turn.
+/// </summary>
+void gameLogic::saucerTurn() {
+	if (!this->saucerActive) //If the saucer is inactive it has been destroyed and can't be accessed!!
+		return;
+	float interchange;
+	interchange = this->activeSaucer->impulse.x;
+	this->activeSaucer->impulse.x = this->activeSaucer->impulse.y;
+	this->activeSaucer->impulse.y = interchange;
 }
 
 /// <summary>
@@ -63,15 +75,26 @@ void gameLogic::tick()
 {
 	//resolve collisions, update gamestate
 	vector<collisionStruct> lastCollisions = this->pH->getLastCollisions();
-	bool playerHit = false;
+	int playerHitCount = 0; //Count number of hits against player per tick. If its zero we can reset playerHit after collisions TODO
 	if (this->shotCooldown > 0) {
 		this->shotCooldown--;
+	}
+	if (this->saucerTurnCounter == 0) {
+		this->saucerTurn();
+		this->saucerTurnCounter = timeBetweenSaucerTurns;
+	}
+	if (this->saucerTurnCounter > 0) {
+		this->saucerTurnCounter--;
 	}
 	for (auto& it : lastCollisions) {
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) {
 				cout << "Player got hit by projectile" << endl;
 			}
+			//Projectile currently spawns inside of player
+			//this->playerLives--;
+			//this->centerPlayer(it.passive->object);
+			//playerHit++;
 		}
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == asteroidType && !playerHit) { //Player got hit
 			if (DEBUG_OUTPUT) {
@@ -79,10 +102,17 @@ void gameLogic::tick()
 			}
 			playerHit = true;
 			this->playerLives--;
-			Point origin;
-			origin.x = 0;
-			origin.y = 0;
-			it.passive->object->setPosition(origin);
+			centerPlayer(it.passive->object);
+			playerHitCount++;
+		}
+		if (it.passive->object->getType() == playerType && it.active->object->getType() == saucerType && !playerHit) {
+			if (DEBUG_OUTPUT) {
+				cout << "Player hit by saucer" << endl;
+			}
+			playerHit = true;
+			this->playerLives--;
+			centerPlayer(it.passive->object);
+			playerHitCount++;
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) 
@@ -93,6 +123,7 @@ void gameLogic::tick()
 			this->playerScore += asteroidScore;
 			system("cls");
 			cout << "Player score: " << this->playerScore << endl;
+			cout << "Player lives: " << this->playerLives << endl;
 			asteroidClass* smallerOne, *smallerTwo;
 			asteroidClass* old = static_cast<asteroidClass*>(it.passive->object);
 			float newSize = old->getSize() / 2;
@@ -119,10 +150,22 @@ void gameLogic::tick()
 			this->playerScore += saucerScore;
 			system("cls");
 			cout << "Player score: " << this->playerScore << endl;
+			cout << "Player lives: " << this->playerLives << endl;
 			it.passive->object->markToDestroy();
 			it.active->object->markToDestroy();
+			this->saucerActive = false;
 		}
 	}
+	if (playerHitCount == 0) {
+		playerHit = false;
+	}
+}
+
+void gameLogic::centerPlayer(gameObject* player) {
+	Point center;
+	center.x = 0.0;
+	center.y = 0.0;
+	player->setPosition(center);
 }
 
 /// <summary>
@@ -135,14 +178,16 @@ gameLogic::gameLogic()
 	this->playerScore = 0;
 	this->asteroidCount = 0;
 	this->shotCooldown = 0;
+	this->saucerTurnCounter = 0;
+	this->saucerActive = false;
+	this->playerHit = false;
 }
 
 /// <summary>
 /// Sets up the start of a level. Happens at game start and after all asteroids have been destroyed.
 /// </summary>
 void gameLogic::setupLevel() {
-	//Initializing the level
-	Point asteroidVar1, asteroidVar2, asteroidVar3, asteroidVar4, asteroidVar5;
+	Point asteroidVar1, asteroidVar2, asteroidVar3, asteroidVar4, asteroidVar5, saucerImpulse;
 	asteroidVar1.x = -0.8;
 	asteroidVar1.y = -0.8;
 	asteroidVar2.x = 0.8;
@@ -153,14 +198,18 @@ void gameLogic::setupLevel() {
 	asteroidVar4.y = 0.006;
 	asteroidVar5.x = -0.006;
 	asteroidVar5.y = 0.006;
+	saucerImpulse.x = 0.001;
+	saucerImpulse.y = 0.007;
+
 	
 	//this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
 	this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
 	this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
 	this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
 	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
-	this->addSaucer(asteroidVar4, asteroidVar1);
-	
+	this->addSaucer(saucerImpulse, asteroidVar1);
+	this->saucerActive = true;
+	this->saucerTurnCounter = timeBetweenSaucerTurns;
 	/*
 	asteroidClass* asteroid1 = new asteroidClass(0.11);
 	asteroidClass* asteroid2 = new asteroidClass(0.09);
@@ -190,7 +239,7 @@ void gameLogic::setupLevel() {
 void gameLogic::addSaucer(Point impulse, Point position) {
 	saucerClass* newSaucer = new saucerClass();
 	newSaucer->setPosition(position);
-	this->registerGameObject(newSaucer, impulse, 1.0);
+	this->activeSaucer = this->registerGameObject(newSaucer, impulse, 1.0);
 }
 
 /// <summary>

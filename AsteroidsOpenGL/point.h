@@ -1,5 +1,8 @@
 #pragma once
 
+/// <summary>
+/// Point struct of floats. +/- operator inline.
+/// </summary>
 typedef struct Point {
 	float x;
 	float y;

@@ -7,18 +7,26 @@
 
 #define screenCutOff 1.05
 
-//Remove on lifetime end
+/// <summary>
+/// Object information for physics engine.
+/// </summary>
 typedef struct physicsObject {
 	gameObject *object;//reference to gameObject
 	Point impulse;
 	float friction;
 }physicsObject;
 
+/// <summary>
+/// Tupel for collision recording.
+/// </summary>
 typedef struct collisionStruct {
 	physicsObject* active;
 	physicsObject* passive;
 }collisionStruct;
 
+/// <summary>
+/// Physics engine supporting impulse and friction. Simple collision detection.
+/// </summary>
 class physicsHandler
 {
 private:
