@@ -68,6 +68,38 @@ void gameLogic::saucerTurn() {
 	this->activeSaucer->impulse.y = interchange;
 }
 
+void gameLogic::saucerShoot(gameObject * target)
+{
+	//Set up a projectile from the front facing in the same direction the playerShip is.	
+	projectileClass* projectile = new projectileClass();
+	Point from, to;
+	from = this->activeSaucer->object->getPosition();
+	to = target->getPosition();
+
+	vectorClass vector = vectorClass(from, to);
+	vector.normVector();
+
+	from.x += vector.getDirection().x - vector.getOrigin().x;
+	from.y += vector.getDirection().y - vector.getOrigin().y;
+
+	projectile->setPosition(from);
+
+	GLfloat* points = new GLfloat[4];
+	points[0] = 0.0f;
+	points[1] = 0.0f;
+	points[2] = 0.01f;
+	points[3] = 0.01f;
+	projectile->setOutline(2, points);
+
+	Point impulse;
+	impulse.x = vector.getDirection().x - vector.getOrigin().x;
+	impulse.y = vector.getDirection().y - vector.getOrigin().y;
+	impulse.x *= 0.05;
+	impulse.y *= 0.05;
+
+	this->registerGameObject(projectile, impulse, 1.0);
+}
+
 /// <summary>
 /// Resolve the reported collisions, update the gameState accordingly
 /// </summary>
@@ -113,6 +145,7 @@ void gameLogic::tick()
 			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
+			saucerShoot(it.passive->object);
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) 
@@ -203,10 +236,10 @@ void gameLogic::setupLevel() {
 
 	
 	//this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
-	this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
-	this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
-	this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
-	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
+	//this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
+	//this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
+	//this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
+	//this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
 	this->addSaucer(saucerImpulse, asteroidVar1);
 	this->saucerActive = true;
 	this->saucerTurnCounter = timeBetweenSaucerTurns;
