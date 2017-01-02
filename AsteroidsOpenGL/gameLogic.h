@@ -6,6 +6,7 @@
 #include "asteroidClass.h"
 #include "VectorClass.h"
 #include "projectileClass.h"
+#include "saucerClass.h"
 
 #define playerShotCooldown 20
 
@@ -24,6 +25,7 @@ public:
 	void addAsteroid(float s, Point impulse, Point position);
 	void reg(void* renderptr, physicsHandler* pHptr);
 	void registerGameObject(gameObject * obj, Point origin, float friction);
+	void addSaucer(Point impulse, Point position);
 	void tick();
 	void playerShoot(playerShip* player);
 	gameLogic();

@@ -145,11 +145,12 @@ void gameLogic::setupLevel() {
 	asteroidVar5.x = -0.006;
 	asteroidVar5.y = 0.006;
 	
-	this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
+	//this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
 	this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
 	this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
 	this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
 	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
+	this->addSaucer(asteroidVar4, asteroidVar1);
 	
 	/*
 	asteroidClass* asteroid1 = new asteroidClass(0.11);
@@ -172,6 +173,16 @@ void gameLogic::setupLevel() {
 	*/
 }
 
+/// <summary>
+/// Adds a saucer at position with impulse to the game.
+/// </summary>
+/// <param name="impulse"></param>
+/// <param name="position"></param>
+void gameLogic::addSaucer(Point impulse, Point position) {
+	saucerClass* newSaucer = new saucerClass();
+	newSaucer->setPosition(position);
+	this->registerGameObject(newSaucer, impulse, 1.0);
+}
 
 /// <summary>
 /// Adds an asteroid to the game.
@@ -192,3 +203,5 @@ void gameLogic::addAsteroid(float s, Point impulse, Point position) {
 gameLogic::~gameLogic()
 {
 }
+
+
