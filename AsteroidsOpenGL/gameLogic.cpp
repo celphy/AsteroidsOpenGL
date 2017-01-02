@@ -90,7 +90,7 @@ void gameLogic::tick()
 			it.passive->object->markToDestroy();
 			this->asteroidCount--;
 			it.active->object->markToDestroy();
-			this->playerScore += 50;
+			this->playerScore += asteroidScore;
 			system("cls");
 			cout << "Player score: " << this->playerScore << endl;
 			asteroidClass* smallerOne, *smallerTwo;
@@ -112,6 +112,15 @@ void gameLogic::tick()
 			if (asteroidCount == 0) {
 				this->setupLevel();
 			}
+		}
+		if (it.passive->object->getType() == saucerType && it.active->object->getType() == projectileType) {
+			if (DEBUG_OUTPUT)
+				cout << "Saucer hit by projectile" << endl;
+			this->playerScore += saucerScore;
+			system("cls");
+			cout << "Player score: " << this->playerScore << endl;
+			it.passive->object->markToDestroy();
+			it.active->object->markToDestroy();
 		}
 	}
 }

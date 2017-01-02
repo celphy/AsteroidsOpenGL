@@ -9,6 +9,8 @@
 #include "saucerClass.h"
 
 #define playerShotCooldown 20
+#define asteroidScore 50
+#define saucerScore 100
 
 
 class gameLogic
