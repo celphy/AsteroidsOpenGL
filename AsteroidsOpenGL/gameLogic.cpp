@@ -79,8 +79,8 @@ void gameLogic::saucerShoot(gameObject * target)
 	vectorClass vector = vectorClass(from, to);
 	vector.normVector();
 
-	from.x += vector.getDirection().x - vector.getOrigin().x;
-	from.y += vector.getDirection().y - vector.getOrigin().y;
+	from.x += (vector.getDirection().x - vector.getOrigin().x)/6;
+	from.y += (vector.getDirection().y - vector.getOrigin().y)/6;
 
 	projectile->setPosition(from);
 
@@ -114,6 +114,8 @@ void gameLogic::tick()
 	if (this->saucerTurnCounter == 0) {
 		this->saucerTurn();
 		this->saucerTurnCounter = timeBetweenSaucerTurns;
+		//if(saucerActive)
+			//saucerShoot(this->player);
 	}
 	if (this->saucerTurnCounter > 0) {
 		this->saucerTurnCounter--;
@@ -145,7 +147,6 @@ void gameLogic::tick()
 			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
-			saucerShoot(it.passive->object);
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT) 
@@ -273,6 +274,11 @@ void gameLogic::addSaucer(Point impulse, Point position) {
 	saucerClass* newSaucer = new saucerClass();
 	newSaucer->setPosition(position);
 	this->activeSaucer = this->registerGameObject(newSaucer, impulse, 1.0);
+}
+
+void gameLogic::setPlayer(playerShip * ptr)
+{
+	player = ptr;
 }
 
 /// <summary>

@@ -20,6 +20,7 @@ private:
 	renderer* r;
 	physicsHandler* pH;
 	physicsObject *activeSaucer;
+	playerShip* player;
 	bool saucerActive;
 	int playerScore;
 	int playerLives;
@@ -33,6 +34,7 @@ public:
 	void reg(void* renderptr, physicsHandler* pHptr);
 	physicsObject* registerGameObject(gameObject * obj, Point origin, float friction);
 	void addSaucer(Point impulse, Point position);
+	void setPlayer(playerShip* ptr);
 	void tick();
 	void playerShoot(playerShip* player);
 	void saucerTurn();

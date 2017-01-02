@@ -87,6 +87,7 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 void gameController::setPlayerShip(playerShip *ptr) {
 	this->player = ptr;
 	player->rotate();
+	this->logic->setPlayer(ptr);
 }
 
 /// <summary>
