@@ -157,6 +157,7 @@
     <ClCompile Include="polygonClass.cpp" />
     <ClCompile Include="projectileClass.cpp" />
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="saucerClass.cpp" />
     <ClCompile Include="VectorClass.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="polygonClass.h" />
     <ClInclude Include="projectileClass.h" />
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="saucerClass.h" />
     <ClInclude Include="VectorClass.h" />
   </ItemGroup>
   <ItemGroup>
