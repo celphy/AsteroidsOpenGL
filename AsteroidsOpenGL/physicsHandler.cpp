@@ -20,9 +20,9 @@ void physicsHandler::deleteObjects() {
 		}
 
 		if ((*it)->object->getDestroyed()) {
-			(*it)->object->deleteOutline(); //Try and free all unneeded memory
-			delete (*it)->object;
-			delete (*it);
+			//(*it)->object->deleteOutline(); //Try and free all unneeded memory
+			//delete (*it)->object;
+			//delete (*it);
 			it = physicsObjects.erase(it);
 		}
 

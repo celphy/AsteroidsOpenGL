@@ -111,11 +111,20 @@ void gameLogic::tick()
 	if (this->shotCooldown > 0) {
 		this->shotCooldown--;
 	}
-	if (this->saucerTurnCounter == 0) {
+	if (this->saucerTurnCounter == 0 && this->saucerActive == false) {
+		Point saucerImpulse, saucerPos;
+		saucerPos.x = -0.9;
+		saucerPos.y = -0.3;
+		saucerImpulse.x = 0.001;
+		saucerImpulse.y = 0.007;
+		this->addSaucer(saucerImpulse, saucerPos);
+		this->saucerActive = true;
+		saucerTurnCounter = timeBetweenSaucerTurns;
+	} else if (this->saucerTurnCounter == 0) {
 		this->saucerTurn();
 		this->saucerTurnCounter = timeBetweenSaucerTurns;
-		//if(saucerActive)
-			//saucerShoot(this->player);
+		if(saucerActive)
+			saucerShoot(this->player);
 	}
 	if (this->saucerTurnCounter > 0) {
 		this->saucerTurnCounter--;
@@ -188,6 +197,7 @@ void gameLogic::tick()
 			it.passive->object->markToDestroy();
 			it.active->object->markToDestroy();
 			this->saucerActive = false;
+			this->saucerTurnCounter = 2000;
 		}
 	}
 	if (playerHitCount == 0) {
@@ -236,14 +246,13 @@ void gameLogic::setupLevel() {
 	saucerImpulse.y = 0.007;
 
 	
-	//this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
-	//this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
-	//this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
-	//this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
-	//this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
-	this->addSaucer(saucerImpulse, asteroidVar1);
-	this->saucerActive = true;
-	this->saucerTurnCounter = timeBetweenSaucerTurns;
+	this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
+	this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
+	this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
+	this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
+	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
+	
+	this->saucerTurnCounter = 2000;
 	/*
 	asteroidClass* asteroid1 = new asteroidClass(0.11);
 	asteroidClass* asteroid2 = new asteroidClass(0.09);

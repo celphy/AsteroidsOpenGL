@@ -39,8 +39,7 @@ public:
 
 
 //TODO
-//Invincible period for player
-//Add saucer
+//Fix projectile deletion memory access problem! Currently memory is leaking (see comments in physicsHandler!)
 //Make font class that creates scalable objects from string + position
 //Text, lifes, points, highscore
 //Cleanup, DEFINES!
