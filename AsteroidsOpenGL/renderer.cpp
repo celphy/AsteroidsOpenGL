@@ -170,6 +170,7 @@ void renderer::render()
 	glfwSwapBuffers(this->window);
 	delete this->vertices;
 	delete this->indices;
+	//Smartpointer
 }
 
 /// <summary>

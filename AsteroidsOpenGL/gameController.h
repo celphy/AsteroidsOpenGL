@@ -39,7 +39,9 @@ public:
 
 
 //TODO
-//Fix projectile deletion memory access problem! Currently memory is leaking (see comments in physicsHandler!)
 //Make font class that creates scalable objects from string + position
+//Kollision mit punkt in n-eck lösen
+//Idle cpu last verringern
+//Release compile muss funktionieren
 //Text, lifes, points, highscore
 //Cleanup, DEFINES!
