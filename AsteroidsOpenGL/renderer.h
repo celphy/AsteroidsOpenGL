@@ -12,7 +12,9 @@
 //extern const GLchar* vertexShaderSource;
 //extern const GLchar* fragmentShaderSource;
 
-//Should we make seperate lists for UI, gameObjects
+//We created a seperate List for UI elements
+//Either we delta update it (scanning for changed details and updating them)
+//Or we simply discard the entire UI list and re-add everything
 
 class renderer
 {
@@ -22,6 +24,7 @@ private:
 	GLfloat* vertices;
 	GLuint* indices;
 	vector<gameObject*> gameObjects;
+	vector<gameObject*> uiObjects;
 	int numberOfElements;
 	int numberOfPoints;
 	int numberOfLivesLeft;

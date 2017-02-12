@@ -203,6 +203,7 @@ void gameLogic::tick()
 	if (playerHitCount == 0) {
 		playerHit = false;
 	}
+
 }
 
 void gameLogic::centerPlayer(gameObject* player) {

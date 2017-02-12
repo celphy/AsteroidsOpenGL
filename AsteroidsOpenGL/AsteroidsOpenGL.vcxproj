@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="asteroidClass.cpp" />
+    <ClCompile Include="fontBuilder.cpp" />
     <ClCompile Include="gameBoard.cpp" />
     <ClCompile Include="gameController.cpp" />
     <ClCompile Include="gameLogic.cpp" />
@@ -162,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="asteroidClass.h" />
+    <ClInclude Include="fontBuilder.h" />
     <ClInclude Include="gameBoard.h" />
     <ClInclude Include="gameController.h" />
     <ClInclude Include="gameLogic.h" />

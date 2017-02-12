@@ -63,7 +63,9 @@ void renderer::addGame(gameObject* obj)
 /// </summary>
 /// <param name="obj"></param>
 void renderer::addUI(gameObject* obj) {
-
+	uiObjects.push_back(obj);
+	this->numberOfElements++;
+	this->numberOfPoints += obj->getOutline().getNumber();
 }
 
 
@@ -126,6 +128,8 @@ void renderer::createRenderData()
 	}
 	if (DEBUG_OUTPUT)
 		cout << "###########EndOfCreateRenderData############" << endl;
+
+	this->uiObjects.clear(); //Ui is now outdated and needs to be generated again
 }
 
 /// <summary>

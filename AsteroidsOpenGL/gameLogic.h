@@ -7,6 +7,7 @@
 #include "VectorClass.h"
 #include "projectileClass.h"
 #include "saucerClass.h"
+#include "fontBuilder.h"
 
 #define playerShotCooldown 20
 #define timeBetweenSaucerTurns 40
@@ -33,6 +34,7 @@ public:
 	void addAsteroid(float s, Point impulse, Point position);
 	void reg(void* renderptr, physicsHandler* pHptr);
 	physicsObject* registerGameObject(gameObject * obj, Point origin, float friction);
+	void registerUIObject(gameObject * obj, Point origin);
 	void addSaucer(Point impulse, Point position);
 	void setPlayer(playerShip* ptr);
 	void tick();
