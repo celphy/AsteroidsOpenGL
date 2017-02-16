@@ -95,7 +95,7 @@ void renderer::createRenderData()
 	int counterVertices = 0;
 	int counterIndices = 0;
 	int beginningOfPolygon = 0;
-	//GetData
+	//GetData from gameObjects
   	for (auto& it : this->gameObjects) { //Iterate over all gameObjects
 		beginningOfPolygon = counterIndices;
 		for (int i = 0; i < it->getOutline().getNumber(); i++) { //Iterate over all points of the gameObject
@@ -126,10 +126,32 @@ void renderer::createRenderData()
 			cout << "-------------EndOfEntity--------------" << endl;
 		}
 	}
+	//GetData from UI elements
+	for (auto& it : this->uiObjects) {
+		beginningOfPolygon = counterIndices;
+		for (int i = 0; i < it->getOutline().getNumber(); i++) {
+			this->vertices[counterVertices] = it->getRenderPoint(i).x;
+			if (DEBUG_OUTPUT)
+				cout << "Point " << i << " X: " << this->vertices[counterVertices];
+			counterVertices++;
+			this->vertices[counterVertices] = it->getRenderPoint(i).y;
+			if (DEBUG_OUTPUT)
+				cout << " Y: " << this->vertices[counterVertices] << endl;
+			counterVertices++;
+			this->vertices[counterVertices] = 0.0f;
+			counterVertices++;
+			//Add Line to draw
+			this->indices[counterIndices * 2] = counterIndices;
+			this->indices[(counterIndices * 2) + 1] = counterIndices + 1;
+			if (DEBUG_OUTPUT)
+				cout << "Added line at " << counterIndices * 2 << " and " << counterIndices * 2 + 1 << " to (Point " << counterIndices << " <-> Point " << counterIndices + 1 << ")" << endl;
+			counterIndices++;
+		}
+	}
 	if (DEBUG_OUTPUT)
 		cout << "###########EndOfCreateRenderData############" << endl;
 
-	this->uiObjects.clear(); //Ui is now outdated and needs to be generated again
+	//this->uiObjects.clear(); //Ui is now outdated and needs to be generated again
 }
 
 /// <summary>
