@@ -130,7 +130,6 @@ void renderer::createRenderData()
 	}
 	//GetData from UI elements
 	for (auto& it : this->uiObjects) {
-		beginningOfPolygon = counterIndices;
 		for (int i = 0; i < it->getOutline().getNumber(); i++) {
 			this->vertices[counterVertices] = it->getRenderPoint(i).x;
 			if (DEBUG_OUTPUT)
@@ -144,7 +143,10 @@ void renderer::createRenderData()
 			counterVertices++;
 			//Add Line to draw
 			this->indices[counterIndices * 2] = counterIndices;
-			this->indices[(counterIndices * 2) + 1] = counterIndices + 1;
+			if (counterIndices + 1 != this->numberOfPoints)
+				this->indices[(counterIndices * 2) + 1] = counterIndices + 1;
+			else
+				this->indices[(counterIndices * 2) + 1] = counterIndices;
 			if (DEBUG_OUTPUT)
 				cout << "Added line at " << counterIndices * 2 << " and " << counterIndices * 2 + 1 << " to (Point " << counterIndices << " <-> Point " << counterIndices + 1 << ")" << endl;
 			counterIndices++;
