@@ -74,6 +74,8 @@ void renderer::removeObsoleteObjects() {
 	for (auto it = gameObjects.end() - 1; it != gameObjects.begin(); )//We start at the end to have as little overhead as possible
 	{
 		if ((*it)->getDestroyed()) {
+			this->numberOfPoints -= (*it)->getOutline().getNumber();
+			this->numberOfElements--;
 			it = gameObjects.erase(it);
 		}
 		--it;
