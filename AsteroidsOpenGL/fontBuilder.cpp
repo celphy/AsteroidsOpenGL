@@ -19,7 +19,7 @@ gameObject * fontBuilder::makeToText(int number, Point p, float size)
 		points[7] = this->segments[4].y * size;
 		points[8] = this->segments[0].x * size;
 		points[9] = this->segments[0].y * size;
-		obj->setOutline(4, points);
+		obj->setOutline(5, points);
 		break;
 	}
 
