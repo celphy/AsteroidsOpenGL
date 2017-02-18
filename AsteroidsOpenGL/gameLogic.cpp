@@ -283,8 +283,8 @@ void gameLogic::generateUI()
 {
 	r->clearUI();
 	//Our variables to display
-	this->playerScore;
-	this->playerLives;
+	//this->playerScore;
+	//this->playerLives;
 	//Our fontbuilder can be accessed like this
 	//r->addUI(fontBuilder::getInstance().makeToText(1, PointOfOrigin, 0.5));
 
@@ -295,14 +295,14 @@ void gameLogic::generateUI()
 	int fourthNumber = this->playerScore / 1000 % 10;
 
 	Point pOO;
-	pOO.x = -0.5;
+	pOO.x = -0.7;
 	pOO.y = 0.9;
 	for (int i = 0; i < this->playerLives; i++) {
 		r->addUI(fontBuilder::getInstance().makeToText(-1, pOO, 0.1));
 		pOO.x += 0.1;
 	}
 
-	pOO.x = 0.8;
+	pOO.x = 0.6;
 
 	if (fourthNumber != 0) {
 		//print all
