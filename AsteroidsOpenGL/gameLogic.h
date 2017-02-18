@@ -34,9 +34,9 @@ public:
 	void addAsteroid(float s, Point impulse, Point position);
 	void reg(void* renderptr, physicsHandler* pHptr);
 	physicsObject* registerGameObject(gameObject * obj, Point origin, float friction);
-	void registerUIObject(gameObject * obj, Point origin);
 	void addSaucer(Point impulse, Point position);
 	void setPlayer(playerShip* ptr);
+	void generateUI();
 	void tick();
 	void playerShoot(playerShip* player);
 	void saucerTurn();

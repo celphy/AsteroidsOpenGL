@@ -48,6 +48,7 @@ public:
 	void registerObject(bool isInGame, gameObject* obj);
 	void addGame(gameObject* obj);
 	void addUI(gameObject* obj);
+	void clearUI();
 	void createRenderData(); //Vertices and Indices
 	void render();
 	void createWindow(string title, int width, int height);

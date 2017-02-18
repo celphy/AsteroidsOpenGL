@@ -68,6 +68,15 @@ void renderer::addUI(gameObject* obj) {
 	this->numberOfPoints += obj->getOutline().getNumber();
 }
 
+void renderer::clearUI()
+{
+	for (auto& it : this->uiObjects) {
+		this->numberOfElements--;
+		this->numberOfPoints -= it->getOutline().getNumber();
+	}
+	this->uiObjects.clear(); 
+}
+
 
 void renderer::removeObsoleteObjects() {
 	//Every object that is marked toBeDestroyed needs to get thrown out of our vector

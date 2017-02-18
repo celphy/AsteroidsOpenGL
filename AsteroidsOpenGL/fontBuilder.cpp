@@ -169,15 +169,16 @@ gameObject * fontBuilder::makeToText(int number, Point p, float size)
 	default:
 		GLfloat points[8];
 		points[0] = 0.15 * size;
-		points[1] = 0.7 * size;
+		points[1] = -0.01 * size;
 		points[2] = 0.3 * size;
-		points[3] = 0.3 * size;
+		points[3] = -0.3 * size;
 		points[4] = 0.01 * size;
-		points[5] = 0.3 * size;
+		points[5] = -0.3 * size;
 		points[6] = 0.15 * size;
-		points[7] = 0.7 * size;
+		points[7] = -0.01 * size;
 		obj->setOutline(4, points);
 		break;
 	}
 	return obj;
 }
+

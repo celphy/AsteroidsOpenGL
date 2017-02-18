@@ -79,8 +79,8 @@ void gameLogic::saucerShoot(gameObject * target)
 	vectorClass vector = vectorClass(from, to);
 	vector.normVector();
 
-	from.x += (vector.getDirection().x - vector.getOrigin().x)/6;
-	from.y += (vector.getDirection().y - vector.getOrigin().y)/6;
+	from.x += (vector.getDirection().x - vector.getOrigin().x) / 6;
+	from.y += (vector.getDirection().y - vector.getOrigin().y) / 6;
 
 	projectile->setPosition(from);
 
@@ -120,10 +120,11 @@ void gameLogic::tick()
 		this->addSaucer(saucerImpulse, saucerPos);
 		this->saucerActive = true;
 		saucerTurnCounter = timeBetweenSaucerTurns;
-	} else if (this->saucerTurnCounter == 0) {
+	}
+	else if (this->saucerTurnCounter == 0) {
 		this->saucerTurn();
 		this->saucerTurnCounter = timeBetweenSaucerTurns;
-		if(saucerActive)
+		if (saucerActive)
 			saucerShoot(this->player);
 	}
 	if (this->saucerTurnCounter > 0) {
@@ -158,8 +159,8 @@ void gameLogic::tick()
 			playerHitCount++;
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
-			if (DEBUG_OUTPUT) 
-			cout << "Asteroid got hit by projectile!" << endl;
+			if (DEBUG_OUTPUT)
+				cout << "Asteroid got hit by projectile!" << endl;
 			it.passive->object->markToDestroy();
 			this->asteroidCount--;
 			it.active->object->markToDestroy();
@@ -167,8 +168,7 @@ void gameLogic::tick()
 			system("cls");
 			cout << "Player score: " << this->playerScore << endl;
 			cout << "Player lives: " << this->playerLives << endl;
-			Point test = { 0 , 0.5 };
-			r->addUI(fontBuilder::getInstance().makeToText(20, test, 0.5));
+			generateUI();
 			asteroidClass* smallerOne, *smallerTwo;
 			asteroidClass* old = static_cast<asteroidClass*>(it.passive->object);
 			float newSize = old->getSize() / 2;
@@ -246,13 +246,13 @@ void gameLogic::setupLevel() {
 	saucerImpulse.x = 0.001;
 	saucerImpulse.y = 0.007;
 
-	
+
 	this->addAsteroid(0.11, asteroidVar4, asteroidVar1);
 	this->addAsteroid(0.09, asteroidVar4, asteroidVar2);
 	this->addAsteroid(0.098, asteroidVar5, asteroidVar3);
 	this->addAsteroid(0.092, asteroidVar4, asteroidVar1 - asteroidVar3);
 	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
-	
+
 	this->saucerTurnCounter = 2000;
 	/*
 	asteroidClass* asteroid1 = new asteroidClass(0.11);
@@ -289,6 +289,59 @@ void gameLogic::addSaucer(Point impulse, Point position) {
 void gameLogic::setPlayer(playerShip * ptr)
 {
 	player = ptr;
+}
+
+void gameLogic::generateUI()
+{
+	r->clearUI();
+	//Our variables to display
+	this->playerScore;
+	this->playerLives;
+	//Our fontbuilder can be accessed like this
+	//r->addUI(fontBuilder::getInstance().makeToText(1, PointOfOrigin, 0.5));
+
+	//We'll display four numbers and up to three lives
+	int firstNumber = this->playerScore % 10;
+	int secondNumber = this->playerScore / 10 % 10;
+	int thirdNumber = this->playerScore / 100 % 10;
+	int fourthNumber = this->playerScore / 1000 % 10;
+
+	Point pOO;
+	pOO.x = 0.5;
+	pOO.y = 0.9;
+	for (int i = 0; i < this->playerLives; i++) {
+		r->addUI(fontBuilder::getInstance().makeToText(-1, pOO, 0.1));
+		pOO.x += 0.1;
+	}
+
+	pOO.x = 0.8;
+
+	if (fourthNumber != 0) {
+		//print all
+		r->addUI(fontBuilder::getInstance().makeToText(fourthNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(thirdNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(secondNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
+	}
+	//print others
+	else if (thirdNumber != 0) {
+		r->addUI(fontBuilder::getInstance().makeToText(thirdNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(secondNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
+	}
+	else if (secondNumber != 0) {
+		r->addUI(fontBuilder::getInstance().makeToText(secondNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
+	}
+	else
+		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
+
 }
 
 /// <summary>
