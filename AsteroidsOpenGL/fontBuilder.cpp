@@ -138,7 +138,7 @@ gameObject * fontBuilder::makeToText(int number, Point p, float size)
 		points[2] = this->segments[4].x * size;
 		points[3] = this->segments[4].y * size;
 		points[4] = this->segments[5].x * size;
-		points[5] = this->segments[5].x * size;
+		points[5] = this->segments[5].y * size;
 		points[6] = this->segments[1].x * size;
 		points[7] = this->segments[1].y * size;
 		points[8] = this->segments[0].x * size;

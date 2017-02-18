@@ -168,7 +168,7 @@ void gameLogic::tick()
 			cout << "Player score: " << this->playerScore << endl;
 			cout << "Player lives: " << this->playerLives << endl;
 			Point test = { 0 , 0.5 };
-			r->addUI(fontBuilder::getInstance().makeToText(9, test, 0.5));
+			r->addUI(fontBuilder::getInstance().makeToText(8, test, 0.5));
 			asteroidClass* smallerOne, *smallerTwo;
 			asteroidClass* old = static_cast<asteroidClass*>(it.passive->object);
 			float newSize = old->getSize() / 2;
