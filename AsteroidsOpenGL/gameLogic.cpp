@@ -68,6 +68,10 @@ void gameLogic::saucerTurn() {
 	this->activeSaucer->impulse.y = interchange;
 }
 
+/// <summary>
+/// Orders the saucer to shoot at a gameObject and handles it.
+/// </summary>
+/// <param name="target">Target gameObject</param>
 void gameLogic::saucerShoot(gameObject * target)
 {
 	//Set up a projectile from the front facing in the same direction the playerShip is.	
@@ -148,6 +152,7 @@ void gameLogic::tick()
 			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
+			generateUI();
 		}
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == saucerType && !playerHit) {
 			if (DEBUG_OUTPUT) {
@@ -157,6 +162,7 @@ void gameLogic::tick()
 			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
+			generateUI();
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT)
@@ -165,10 +171,6 @@ void gameLogic::tick()
 			this->asteroidCount--;
 			it.active->object->markToDestroy();
 			this->playerScore += asteroidScore;
-			system("cls");
-			cout << "Player score: " << this->playerScore << endl;
-			cout << "Player lives: " << this->playerLives << endl;
-			generateUI();
 			asteroidClass* smallerOne, *smallerTwo;
 			asteroidClass* old = static_cast<asteroidClass*>(it.passive->object);
 			float newSize = old->getSize() / 2;
@@ -186,18 +188,17 @@ void gameLogic::tick()
 			if (asteroidCount == 0) {
 				this->setupLevel();
 			}
+			generateUI();
 		}
 		if (it.passive->object->getType() == saucerType && it.active->object->getType() == projectileType) {
 			if (DEBUG_OUTPUT)
 				cout << "Saucer hit by projectile" << endl;
 			this->playerScore += saucerScore;
-			system("cls");
-			cout << "Player score: " << this->playerScore << endl;
-			cout << "Player lives: " << this->playerLives << endl;
 			it.passive->object->markToDestroy();
 			it.active->object->markToDestroy();
 			this->saucerActive = false;
 			this->saucerTurnCounter = 2000;
+			generateUI();
 		}
 	}
 	if (playerHitCount == 0) {
@@ -206,6 +207,10 @@ void gameLogic::tick()
 
 }
 
+/// <summary>
+/// Resets the player position to the centre location.
+/// </summary>
+/// <param name="player">Player gameObject</param>
 void gameLogic::centerPlayer(gameObject* player) {
 	Point center;
 	center.x = 0.0;
@@ -254,25 +259,8 @@ void gameLogic::setupLevel() {
 	this->addAsteroid(0.11, asteroidVar5 - asteroidVar4, asteroidVar2);
 
 	this->saucerTurnCounter = 2000;
-	/*
-	asteroidClass* asteroid1 = new asteroidClass(0.11);
-	asteroidClass* asteroid2 = new asteroidClass(0.09);
-	asteroidClass* asteroid3 = new asteroidClass(0.098);
-	asteroidClass* asteroid4 = new asteroidClass(0.092);
-	asteroidClass* asteroid5 = new asteroidClass(0.11);
-	asteroid1->setPosition(asteroidVar1);
-	asteroid2->setPosition(asteroidVar2);
-	asteroid3->setPosition(asteroidVar3);
-	asteroid4->setPosition(asteroidVar1-asteroidVar3);
-	asteroid5->setPosition(asteroidVar2);
 
-
-	this->registerGameObject(asteroid1, asteroidVar4, 1.0);
-	this->registerGameObject(asteroid2, asteroidVar4, 1.0);
-	this->registerGameObject(asteroid3, asteroidVar5, 1.0);
-	this->registerGameObject(asteroid4, asteroidVar4, 1.0);
-	this->registerGameObject(asteroid5, asteroidVar5 - asteroidVar4, 1.0);
-	*/
+	generateUI();
 }
 
 /// <summary>
@@ -307,7 +295,7 @@ void gameLogic::generateUI()
 	int fourthNumber = this->playerScore / 1000 % 10;
 
 	Point pOO;
-	pOO.x = 0.5;
+	pOO.x = -0.5;
 	pOO.y = 0.9;
 	for (int i = 0; i < this->playerLives; i++) {
 		r->addUI(fontBuilder::getInstance().makeToText(-1, pOO, 0.1));
