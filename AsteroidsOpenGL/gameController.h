@@ -39,9 +39,6 @@ public:
 
 
 //TODO
-//Make font class that creates scalable objects from string + position
+//Fix numbers so last point is first point
 //Kollision mit punkt in n-eck lösen
 //Idle cpu last verringern
-//Release compile muss funktionieren
-//Text, lifes, points, highscore
-//Cleanup, DEFINES!

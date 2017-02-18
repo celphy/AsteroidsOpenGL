@@ -218,6 +218,11 @@ void gameLogic::centerPlayer(gameObject* player) {
 	player->setPosition(center);
 }
 
+bool gameLogic::isGameOver(void)
+{
+	return this->playerLives <= 0;
+}
+
 /// <summary>
 /// Constructor
 /// </summary>

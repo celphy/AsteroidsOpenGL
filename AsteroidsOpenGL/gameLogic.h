@@ -42,6 +42,7 @@ public:
 	void saucerTurn();
 	void saucerShoot(gameObject* target);
 	void centerPlayer(gameObject* player);
+	bool isGameOver(void);
 	gameLogic();
 	~gameLogic();
 };
