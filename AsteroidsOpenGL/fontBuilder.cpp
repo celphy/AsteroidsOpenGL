@@ -117,6 +117,7 @@ gameObject * fontBuilder::makeToText(int number, Point p, float size)
 		points[10] = this->segments[2].x * size;
 		points[11] = this->segments[2].y * size;
 		obj->setOutline(6, points);
+		break;
 	}
 	case 7: {
 		GLfloat points[6];
