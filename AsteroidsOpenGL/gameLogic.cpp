@@ -170,10 +170,10 @@ void gameLogic::tick()
 			it.passive->object->markToDestroy();
 			this->asteroidCount--;
 			it.active->object->markToDestroy();
-			this->playerScore += asteroidScore;
 			asteroidClass* smallerOne, *smallerTwo;
 			asteroidClass* old = static_cast<asteroidClass*>(it.passive->object);
 			float newSize = old->getSize() / 2;
+			playerScore += 20;
 			if (newSize > 0.02) {
 				Point impulse;
 				impulse = it.passive->impulse;
@@ -183,7 +183,10 @@ void gameLogic::tick()
 				impulse.x *= 1.1;
 				impulse.y *= 1.1;
 				this->addAsteroid(newSize, impulse, it.passive->object->getPosition());
-
+				
+			}
+			else {
+				this->playerScore += 30;
 			}
 			if (asteroidCount == 0) {
 				this->setupLevel();

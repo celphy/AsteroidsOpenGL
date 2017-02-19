@@ -2,7 +2,6 @@
 #include "main.h"
 #include "physicsHandler.h"
 #include "playerShip.h"
-//#include "renderer.h"
 #include "gameLogic.h"
 
 #define TickRatePS 60
@@ -16,7 +15,6 @@ class gameController
 private:
 	playerShip *player;
 	physicsHandler *pH;
-	//renderer* r;
 	gameLogic* logic;
 	gameState state;
 	int maxShots;
@@ -37,8 +35,3 @@ public:
 	gameController();
 	~gameController();
 };
-
-
-//TODO
-//Kollision mit punkt in n-eck erweitern
-//Idle cpu last verringern

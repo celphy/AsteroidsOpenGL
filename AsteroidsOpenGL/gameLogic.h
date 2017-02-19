@@ -11,7 +11,6 @@
 
 #define playerShotCooldown 20
 #define timeBetweenSaucerTurns 40
-#define asteroidScore 50
 #define saucerScore 100
 
 
