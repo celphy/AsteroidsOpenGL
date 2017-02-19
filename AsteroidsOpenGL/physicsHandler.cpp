@@ -37,6 +37,30 @@ void physicsHandler::deleteObjects() {
 void physicsHandler::collisionDetection() {
 	//Empty out the list of collisions
 	lastCollisions.clear();
+	Point toTest;
+	/*
+	//Check by point in polygon method
+	for (auto& it : this->physicsObjects) {
+		for (auto& target : this->physicsObjects) {
+			for (int i = 0; i < target->object->getOutline().getNumber(); i++) {
+				toTest = target->object->getOutline().getPolygonPoint(i);
+				toTest.x += target->object->getPosition().x;
+				toTest.y += target->object->getPosition().y;
+				if (it->object->getOutline().containsPoint(toTest)) {
+					if (it->object->getType() == target->object->getType()) {
+						break;
+					}
+					collisionStruct collisions;
+					collisions.active = it;
+					collisions.passive = target;
+					lastCollisions.push_back(collisions);
+					break;
+				}
+			}
+		}
+	}
+	*/
+	//Check by intersecting outline vectors
 	for (auto& it : this->physicsObjects) {
 		for (auto& target : this->physicsObjects) {
 			if (it->object->getOutline().collidesWith(it->object->getPosition(), target->object->getOutline(), target->object->getPosition())) {
@@ -50,33 +74,7 @@ void physicsHandler::collisionDetection() {
 			}
 		}
 	}
-	/*
-	for (auto& it : this->physicsObjects) {
-		if (it->object->getType() == asteroidType) {
-			for (auto& target : this->physicsObjects) {
-				if (target->object->getType() == playerType) {
-					//it->object->getOutline().collidesWith(target->object->getOutline());
-				}
-			}
-		}
-		else if (it->object->getType() == projectileType) {
-			for (auto& target : this->physicsObjects) {
-				if (target->object->getOutline().containsPoint(it->object->getPosition()))
-					switch (target->object->getType()) {
-					case playerType:
-						break;
-					case asteroidType:
-						target->object->markToDestroy();
-						break;
-					case projectileType:
-						break;
-					}
-					
-
-			}
-		}
-	}
-	*/
+	
 }
 
 /// <summary>

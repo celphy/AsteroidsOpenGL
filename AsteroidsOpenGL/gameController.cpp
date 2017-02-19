@@ -14,6 +14,8 @@ void gameController::togglePause() {
 	
 }
 
+
+
 /// <summary>
 /// Ends the game.
 /// </summary>
@@ -43,6 +45,9 @@ void gameController::key_callback(GLFWwindow* window, int key, int scancode, int
 		case GLFW_KEY_ESCAPE:
 			ptr->end();
 			glfwSetWindowShouldClose(window, GL_TRUE);
+			break;
+		case GLFW_KEY_ENTER:
+			ptr->teleportPlayer();
 			break;
 		case GLFW_KEY_W:
 			ptr->boost = true;
@@ -88,6 +93,20 @@ void gameController::setPlayerShip(playerShip *ptr) {
 	this->player = ptr;
 	player->rotate();
 	this->logic->setPlayer(ptr);
+}
+
+/// <summary>
+/// Teleports the player through hyperspace button.
+/// </summary>
+void gameController::teleportPlayer(void)
+{
+	mt19937 rng;
+	rng.seed(random_device()());
+	normal_distribution<float> dist(-0.5, 0.5);
+	Point random;
+	random.x = dist(rng);
+	random.y = dist(rng);
+	this->player->setPosition(random);
 }
 
 /// <summary>

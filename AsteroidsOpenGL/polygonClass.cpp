@@ -68,7 +68,7 @@ int polygonClass::getNumber() {
 /// </summary>
 /// <param name="p">Point</param>
 /// <returns>Point inside?</returns>
-bool polygonClass::containsPoint(Point p) {
+bool polygonClass::containsPoint(Point p, Point ownPosition) {
 	//TODO use point that refers to actual gameBoard cutoff
 	Point outside;
 	outside.x = -2.0;
@@ -79,9 +79,13 @@ bool polygonClass::containsPoint(Point p) {
 		Point sideOne, sideTwo;
 		if (i == 0) {
 			sideOne = this->getPolygonPoint(n - 1);
+			sideOne.x += ownPosition.x;
+			sideTwo.y += ownPosition.y;
 		}
 		else {
 			sideOne = this->getPolygonPoint(i - 1);
+			sideOne.x += ownPosition.x;
+			sideTwo.y += ownPosition.y;
 		}
 		sideTwo = this->getPolygonPoint(i);
 		vectorClass *sideVector = new vectorClass(sideOne, sideTwo);

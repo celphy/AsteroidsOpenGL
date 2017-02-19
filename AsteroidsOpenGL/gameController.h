@@ -33,12 +33,12 @@ public:
 	void run();
 	void setHandlers(void* renderer, physicsHandler* ptr);
 	void setPlayerShip(playerShip *ptr);
+	void teleportPlayer(void);
 	gameController();
 	~gameController();
 };
 
 
 //TODO
-//Fix numbers so last point is first point
-//Kollision mit punkt in n-eck lösen
+//Kollision mit punkt in n-eck erweitern
 //Idle cpu last verringern
