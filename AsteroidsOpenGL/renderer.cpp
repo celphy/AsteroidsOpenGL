@@ -161,7 +161,7 @@ void renderer::createRenderData()
 				cout << "Added line at " << counterIndices * 2 << " and " << counterIndices * 2 + 1 << " to (Point " << counterIndices << " <-> Point " << counterIndices + 1 << ")" << endl;
 			counterIndices++;
 		}
-		this->indices[(counterIndices * 2) - 1] = beginningOfPolygon; //Major possibility for wrong offsets when we're adding more stuff
+		this->indices[(counterIndices * 2) - 1] = counterIndices-1; //Major possibility for wrong offsets when we're adding more stuff
 		if (DEBUG_OUTPUT) {
 			cout << "Changed indices[" << counterIndices * 2 - 1 << "] to Point " << beginningOfPolygon << endl;
 			cout << "Changed line at " << counterIndices * 2 - 2 << " and " << counterIndices * 2 - 1 << " to (Point " << counterIndices - 1 << " <-> Point " << beginningOfPolygon << ")" << endl;
