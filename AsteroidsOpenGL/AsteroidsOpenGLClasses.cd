@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="asteroidClass" Collapsed="true">
+    <Position X="0.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAIAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>asteroidClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gameController">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="~gameController" Hidden="true" />
+      <Method Name="StartPerformanceCounter" Hidden="true" />
+      <Method Name="teleportPlayer" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAIAgACAAAGAGAQAABAAAAAAMgCAABFAABAQCIgAAA=</HashCode>
+      <FileName>gameController.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gameObject">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="~gameObject" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EIBAIAAAAAgBAAAAAAAAJAACGQABAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>gameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gameLogic" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CABgAAAAkAAABECBCSIAEACAAAwAAAABACABgAIgAgQ=</HashCode>
+      <FileName>gameLogic.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="physicsHandler">
+    <Position X="11.5" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABgAEAAAAAAACCAAAAAAAEAAAAAAAJQAAAAEAAAAIA=</HashCode>
+      <FileName>physicsHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="playerShip" Collapsed="true">
+    <Position X="0.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAIQCAAAAAEAAAAQAAAAAAAAAAAgFABBAABAAAA=</HashCode>
+      <FileName>playerShip.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="polygonClass">
+    <Position X="3.75" Y="5" Width="1.5" />
+    <Members>
+      <Field Name="n" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAABEAAQAABAEAABAAAAAAAEAQAAAAAEAAAEAAAAAA=</HashCode>
+      <FileName>polygonClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="projectileClass" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAEDAAAA=</HashCode>
+      <FileName>projectileClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="renderer">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="~renderer" Hidden="true" />
+      <Method Name="createWindow" Hidden="true" />
+      <Method Name="getNumberOfLives" Hidden="true" />
+      <Method Name="getNumberOfPoints" Hidden="true" />
+      <Method Name="initialize" Hidden="true" />
+      <Method Name="renderer" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIQgQgAAAAAABEICFAEgBAAAQAAwACgIIBAgAAAUkSA=</HashCode>
+      <FileName>renderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="saucerClass" Collapsed="true">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>saucerClass.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="physicsObject" Collapsed="true">
+    <Position X="13.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>physicsHandler.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="collisionStruct" Collapsed="true">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>physicsHandler.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
