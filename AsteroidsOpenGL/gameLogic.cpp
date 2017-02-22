@@ -282,11 +282,18 @@ void gameLogic::addSaucer(Point impulse, Point position) {
 	this->activeSaucer = this->registerGameObject(newSaucer, impulse, 1.0);
 }
 
+/// <summary>
+/// Sets a pointer to the player to work with.
+/// </summary>
+/// <param name="ptr">Pointer to player</param>
 void gameLogic::setPlayer(playerShip * ptr)
 {
 	player = ptr;
 }
 
+/// <summary>
+/// Generates entire UI
+/// </summary>
 void gameLogic::generateUI()
 {
 	r->clearUI();

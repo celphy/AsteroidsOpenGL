@@ -1,7 +1,13 @@
 #include "fontBuilder.h"
 
 
-
+/// <summary>
+/// Builds a UI element and returns a gameObject.
+/// </summary>
+/// <param name="number">Number to be created</param>
+/// <param name="p">Position it should be positioned at</param>
+/// <param name="size">Scales the resulting element</param>
+/// <returns></returns>
 gameObject * fontBuilder::makeToText(int number, Point p, float size)
 {
 	gameObject* obj = new gameObject(p);

@@ -68,6 +68,9 @@ void renderer::addUI(gameObject* obj) {
 	this->numberOfPoints += obj->getOutline().getNumber();
 }
 
+/// <summary>
+/// Clears the UI.
+/// </summary>
 void renderer::clearUI()
 {
 	for (auto& it : this->uiObjects) {
@@ -77,7 +80,9 @@ void renderer::clearUI()
 	this->uiObjects.clear(); 
 }
 
-
+/// <summary>
+/// Goes through the gameObjects and removes obsolete gameObjects.
+/// </summary>
 void renderer::removeObsoleteObjects() {
 	//Every object that is marked toBeDestroyed needs to get thrown out of our vector
 	for (auto it = gameObjects.end() - 1; it != gameObjects.begin(); )//We start at the end to have as little overhead as possible
@@ -238,13 +243,6 @@ void renderer::createWindow(string title, int width, int height)
 GLFWwindow* renderer::getWindow() {
 	return this->window;
 }
-//TODO: Find out if save to include back after gameLogic inclusion.
-/* Excluded to prevent cyclic dependencies
-void renderer::setKeyCallback(gameController* controller) {
-	// Tasten -> key_callback
-	glfwSetWindowUserPointer(this->window, (void*)controller);
-	glfwSetKeyCallback(this->window, gameController::key_callback);
-}*/
 
 /// <summary>
 /// Initializes renderer. Sets up GLFW and OpenGL.

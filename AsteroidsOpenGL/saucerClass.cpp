@@ -1,7 +1,9 @@
 #include "saucerClass.h"
 
 
-
+/// <summary>
+/// Constructor that creates the outline.
+/// </summary>
 saucerClass::saucerClass()
 {
 	this->type = saucerType;
@@ -22,7 +24,9 @@ saucerClass::saucerClass()
 	this->toBeDestroyed = false;
 }
 
-
+/// <summary>
+/// Destructor for saucerClass.
+/// </summary>
 saucerClass::~saucerClass()
 {
 }
