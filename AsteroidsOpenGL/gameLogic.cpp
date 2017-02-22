@@ -51,7 +51,6 @@ void gameLogic::reg(void* renderptr, physicsHandler* pHptr) {
 /// <param name="friction">friction in physicsHandler</param>
 physicsObject* gameLogic::registerGameObject(gameObject * obj, Point impulse, float friction)
 {
-	//this->r->addGame(obj);
 	this->r->registerObject(true, obj);
 	return this->pH->registerObject(obj, impulse, friction);
 }
@@ -149,7 +148,6 @@ void gameLogic::tick()
 				cout << "Player got hit" << endl;
 			}
 			playerHit = true;
-			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
 			generateUI();
@@ -159,7 +157,6 @@ void gameLogic::tick()
 				cout << "Player hit by saucer" << endl;
 			}
 			playerHit = true;
-			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
 			generateUI();
@@ -202,6 +199,9 @@ void gameLogic::tick()
 			this->saucerActive = false;
 			this->saucerTurnCounter = 2000;
 			generateUI();
+		}
+		if (playerHit) {
+			this->playerLives--;
 		}
 	}
 	if (playerHitCount == 0) {
