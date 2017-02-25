@@ -141,32 +141,45 @@ void gameLogic::tick()
 				cout << "Player got hit by projectile" << endl;
 			}
 			//Only enemy shots can hurt us
-			if (((projectileClass*)it.active)->getFriendlyFlag()) {
+			bool friendlyShot = ((projectileClass*)it.active)->getFriendlyFlag();
+			if (friendlyShot || ((projectileClass*)it.active)->getLifetime() > projectileLifetime || ((projectileClass*)it.active)->getLifetime() < 0) {
+				continue;
+			}
+			if (this->invicibilityFrames > 0) {
 				continue;
 			}
 			this->playerLives--;
 			this->centerPlayer(it.passive->object);
 			playerHit++;
+			this->invicibilityFrames = 80;
 			generateUI();
 		}
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == asteroidType && !playerHit) { //Player got hit
 			if (DEBUG_OUTPUT) {
 				cout << "Player got hit" << endl;
 			}
+			if (this->invicibilityFrames > 0) {
+				continue;
+			}
 			playerHit = true;
 			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
+			this->invicibilityFrames = 80;
 			generateUI();
 		}
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == saucerType && !playerHit) {
 			if (DEBUG_OUTPUT) {
 				cout << "Player hit by saucer" << endl;
 			}
+			if (this->invicibilityFrames > 0) {
+				continue;
+			}
 			playerHit = true;
 			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
+			this->invicibilityFrames = 80;
 			generateUI();
 		}
 		if (it.passive->object->getType() == asteroidType && it.active->object->getType() == projectileType) {
@@ -188,7 +201,7 @@ void gameLogic::tick()
 				impulse.x *= 1.1;
 				impulse.y *= 1.1;
 				this->addAsteroid(newSize, impulse, it.passive->object->getPosition());
-				
+
 			}
 			else {
 				this->playerScore += 30;
@@ -211,6 +224,9 @@ void gameLogic::tick()
 	}
 	if (playerHitCount == 0) {
 		playerHit = false;
+	}
+	if (this->invicibilityFrames > 0) {
+		this->invicibilityFrames--;
 	}
 
 }
@@ -239,6 +255,7 @@ gameLogic::gameLogic()
 	//Initialize variables
 	this->playerLives = 3;
 	this->playerScore = 0;
+	this->invicibilityFrames = 0;
 	this->asteroidCount = 0;
 	this->shotCooldown = 0;
 	this->saucerTurnCounter = 0;
@@ -324,6 +341,7 @@ void gameLogic::generateUI()
 	}
 
 	pOO.x = 0.5;
+	/*
 	r->addUI(fontBuilder::getInstance().makeToText(fifthNumber, pOO, 0.1));
 	pOO.x += 0.1;
 	r->addUI(fontBuilder::getInstance().makeToText(fourthNumber, pOO, 0.1));
@@ -333,8 +351,8 @@ void gameLogic::generateUI()
 	r->addUI(fontBuilder::getInstance().makeToText(secondNumber, pOO, 0.1));
 	pOO.x += 0.1;
 	r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
+	*/
 
-	/*
 	if (fifthNumber != 0) {
 		//print all
 		r->addUI(fontBuilder::getInstance().makeToText(fifthNumber, pOO, 0.1));
@@ -346,7 +364,7 @@ void gameLogic::generateUI()
 		r->addUI(fontBuilder::getInstance().makeToText(secondNumber, pOO, 0.1));
 		pOO.x += 0.1;
 		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
-		
+
 	}
 	if (fourthNumber != 0) {
 		//print 1-4
@@ -373,7 +391,7 @@ void gameLogic::generateUI()
 	}
 	else
 		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
-	*/
+
 
 }
 

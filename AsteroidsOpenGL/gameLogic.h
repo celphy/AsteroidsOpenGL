@@ -17,6 +17,7 @@
 class gameLogic
 {
 private:
+	int invicibilityFrames;
 	renderer* r;
 	physicsHandler* pH;
 	physicsObject *activeSaucer;

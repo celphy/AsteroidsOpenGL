@@ -6,9 +6,6 @@
 /// <param name="newFlag">New friendly flag</param>
 void projectileClass::setFriendlyFlag(bool newFlag) {
 	this->friendly = newFlag;
-	if (!this->friendly) {
-		friendly;
-	}
 }
 
 /// <summary>
@@ -16,7 +13,9 @@ void projectileClass::setFriendlyFlag(bool newFlag) {
 /// </summary>
 /// <returns>Friendly flag</returns>
 bool projectileClass::getFriendlyFlag() {
-	return this->friendly;
+	bool r = this->friendly;
+	
+	return r;
 }
 
 /// <summary>
@@ -43,6 +42,7 @@ size_t projectileClass::getLifetime() {
 projectileClass::projectileClass()
 {
 	this->type = projectileType;
+	this->friendly = true;
 	lifetime = projectileLifetime;
 	this->outline = new polygonClass();
 }
