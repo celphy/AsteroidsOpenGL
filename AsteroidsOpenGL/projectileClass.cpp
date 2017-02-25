@@ -1,6 +1,25 @@
 #include "projectileClass.h"
 
 /// <summary>
+/// Sets the projectile to player friendly or the opposite.
+/// </summary>
+/// <param name="newFlag">New friendly flag</param>
+void projectileClass::setFriendlyFlag(bool newFlag) {
+	this->friendly = newFlag;
+	if (!this->friendly) {
+		friendly;
+	}
+}
+
+/// <summary>
+/// Returns if this projectile is friendly to the player.
+/// </summary>
+/// <returns>Friendly flag</returns>
+bool projectileClass::getFriendlyFlag() {
+	return this->friendly;
+}
+
+/// <summary>
 /// Reduces lifetime and potentially flags as to be destroyed.
 /// </summary>
 void projectileClass::reduceLifetime() {

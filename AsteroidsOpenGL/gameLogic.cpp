@@ -17,6 +17,7 @@ void gameLogic::playerShoot(playerShip* player) {
 	projectilePosition.x = player->getOutline().getPolygonPoint(0).x + player->getPosition().x;
 	projectilePosition.y = player->getOutline().getPolygonPoint(0).y + player->getPosition().y;
 	projectile->setPosition(projectilePosition);
+	projectile->setFriendlyFlag(true);
 	GLfloat* points = new GLfloat[4];
 	points[0] = projectileVector.getOrigin().x;
 	points[1] = projectileVector.getOrigin().y;
@@ -86,6 +87,7 @@ void gameLogic::saucerShoot(gameObject * target)
 	from.y += (vector.getDirection().y - vector.getOrigin().y) / 6;
 
 	projectile->setPosition(from);
+	projectile->setFriendlyFlag(false);
 
 	GLfloat* points = new GLfloat[4];
 	points[0] = 0.0f;
@@ -138,16 +140,21 @@ void gameLogic::tick()
 			if (DEBUG_OUTPUT) {
 				cout << "Player got hit by projectile" << endl;
 			}
-			//Projectile currently spawns inside of player
-			//this->playerLives--;
-			//this->centerPlayer(it.passive->object);
-			//playerHit++;
+			//Only enemy shots can hurt us
+			if (((projectileClass*)it.active)->getFriendlyFlag()) {
+				continue;
+			}
+			this->playerLives--;
+			this->centerPlayer(it.passive->object);
+			playerHit++;
+			generateUI();
 		}
 		if (it.passive->object->getType() == playerType && it.active->object->getType() == asteroidType && !playerHit) { //Player got hit
 			if (DEBUG_OUTPUT) {
 				cout << "Player got hit" << endl;
 			}
 			playerHit = true;
+			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
 			generateUI();
@@ -157,6 +164,7 @@ void gameLogic::tick()
 				cout << "Player hit by saucer" << endl;
 			}
 			playerHit = true;
+			this->playerLives--;
 			centerPlayer(it.passive->object);
 			playerHitCount++;
 			generateUI();
@@ -199,9 +207,6 @@ void gameLogic::tick()
 			this->saucerActive = false;
 			this->saucerTurnCounter = 2000;
 			generateUI();
-		}
-		if (playerHit) {
-			this->playerLives--;
 		}
 	}
 	if (playerHitCount == 0) {
@@ -308,6 +313,7 @@ void gameLogic::generateUI()
 	int secondNumber = this->playerScore / 10 % 10;
 	int thirdNumber = this->playerScore / 100 % 10;
 	int fourthNumber = this->playerScore / 1000 % 10;
+	int fifthNumber = this->playerScore / 10000 % 10;
 
 	Point pOO;
 	pOO.x = -0.7;
@@ -317,10 +323,33 @@ void gameLogic::generateUI()
 		pOO.x += 0.1;
 	}
 
-	pOO.x = 0.6;
+	pOO.x = 0.5;
+	r->addUI(fontBuilder::getInstance().makeToText(fifthNumber, pOO, 0.1));
+	pOO.x += 0.1;
+	r->addUI(fontBuilder::getInstance().makeToText(fourthNumber, pOO, 0.1));
+	pOO.x += 0.1;
+	r->addUI(fontBuilder::getInstance().makeToText(thirdNumber, pOO, 0.1));
+	pOO.x += 0.1;
+	r->addUI(fontBuilder::getInstance().makeToText(secondNumber, pOO, 0.1));
+	pOO.x += 0.1;
+	r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
 
-	if (fourthNumber != 0) {
+	/*
+	if (fifthNumber != 0) {
 		//print all
+		r->addUI(fontBuilder::getInstance().makeToText(fifthNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(fourthNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(thirdNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(secondNumber, pOO, 0.1));
+		pOO.x += 0.1;
+		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
+		
+	}
+	if (fourthNumber != 0) {
+		//print 1-4
 		r->addUI(fontBuilder::getInstance().makeToText(fourthNumber, pOO, 0.1));
 		pOO.x += 0.1;
 		r->addUI(fontBuilder::getInstance().makeToText(thirdNumber, pOO, 0.1));
@@ -344,6 +373,7 @@ void gameLogic::generateUI()
 	}
 	else
 		r->addUI(fontBuilder::getInstance().makeToText(firstNumber, pOO, 0.1));
+	*/
 
 }
 

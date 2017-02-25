@@ -10,7 +10,10 @@ class projectileClass :
 {
 private:
 	size_t lifetime;
+	bool friendly;
 public:
+	bool getFriendlyFlag();
+	void setFriendlyFlag(bool newFlag);
 	size_t getLifetime();
 	void reduceLifetime();
 	projectileClass();

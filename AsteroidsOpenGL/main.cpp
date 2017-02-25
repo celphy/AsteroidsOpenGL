@@ -15,9 +15,6 @@ int main()
 	renderer r = renderer();
 
 	r.initialize("aSTEROIDs", WIDTH, HEIGHT);
-	//r.setKeyCallback(&controller);
-	
-	//Removed from renderer itself to avoid cyclic dependencies
 	glfwSetWindowUserPointer(r.getWindow(), &controller);
 	glfwSetKeyCallback(r.getWindow(), gameController::key_callback);
 
@@ -34,7 +31,6 @@ int main()
 
 	controller.setHandlers(static_cast<void*>(&r), physics);
 
-	//Gamelogic here propably
 	while (controller.getGameState() != gameEnd)
 	{
 		r.render(); //Renderer can run as often as we like

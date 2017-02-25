@@ -62,6 +62,7 @@ void physicsHandler::collisionDetection() {
 	*/
 	//Check by intersecting outline vectors
 	for (auto& it : this->physicsObjects) {
+		//Überspringe geprüfte äußere Elemente
 		for (auto& target : this->physicsObjects) {
 			if (it->object->getOutline().collidesWith(it->object->getPosition(), target->object->getOutline(), target->object->getPosition())) {
 				if (it->object == target->object) {

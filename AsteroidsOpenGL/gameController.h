@@ -4,7 +4,7 @@
 #include "playerShip.h"
 #include "gameLogic.h"
 
-#define TickRatePS 60
+#define TickRatePS 80
 
 enum gameState {
 	gameRunning, gamePause, gameEnd
